@@ -1,17 +1,16 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-
-          Welcome to GoBusiness
+class App extends Component {
+  render(){
+    return (
       
-      </header>
-    </div>
-  );
+      <div className="container">
+        <h2>Welcome to GoBusiness</h2>
+      </div>
+    )
+  }
 }
 
 export default App;
