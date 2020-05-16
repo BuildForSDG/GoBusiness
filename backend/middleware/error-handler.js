@@ -1,28 +1,32 @@
 /* eslint-disable no-case-declarations */
 // global error handling for routes
-const errorHandler = (err, req, res) => {
+const errorHandler = (err, req, res, next) => {
   switch (true) {
     case typeof err === 'string':
       // custom application error
       const is404 = err.toLowerCase().endsWith('not found');
       const statusCode = is404 ? 404 : 400;
-      return res.status(statusCode).json({
+      res.status(statusCode).json({
         message: err
       });
+      break;
     case err.name === 'ValidationError':
       // mongoose validation error
-      return res.status(400).json({
+      res.status(400).json({
         message: err.message
       });
+      break;
     case err.name === 'UnauthorizedError':
       // jwt authentication error
-      return res.status(401).json({
+      res.status(401).json({
         message: 'Invalid Token'
       });
+      break;
     default:
-      return res.status(500).json({
+      res.status(500).json({
         message: err.message
       });
+      next();
   }
 };
 

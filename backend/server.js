@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const errorHandler = require('./middleware/error-handler');
 require('dotenv').config();
 
 
@@ -31,6 +32,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // handling cors errors
 app.use(cors());
 
+// global error handler
+app.use(errorHandler);
 
 // set port,listen for requests
 const PORT = process.env.PORT || 4000;
