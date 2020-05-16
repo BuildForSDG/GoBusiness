@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  confirmPassword: {
+    type: String,
+    required: true
+  },
   acceptTerms: {
     type: Boolean
   }
