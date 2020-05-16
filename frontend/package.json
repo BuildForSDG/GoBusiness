@@ -28,17 +28,18 @@
       "not dead",
       "not op_mini all"
     ],
-    "lint-staged": {
-      "*.{js,jsx}": [
-        "pretty-quick --staged",
-        "eslint src/ --fix",
-        "git add"
-      ]
-    },
+    
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint src/ --fix",
+      "git add"
     ]
   },
   "devDependencies": {

@@ -19,7 +19,7 @@ class App extends Component {
               <div className="collapse navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                   <li className="navbar-item">
-                    <Link to="/signin" className="nav-link"><button className="btn btn-primary px-4 signin">Sign In</button></Link>
+                    <Link to="/signin" className="nav-link"><button className="btn px-4 signin">Sign In</button></Link>
                   </li>
                   <li className="navbar-item">
                     <Link to="/signup" className="nav-link"><button className="btn btn-primary px-4 mx-3 signup">Sign Up</button></Link>
@@ -27,9 +27,6 @@ class App extends Component {
                 </ul>
               </div>
           </nav>
-        <div className="row text-center mt-3">
-
-        </div>
       </div>
       <Route path="/" exact component={ Home } />
       <Route path="/signup" component={ SignUp } />
