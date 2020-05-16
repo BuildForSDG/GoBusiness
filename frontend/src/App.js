@@ -1,11 +1,13 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Home from "./components/home.component";
-import SignUp from "./components/signup.component";
-import SignIn from "./components/signin.component";
+import Home from './components/home.component';
+import SignUp from './components/signup.component';
+import SignIn from './components/signin.component';
 
 class App extends Component {
   render() {
@@ -26,13 +28,13 @@ class App extends Component {
               </div>
           </nav>
         <div className="row text-center mt-3">
-         
+
         </div>
       </div>
       <Route path="/" exact component={ Home } />
       <Route path="/signup" component={ SignUp } />
       <Route path="/signin" component={ SignIn } />
-      </Router> 
+      </Router>
     );
   }
 }
