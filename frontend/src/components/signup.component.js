@@ -1,0 +1,14 @@
+import React, { Component } from 'react';
+
+export default class SignUp extends Component {
+    render() {
+        return (
+           
+                <div className="col-sm-12 text-center">
+                    <h2>Sign Up Component</h2>
+                </div>
+              
+         
+        )
+    }
+}
