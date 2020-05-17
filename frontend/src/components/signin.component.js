@@ -10,14 +10,14 @@ export default class SignIn extends Component {
                 <h3 className="text-center mb-4">Sign into your Account</h3>
                 <form className="mt-2 form p-4">
                   <div className="form-group">
-                      <label>Email</label>
+                      <label>Email address</label>
                       <input className="form-control" 
-                      type="text" placeholder="joe@example.com"/>
+                      type="email" placeholder="joe@example.com"/>
                   </div>
                   <div className="form-group">
                       <label>Password</label>
                       <input className="form-control" 
-                      type="text"  placeholder="Password"/>
+                      type="password"  placeholder="Password"/>
                   </div>
                   <div className="form-group mt-4 text-center">
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>

@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/home.component';
 import SignUp from './components/signup.component';
 import SignIn from './components/signin.component';
+import Reset from './components/reset.component';
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
         <Route path="/" exact component={ Home } />
         <Route path="/signup" component={ SignUp } />
         <Route path="/signin" component={ SignIn } />
+        <Route path="/reset"  component={ Reset } />
       </div>
      
       </Router>

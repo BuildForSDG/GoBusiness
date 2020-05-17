@@ -39,3 +39,15 @@ body{
 p{
   font-size: 0.9rem
 }
+a{
+  text-decoration: none !important;
+}
+a:hover{
+  color: black !important;
+}
+.form{
+  width: 800px !important;
+  max-width: 80%;
+  margin: 0 auto;
+
+}
