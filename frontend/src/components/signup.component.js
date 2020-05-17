@@ -33,13 +33,13 @@ export default class SignUp extends Component {
                       <input className="form-control" 
                       type="password"  placeholder="Confirm Password"/>
                     </div>
-                    <div className="form-group mt-4">
-                      <input type="submit"value="Business" className="btn btn-primary  px-5"/>
-                      <input type="submit"value="Investor" className="btn btn-primary ml-3 px-5"/>
+                    <div className="form-group mt-4 text-center">
+                      <input type="submit"value="Business" className="btn btn-primary m-2 px-5 user"/>
+                      <input type="submit"value="Investor" className="btn btn-primary m-2 px-5 user"/>
                     </div>
                     <p className="text-center mt-5">Already have an Account? <a href="/signin">Sign in</a></p>
                   </form>
               </div>
             );
-        }
-}
+        };
+};

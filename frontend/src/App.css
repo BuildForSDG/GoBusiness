@@ -45,9 +45,6 @@ a{
 a:hover{
   color: black !important;
 }
-.form{
-  width: 800px !important;
-  max-width: 80%;
-  margin: 0 auto;
-
+.user{
+  width: 160px !important;
 }

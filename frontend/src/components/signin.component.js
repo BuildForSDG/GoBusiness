@@ -28,5 +28,5 @@ export default class SignIn extends Component {
                 <a href="/reset"><p className="text-center my-3">Forgot Your Password?</p></a>
             </div>
     );
-  }
-}
+  };
+};
