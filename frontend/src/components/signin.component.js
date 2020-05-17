@@ -3,21 +3,58 @@
 import React, { Component } from 'react';
 
 export default class SignIn extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      signIn_email: "",
+      signIn_password: ""
+    }
+    this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
+    this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
+  }
+  onChangeSignInEmail(e){
+    this.setState({
+      signIn_email: e.target.value
+    });
+  }
+  onChangeSignInPassword(e){
+    this.setState({
+      signIn_password: e.target.value
+    });
+  }
+  onSubmit(e){
+    e.preventDefault();
+    console.log(`Form Submitted`);
+    console.log(`SignIn Email: ${this.state.signIn_email}`);
+    console.log(`SignIn Password: ${this.state.signIn_password}`);
+
+    const newUser = {
+      signIn_email: this.state.signIn_email,
+      signIn_password: this.signIn_password
+    };
+    //axios post
+
+    this.setState({
+      signIn_email: "",
+      signIn_password: ""
+    })
+
+  }
   render() {
     return (
             
             <div className="col-sm-12 mb-3" style={{marginTop: 10}}>
                 <h3 className="text-center mb-4">Sign into your Account</h3>
-                <form className="mt-2 form p-4">
+                <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
                   <div className="form-group">
-                      <label>Email</label>
+                      <label>Email address</label>
                       <input className="form-control" 
-                      type="text" placeholder="joe@example.com"/>
+                      type="email" value={this.state.signIn_email} onChange={this.onChangeSignInEmail}  placeholder="joe@example.com"/>
                   </div>
                   <div className="form-group">
                       <label>Password</label>
                       <input className="form-control" 
-                      type="text"  placeholder="Password"/>
+                      type="password" value={this.state.signIn_password} onChange={this.onChangeSignInPassword}  placeholder="Password"/>
                   </div>
                   <div className="form-group mt-4 text-center">
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>
@@ -28,5 +65,5 @@ export default class SignIn extends Component {
                 <a href="/reset"><p className="text-center my-3">Forgot Your Password?</p></a>
             </div>
     );
-  }
-}
+  };
+};
