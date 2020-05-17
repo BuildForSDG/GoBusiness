@@ -25,7 +25,7 @@ export default class SignIn extends Component {
   }
   onSubmit(e){
     e.preventDefault();
-    console.log(`Form Submitted`);
+    console.log(`SignIn Form Submitted`);
     console.log(`SignIn Email: ${this.state.signIn_email}`);
     console.log(`SignIn Password ${this.state.signIn_password}`);
 
