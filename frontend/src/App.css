@@ -13,8 +13,29 @@ body{
   justify-content: center;
 }
 .container{
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.btn-primary{
+  outline: none;
+  background-color: black !important;
+  border: none !important;
+}
+.btn-primary:hover{
+  background-color: rgba(0,0,0,0.9) !important;
+}
+.signin{
+  background-color: none !important;
+}
+.form{
+  background: linear-gradient(145deg, #d9dee1, #ffffff);
+  box-shadow:  20px 20px 60px #cdd2d5, 
+             -20px -20px 60px #ffffff;
+}
+p{
+  font-size: 0.9rem
 }

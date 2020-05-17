@@ -14,12 +14,12 @@ class App extends Component {
     return (
       < Router>
         <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <Link to="/" className="navbar-brand">GoBusiness</Link>
               <div className="collapse navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                   <li className="navbar-item">
-                    <Link to="/signin" className="nav-link"><button className="btn btn-primary px-4 signin">Sign In</button></Link>
+                    <Link to="/signin" className="nav-link"><button className="btn px-4 signin">Sign In</button></Link>
                   </li>
                   <li className="navbar-item">
                     <Link to="/signup" className="nav-link"><button className="btn btn-primary px-4 mx-3 signup">Sign Up</button></Link>
@@ -27,13 +27,11 @@ class App extends Component {
                 </ul>
               </div>
           </nav>
-        <div className="row text-center mt-3">
-
-        </div>
+        <Route path="/" exact component={ Home } />
+        <Route path="/signup" component={ SignUp } />
+        <Route path="/signin" component={ SignIn } />
       </div>
-      <Route path="/" exact component={ Home } />
-      <Route path="/signup" component={ SignUp } />
-      <Route path="/signin" component={ SignIn } />
+     
       </Router>
     );
   }

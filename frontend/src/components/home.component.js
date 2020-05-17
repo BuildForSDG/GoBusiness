@@ -2,14 +2,19 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 
+
+
+
 export default class Home extends Component {
   render() {
     return (
-
-            <div className="col-sm-12 text-center">
-                <h2>Welcome to GoBusiness</h2>
-                <button className="btn btn-primary">Get Started</button>
-            </div>
+           
+                <div className="col-sm-12 text-center py-5">
+                    <h2>Welcome to GoBusiness</h2>
+                      <a href="/signup"><button className="btn btn-primary px-5 py-2 my-3">Get Started</button></a>
+                </div>
+          
+           
 
     );
   }
