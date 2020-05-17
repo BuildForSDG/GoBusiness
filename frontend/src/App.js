@@ -14,7 +14,7 @@ class App extends Component {
     return (
       < Router>
         <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <Link to="/" className="navbar-brand">GoBusiness</Link>
               <div className="collapse navbar-collapse">
                 <ul className="navbar-nav ml-auto">
@@ -27,10 +27,11 @@ class App extends Component {
                 </ul>
               </div>
           </nav>
+        <Route path="/" exact component={ Home } />
+        <Route path="/signup" component={ SignUp } />
+        <Route path="/signin" component={ SignIn } />
       </div>
-      <Route path="/" exact component={ Home } />
-      <Route path="/signup" component={ SignUp } />
-      <Route path="/signin" component={ SignIn } />
+     
       </Router>
     );
   }
