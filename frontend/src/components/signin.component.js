@@ -11,6 +11,7 @@ export default class SignIn extends Component {
     }
     this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
     this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   onChangeSignInEmail(e){
     this.setState({
@@ -24,22 +25,18 @@ export default class SignIn extends Component {
   }
   onSubmit(e){
     e.preventDefault();
-    console.log(`Form Submitted`);
+    console.log(`SignIn Form Submitted`);
     console.log(`SignIn Email: ${this.state.signIn_email}`);
-    console.log(`SignIn Password: ${this.state.signIn_password}`);
+    console.log(`SignIn Password ${this.state.signIn_password}`);
 
-    const newUser = {
-      signIn_email: this.state.signIn_email,
-      signIn_password: this.signIn_password
-    };
-    //axios post
-
+    /*Api call should go here using axios */
+   
     this.setState({
       signIn_email: "",
       signIn_password: ""
     })
 
-  }
+  };
   render() {
     return (
             
