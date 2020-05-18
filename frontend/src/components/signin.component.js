@@ -44,14 +44,14 @@ export default class SignIn extends Component {
                 <h3 className="text-center mb-4">Sign into your Account</h3>
                 <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
                   <div className="form-group">
-                      <label>Email address</label>
+                      <label>Email address<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="email" value={this.state.signIn_email} onChange={this.onChangeSignInEmail}  placeholder="joe@example.com"/>
+                      type="email" value={this.state.signIn_email} onChange={this.onChangeSignInEmail}  placeholder="joe@example.com" required/>
                   </div>
                   <div className="form-group">
-                      <label>Password</label>
+                      <label>Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signIn_password} onChange={this.onChangeSignInPassword}  placeholder="Password"/>
+                      type="password" value={this.state.signIn_password} onChange={this.onChangeSignInPassword}  placeholder="Password" required/>
                   </div>
                   <div className="form-group mt-4 text-center">
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>

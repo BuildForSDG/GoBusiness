@@ -48,3 +48,6 @@ a:hover {
 .user {
   width: 160px !important;
 }
+.require {
+  color: red;
+}
