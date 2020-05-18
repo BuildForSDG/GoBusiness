@@ -33,9 +33,9 @@ export default class Reset extends Component{
             <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
               <p className="text-justify">Enter your email address below and we'll send you a link to reset your password</p>  
               <div className="form-group">
-                  <label>Email address</label>
+                  <label>Email address<span className="require mx-1">*</span></label>
                   <input className="form-control" 
-                  type="text" value={this.state.reset_Email} onChange={this.onChangeResetEmail} placeholder="joe@example.com"/>
+                  type="text" value={this.state.reset_Email} onChange={this.onChangeResetEmail} placeholder="joe@example.com" required/>
               </div>
               <div className="form-group mt-4 text-center">
                 <input type="submit"value="Reset Password" className="btn btn-primary  px-5"/>
