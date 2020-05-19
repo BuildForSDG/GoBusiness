@@ -1,6 +1,5 @@
 GoBusiness is an SMEs Investing Platform to help support SMEs in Nigeria.
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4becca4b881a42a295ad0c06afe03ff6)](https://app.codacy.com/gh/BuildForSDG/GoBusiness?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/GoBusiness&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/6d8cbed49a214b8aaf9718bd47e2cb0f)](https://app.codacy.com/gh/BuildForSDG/GoBusiness?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/GoBusiness&utm_campaign=Badge_Grade_Settings)
 
 
