@@ -2,8 +2,8 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 
-//Email Validation Regex
-const validEmail = RegExp(/^(([^<>()\],;:\s@\"]+(\.[^<>()\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+
 
 export default class SignUp extends Component {
   constructor(props){
@@ -41,9 +41,10 @@ export default class SignUp extends Component {
     })
   }
   onChangeSignUpEmail(e){
-    this.setState({
-      signUp_email: e.target.value
-    })
+      this.setState({
+        signUp_email: e.target.value
+      })
+   
   }
   onChangeSignUpPassword(e){
     this.setState({
@@ -65,6 +66,8 @@ export default class SignUp extends Component {
     console.log(`SignUp Password: ${this.state.signUp_password}`);
     console.log(`SignUp ConfirmPassword: ${this.state.signUp_confirmPassword}`);
 
+    const data = this.state;
+   
     /**Api Call should come here using axios*/
 
     this.setState({
@@ -84,33 +87,51 @@ export default class SignUp extends Component {
                     <div className="form-group">
                         <label htmlFor="firstname">First Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="text" value={this.state.signUp_firstName} onChange={this.onChangeSignUpFirstName}  placeholder="First Name" name="firstname" required />
+                        type="text" value={this.state.signUp_firstName} onChange={this.onChangeSignUpFirstName}  pattern="[A-Za-z]+$"
+                        placeholder="First Name" required  autoFocus/>
+                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastName">Last Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="text" value={this.state.signUp_lastName} onChange={this.onChangeSignUpLastName}  placeholder="Last Name" name="lastname" required />
+                        type="text" value={this.state.signUp_lastName} onChange={this.onChangeSignUpLastName}  pattern="[A-Za-z]+$"
+                         placeholder="Last Name" required />
+                       
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Phone Number<span className="require mx-1">*</span></label>
                         <input className="form-control"
-                        type="tel" value={this.state.signUp_phoneNumber} onChange={this.onChangeSignUpPhoneNumber} placeholder="080xxxxxxxx" name="phoneNumber" required />
+                        type="tel"  value={this.state.signUp_phoneNumber} onChange={this.onChangeSignUpPhoneNumber} pattern="[0]\d{10}$"
+                        placeholder="080xxxxxxxx" required />
+                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email address<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="email"  value={this.state.signUp_email} onChange={this.onChangeSignUpEmail} placeholder="joe@example.com" name="email" required 
-                        pattern={ validEmail } />
+                        type="email"  value={this.state.signUp_email} onChange={this.onChangeSignUpEmail} pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                        placeholder="joe@example.com" required 
+                         />
+                         
                     </div>
                     <div className="form-group">
-                      <label className="password">Password<span className="require mx-1">*</span></label>
+                      <label className="password">Password ( 6 min and 12 max)<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signUp_password} onChange={this.onChangeSignUpPassword}  placeholder="Password" name="password" required />
+                      type="password" value={this.state.signUp_password} onChange={this.onChangeSignUpPassword}  minLength="6"maxLength="12" size="12"
+                      placeholder="Password" required />
+                     
                     </div>
                     <div className="form-group">
                       <label className="confirmPassword">Confirm Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signUp_confirmPassword} onChange={this.onChangeSignUpPasswordConfirm}  placeholder="Confirm Password" name="confirmPassword" required/>
+                      type="password" value={this.state.signUp_confirmPassword} onChange={this.onChangeSignUpPasswordConfirm} minLength="8" maxLength="12" size="12"
+                      placeholder="Confirm Password"  required/>
+                     
+                    </div>
+                    <div className="form-group">
+                      <div className="form-check">
+                        <input className="form-check-input" type="checkbox" value="" id="invalidCheck" required/>
+                        <label className="form-check-label" htmlFor="invalidCheck">Agree to terms and conditions</label>
+                      </div>
                     </div>
                     <div className="form-group mt-4 text-center">
                       <input type="submit"value="Business" className="btn btn-primary m-2 px-5 user"/>
