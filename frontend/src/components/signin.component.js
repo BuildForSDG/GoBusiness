@@ -46,12 +46,19 @@ export default class SignIn extends Component {
                   <div className="form-group">
                       <label>Email address<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="email" value={this.state.signIn_email} onChange={this.onChangeSignInEmail}  placeholder="joe@example.com" required/>
+                      type="email" 
+                      value={this.state.signIn_email} 
+                      onChange={this.onChangeSignInEmail} 
+                      pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                      placeholder="joe@example.com" required/>
                   </div>
                   <div className="form-group">
                       <label>Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signIn_password} onChange={this.onChangeSignInPassword}  placeholder="Password" required/>
+                      type="password" 
+                      value={this.state.signIn_password} 
+                      onChange={this.onChangeSignInPassword} 
+                      placeholder="Password" required/>
                   </div>
                   <div className="form-group mt-4 text-center">
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>
