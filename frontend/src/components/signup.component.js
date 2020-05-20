@@ -114,16 +114,16 @@ export default class SignUp extends Component {
                          
                     </div>
                     <div className="form-group">
-                      <label className="password">Password<span className="require mx-1">*</span></label>
+                      <label className="password">Password ( 6 min and 12 max)<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signUp_password} onChange={this.onChangeSignUpPassword}  
+                      type="password" value={this.state.signUp_password} onChange={this.onChangeSignUpPassword}  minLength="6"maxLength="12" size="12"
                       placeholder="Password" required />
                      
                     </div>
                     <div className="form-group">
                       <label className="confirmPassword">Confirm Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" value={this.state.signUp_confirmPassword} onChange={this.onChangeSignUpPasswordConfirm}  
+                      type="password" value={this.state.signUp_confirmPassword} onChange={this.onChangeSignUpPasswordConfirm} minLength="8" maxLength="12" size="12"
                       placeholder="Confirm Password"  required/>
                      
                     </div>
