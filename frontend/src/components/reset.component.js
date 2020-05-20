@@ -35,7 +35,11 @@ export default class Reset extends Component{
               <div className="form-group">
                   <label>Email address<span className="require mx-1">*</span></label>
                   <input className="form-control" 
-                  type="text" value={this.state.reset_Email} onChange={this.onChangeResetEmail} placeholder="joe@example.com" required/>
+                  type="text" 
+                  value={this.state.reset_Email} 
+                  onChange={this.onChangeResetEmail}
+                  pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                  placeholder="joe@example.com" required/>
               </div>
               <div className="form-group mt-4 text-center">
                 <input type="submit"value="Reset Password" className="btn btn-primary  px-5"/>

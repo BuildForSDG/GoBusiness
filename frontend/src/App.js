@@ -9,6 +9,7 @@ import Home from './components/home.component';
 import SignUp from './components/signup.component';
 import SignIn from './components/signin.component';
 import Reset from './components/reset.component';
+import Footer from './components/footer.component';
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
         <Route path="/signup" component={ SignUp } />
         <Route path="/signin" component={ SignIn } />
         <Route path="/reset"  component={ Reset } />
+        <Footer/>
       </div>
      
       </Router>

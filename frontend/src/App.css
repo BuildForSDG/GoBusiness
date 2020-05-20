@@ -20,6 +20,9 @@ body {
   align-items: center;
   justify-content: center;
 }
+.main {
+  flex: 1 0 auto;
+}
 .btn-primary {
   outline: none;
   background-color: black !important;
@@ -50,4 +53,10 @@ a:hover {
 }
 .require {
   color: red;
+}
+.footer {
+  display:flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
