@@ -3,9 +3,7 @@
 import React, { Component } from 'react';
 
 
-//Email Validation Regex
-const validEmail = RegExp(/^[a-zA-Z0-9]+@+[a-zA-Z]+.+[A-z]/);
-const validPhone = RegExp( /^[0]\d{10}$/gm);
+
 
 export default class SignUp extends Component {
   constructor(props){
@@ -43,9 +41,10 @@ export default class SignUp extends Component {
     })
   }
   onChangeSignUpEmail(e){
-    this.setState({
-      signUp_email: e.target.value
-    })
+      this.setState({
+        signUp_email: e.target.value
+      })
+   
   }
   onChangeSignUpPassword(e){
     this.setState({
@@ -88,28 +87,28 @@ export default class SignUp extends Component {
                     <div className="form-group">
                         <label htmlFor="firstname">First Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="text" value={this.state.signUp_firstName} onChange={this.onChangeSignUpFirstName}  
+                        type="text" value={this.state.signUp_firstName} onChange={this.onChangeSignUpFirstName}  pattern="[A-Za-z]+$"
                         placeholder="First Name" required  autoFocus/>
                         
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastName">Last Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="text" value={this.state.signUp_lastName} onChange={this.onChangeSignUpLastName} 
+                        type="text" value={this.state.signUp_lastName} onChange={this.onChangeSignUpLastName}  pattern="[A-Za-z]+$"
                          placeholder="Last Name" required />
                        
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Phone Number<span className="require mx-1">*</span></label>
                         <input className="form-control"
-                        type="tel"  value={this.state.signUp_phoneNumber} onChange={this.onChangeSignUpPhoneNumber} pattern={validPhone}
+                        type="tel"  value={this.state.signUp_phoneNumber} onChange={this.onChangeSignUpPhoneNumber} pattern="[0]\d{10}$"
                         placeholder="080xxxxxxxx" required />
                         
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email address<span className="require mx-1">*</span></label>
                         <input className="form-control" 
-                        type="email"  value={this.state.signUp_email} onChange={this.onChangeSignUpEmail} pattern={validEmail}
+                        type="email"  value={this.state.signUp_email} onChange={this.onChangeSignUpEmail} pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                         placeholder="joe@example.com" required 
                          />
                          
