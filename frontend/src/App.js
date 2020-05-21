@@ -13,17 +13,30 @@ import Reset from './components/reset.component';
 import Footer from './components/footer.component';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      menu : false
+    };
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+  toggleMenu(){
+    this.setState({
+      menu : !this.state.menu
+    })
+  }
   render() {
+    const show = ( this.state.menu) ? "show" : "" ;
     return (
       < Router>
-        <div className="container">
-          <div className="row">
+        <div>
+          <div>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <Link to="/" className="navbar-brand">GoBusiness</Link>
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse">
+              <Link to="/home" className="navbar-brand">GoBusiness</Link>
+              <button className="navbar-toggler" type="button" onClick={ this.toggleMenu }>
+        <span className="navbar-toggler-icon"></span>
+      </button>
+              <div className={"collapse navbar-collapse text-center " + show}>
                 <ul className="navbar-nav ml-auto">
                   <li className="navbar-item">
                     <Link to="/signin" className="nav-link"><button className="btn px-4 signin">Sign In</button></Link>
@@ -37,7 +50,7 @@ class App extends Component {
           </div>
          
         <Switch>
-          <Route path="/" exact component={ Home } />
+          <Route path="/home" exact component={ Home } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/signin" component={ SignIn } />
           <Route path="/reset"  component={ Reset } />

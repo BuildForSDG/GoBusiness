@@ -58,26 +58,33 @@ export default class SignUp extends Component {
   }
   onSubmit(e){
     e.preventDefault();
-    console.log(`SignUp Form submitted`);
-    console.log(`SignUp FirstName: ${this.state.signUp_firstName}`);
-    console.log(`SignUp LastName: ${this.state.signUp_lastName}`);
-    console.log(`SignUp PhoneNumber: ${this.state.signUp_phoneNumber}`);
-    console.log(`SignUp Email: ${this.state.signUp_email}`);
-    console.log(`SignUp Password: ${this.state.signUp_password}`);
-    console.log(`SignUp ConfirmPassword: ${this.state.signUp_confirmPassword}`);
-
-    const data = this.state;
+    if(this.state.signUp_password !== this.state.signUp_confirmPassword){
+      alert("Password donot match!");
+    } else {
+      console.log(`SignUp Form submitted`);
+      console.log(`SignUp FirstName: ${this.state.signUp_firstName}`);
+      console.log(`SignUp LastName: ${this.state.signUp_lastName}`);
+      console.log(`SignUp PhoneNumber: ${this.state.signUp_phoneNumber}`);
+      console.log(`SignUp Email: ${this.state.signUp_email}`);
+      console.log(`SignUp Password: ${this.state.signUp_password}`);
+      console.log(`SignUp ConfirmPassword: ${this.state.signUp_confirmPassword}`);
+      
+      this.setState({
+        signUp_firstName: "",
+        signUp_lastName: "",
+        signUp_phoneNumber: "",
+        signUp_email: "",
+        signUp_password: "",
+        signUp_confirmPassword: ""
+      })
+      
+    };
+   
+    
    
     /**Api Call should come here using axios*/
 
-    this.setState({
-      signUp_firstName: "",
-      signUp_lastName: "",
-      signUp_phoneNumber: "",
-      signUp_email: "",
-      signUp_password: "",
-      signUp_confirmPassword: ""
-    })
+   
   }
   render() {
       return (
