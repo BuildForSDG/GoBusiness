@@ -90,7 +90,7 @@ a:hover {
 }
 
 .navbar-brand {
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 .navbar {
@@ -103,8 +103,8 @@ button.navbar-toggler {
 }
 
 .collapse .navbar-collapse {
-  transition: height 0s ease-in-out,width 0s ease-in-out !important;
-  -webkit-transition: height 0s ease-in-out,width 0s ease-in-out !important;
+  transition: height 0s ease-in-out, width 0s ease-in-out !important;
+  -webkit-transition: height 0s ease-in-out, width 0s ease-in-out !important;
 }
 
 .navbar-toggler-icon {
