@@ -28,7 +28,7 @@ export default class Reset extends Component{
   }
     render() {
         return (
-            <div className="col-sm-12 mb-3" style={{marginTop: 10}}>
+            <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
             <h3 className="text-center mb-4">Reset Password</h3>
             <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
               <p className="text-justify">Enter your email address below and we'll send you a link to reset your password</p>  

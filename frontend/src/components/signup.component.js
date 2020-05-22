@@ -88,7 +88,7 @@ export default class SignUp extends Component {
   }
   render() {
       return (
-              <div className="col-sm-12 mb-3" style={{marginTop: 10}}>
+              <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
                   <h3 className="text-center mb-4">Create an Account</h3>
                   <form className="mt-2 form p-4"onSubmit={this.onSubmit}>
                     <div className="form-group">

@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,13 +29,12 @@ class App extends Component {
     const show = ( this.state.menu) ? "show" : "" ;
     return (
       < Router>
-        <div>
-          <div>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <Link to="/home" className="navbar-brand">GoBusiness</Link>
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light bg">
+              <Link to="/" className="navbar-brand">GoBusiness</Link>
               <button className="navbar-toggler" type="button" onClick={ this.toggleMenu }>
-        <span className="navbar-toggler-icon"></span>
-      </button>
+                <span className="navbar-toggler-icon"></span>
+              </button>
               <div className={"collapse navbar-collapse text-center " + show}>
                 <ul className="navbar-nav ml-auto">
                   <li className="navbar-item">
@@ -47,14 +46,13 @@ class App extends Component {
                 </ul>
               </div>
           </nav>
-          </div>
-         
-        <Switch>
-          <Route path="/home" exact component={ Home } />
+         <br/>
+        
+          <Route path="/" exact component={ Home } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/signin" component={ SignIn } />
           <Route path="/reset"  component={ Reset } />
-        </Switch>  
+ 
         
         <Footer/>
       </div>
