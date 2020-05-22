@@ -49,15 +49,20 @@ body {
 .signup:hover {
   font-weight: bold !important;
 }
-
+h3{
+  color: #fff;
+}
 .form {
   background: linear-gradient(145deg, #d9dee1, #ffffff);
-  box-shadow:  20px 20px 60px #cdd2d5, 
-             -20px -20px 60px #ffffff;
+}
+
+.acct {
+  font-size: 0.9rem;
+  color: #311b92;
 }
 
 p {
-  font-size: 0.9rem
+  color: #fff;
 }
 
 a {
@@ -65,7 +70,7 @@ a {
 }
 
 a:hover {
-  color: black !important;
+  font-weight: bold;
 }
 
 .user {
@@ -83,6 +88,7 @@ a:hover {
   justify-content: center;
   margin: 0 auto;
   text-align: center;
+  color: #fff;
 }
 
 .bg {
@@ -122,4 +128,11 @@ button.navbar-toggler {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   color: #311b92;
+  background-color: #6200ea;
+}
+
+.form-check-input {
+  width: 0.9rem;
+  height: 0.9rem;
+  
 }

@@ -31,7 +31,7 @@ export default class Reset extends Component{
             <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
             <h3 className="text-center mb-4">Reset Password</h3>
             <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
-              <p className="text-justify">Enter your email address below and we'll send you a link to reset your password</p>  
+              <p className="text-justify acct">Enter your email address below and we'll send you a link to reset your password</p>  
               <div className="form-group">
                   <label>Email address<span className="require mx-1">*</span></label>
                   <input className="form-control" 
@@ -45,7 +45,7 @@ export default class Reset extends Component{
                 <input type="submit"value="Reset Password" className="btn btn-primary  px-5"/>
               </div>
               
-              <p className="text-center mt-5"><a href="/signin" className="mx-2">Sign In</a>  or  <a href="/signup" className="mx-2">Sign Up</a></p>
+              <p className="text-center mt-5 acct"><a href="/signin" className="mx-2">Sign In</a>  or  <a href="/signup" className="mx-2">Sign Up</a></p>
             </form>
         
         </div>

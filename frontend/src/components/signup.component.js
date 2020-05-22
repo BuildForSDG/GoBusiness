@@ -166,7 +166,7 @@ export default class SignUp extends Component {
                       <input type="submit"value="Business" title="Sign up as a Business/SME " className="btn btn-primary m-2 px-5 user"/>
                       <input type="submit"value="Investor" title="Sign up as an Investor" className="btn btn-primary m-2 px-5 user"/>
                     </div>
-                    <p className="text-center mt-5">Already have an Account? <a href="/signin">Sign in</a></p>
+                    <p className="text-center mt-5 acct">Already have an Account? <a href="/signin">Sign in</a></p>
                   </form>
               </div>
             );
