@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 export default class Reset extends Component{
@@ -17,7 +18,7 @@ export default class Reset extends Component{
   }
   onSubmit(e){
     e.preventDefault();
-    console.log(`Email Reset Form Submitted`);
+    console.log(`Email Reset Successful`);
     console.log(`Reset Email: ${this.state.reset_Email}`);
 
     /**Api call should go here using axios */
@@ -35,7 +36,10 @@ export default class Reset extends Component{
               <div className="form-group">
                   <label>Email address<span className="require mx-1">*</span></label>
                   <input className="form-control" 
-                  type="text" 
+                  type="email"
+                  name="email"
+                  id="email" 
+                  title="Please enter your Email address"  
                   value={this.state.reset_Email} 
                   onChange={this.onChangeResetEmail}
                   pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
@@ -45,10 +49,10 @@ export default class Reset extends Component{
                 <input type="submit"value="Reset Password" className="btn btn-primary  px-5"/>
               </div>
               
-              <p className="text-center mt-5 acct"><a href="/signin" className="mx-2">Sign In</a>  or  <a href="/signup" className="mx-2">Sign Up</a></p>
+              <p className="text-center mt-5 acct"><Link to="/signin" className="mx-2">Sign In</Link>  or  <Link to="/signup" className="mx-2">Sign Up</Link></p>
             </form>
         
         </div>
-        )
-    }
-}
+        );
+    };
+};

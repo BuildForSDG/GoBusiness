@@ -51,10 +51,16 @@ body {
 }
 
 .start {
-  background-color: black !important;
+  background-color: #fff !important;
+  color: #311b92 !important; 
+  font-weight: bold !important;        
 }
 
-h3, h2 {
+.start:hover {
+  color: #fff !important;
+}
+
+h4,h3, h1 {
   color: #fff;
 }
 
@@ -135,6 +141,7 @@ button.navbar-toggler {
   font-weight: 400;
   color: #311b92;
   background-color: #6200ea;
+  text-transform: capitalize;
 }
 
 .form-check-input {

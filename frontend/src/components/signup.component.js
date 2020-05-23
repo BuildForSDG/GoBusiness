@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -61,7 +61,7 @@ export default class SignUp extends Component {
     if(this.state.signUp_password !== this.state.signUp_confirmPassword){
       alert("Password donot match!");
     } else {
-      console.log(`SignUp Form submitted`);
+      console.log(`SignUp Successful`);
       console.log(`SignUp FirstName: ${this.state.signUp_firstName}`);
       console.log(`SignUp LastName: ${this.state.signUp_lastName}`);
       console.log(`SignUp PhoneNumber: ${this.state.signUp_phoneNumber}`);
@@ -93,9 +93,11 @@ export default class SignUp extends Component {
                   <h3 className="text-center mb-4">Create an Account</h3>
                   <form className="mt-2 form p-4"onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label htmlFor="firstname">First Name<span className="require mx-1">*</span></label>
+                        <label htmlFor="firstName">First Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
                         type="text" 
+                        name="firstName"
+                        id="firstName"
                         title="Please enter your First name"
                         value={this.state.signUp_firstName} 
                         onChange={this.onChangeSignUpFirstName}  
@@ -106,6 +108,8 @@ export default class SignUp extends Component {
                         <label htmlFor="lastName">Last Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
                         type="text" 
+                        name="lastName"
+                        id="lastName"
                         title="Please enter your Last name"
                         value={this.state.signUp_lastName} 
                         onChange={this.onChangeSignUpLastName}  
@@ -117,6 +121,8 @@ export default class SignUp extends Component {
                         <label htmlFor="phoneNumber">Phone Number<span className="require mx-1">*</span></label>
                         <input className="form-control"
                         type="tel"
+                        name="phoneNumber"
+                        id="phoneNumber"
                         title="Please enter your Phone number"  
                         value={this.state.signUp_phoneNumber} 
                         onChange={this.onChangeSignUpPhoneNumber} 
@@ -128,6 +134,8 @@ export default class SignUp extends Component {
                         <label htmlFor="email">Email address<span className="require mx-1">*</span></label>
                         <input className="form-control" 
                         type="email"
+                        name="email"
+                        id="email"
                         title="Please enter your Email address"  
                         value={this.state.signUp_email} 
                         onChange={this.onChangeSignUpEmail} 
@@ -139,6 +147,8 @@ export default class SignUp extends Component {
                       <label className="password">Password ( 6 min and 12 max)<span className="require mx-1">*</span></label>
                       <input className="form-control" 
                       type="password" 
+                      name="password"
+                      id="password"
                       title="Please enter your Password"
                       value={this.state.signUp_password} 
                       onChange={this.onChangeSignUpPassword}  
@@ -150,6 +160,8 @@ export default class SignUp extends Component {
                       <label className="confirmPassword">Confirm Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
                       type="password" 
+                      name="confirmPassword"
+                      id="confirmPassword"
                       title="Please confirm your Password"
                       value={this.state.signUp_confirmPassword} 
                       onChange={this.onChangeSignUpPasswordConfirm} 
@@ -167,7 +179,7 @@ export default class SignUp extends Component {
                       <input type="submit"value="Business" title="Sign up as a Business/SME " className="btn btn-primary m-2 px-5 user"/>
                       <input type="submit"value="Investor" title="Sign up as an Investor" className="btn btn-primary m-2 px-5 user"/>
                     </div>
-                    <p className="text-center mt-5 acct">Already have an Account? <a href="/signin">Sign in</a></p>
+                    <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin">Sign in</Link></p>
                   </form>
               </div>
             );
