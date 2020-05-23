@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -61,7 +61,7 @@ export default class SignUp extends Component {
     if(this.state.signUp_password !== this.state.signUp_confirmPassword){
       alert("Password donot match!");
     } else {
-      console.log(`SignUp Form submitted`);
+      console.log(`SignUp Successful`);
       console.log(`SignUp FirstName: ${this.state.signUp_firstName}`);
       console.log(`SignUp LastName: ${this.state.signUp_lastName}`);
       console.log(`SignUp PhoneNumber: ${this.state.signUp_phoneNumber}`);
@@ -167,7 +167,7 @@ export default class SignUp extends Component {
                       <input type="submit"value="Business" title="Sign up as a Business/SME " className="btn btn-primary m-2 px-5 user"/>
                       <input type="submit"value="Investor" title="Sign up as an Investor" className="btn btn-primary m-2 px-5 user"/>
                     </div>
-                    <p className="text-center mt-5 acct">Already have an Account? <a href="/signin">Sign in</a></p>
+                    <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin">Sign in</Link></p>
                   </form>
               </div>
             );

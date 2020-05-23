@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class SignIn extends Component {
   constructor(props){
@@ -25,7 +26,7 @@ export default class SignIn extends Component {
   }
   onSubmit(e){
     e.preventDefault();
-    console.log(`SignIn Form Submitted`);
+    console.log(`SignIn Successfully`);
     console.log(`SignIn Email: ${this.state.signIn_email}`);
     console.log(`SignIn Password ${this.state.signIn_password}`);
 
@@ -47,6 +48,7 @@ export default class SignIn extends Component {
                       <label>Email address<span className="require mx-1">*</span></label>
                       <input className="form-control" 
                       type="email" 
+                      title="Please enter your Email address"  
                       value={this.state.signIn_email} 
                       onChange={this.onChangeSignInEmail} 
                       pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
@@ -57,16 +59,17 @@ export default class SignIn extends Component {
                       <input className="form-control" 
                       type="password" 
                       value={this.state.signIn_password} 
-                      onChange={this.onChangeSignInPassword} 
+                      onChange={this.onChangeSignInPassword}
+                      minLength="6"maxLength="12" size="12" 
                       placeholder="Password" required/>
                   </div>
                   <div className="form-group mt-4 text-center">
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>
                   </div>
                   
-                  <p className="text-center mt-5 acct">Don't have an Account? <a href="/signup">Sign up</a></p>
+                  <p className="text-center mt-5 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
                 </form>
-                <a href="/reset"><p className="text-center my-3">Forgot Your Password?</p></a>
+                <Link to="/reset"><p className="text-center my-3">Forgot Your Password?</p></Link>
             </div>
     );
   };

@@ -11,8 +11,9 @@ export default class Home extends Component {
             <div className="container">
                 <div className="row">
                 <div className="col-sm-12 text-center py-5">
-                    <h2>Welcome to GoBusiness</h2>
-                      <a href="/signup"><button className="btn btn-primary px-5 py-2 my-3 start">Get Started</button></a>
+                    <h1>Welcome to GoBusiness</h1>
+                    <h4>A Platform for SMEs Investment</h4>
+                      <a href="/signup"><button className="btn btn-primary px-5 py-2 my-3 start shadow">Get Started</button></a>
                 </div>
           
                 </div>
