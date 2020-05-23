@@ -36,7 +36,9 @@ export default class Reset extends Component{
               <div className="form-group">
                   <label>Email address<span className="require mx-1">*</span></label>
                   <input className="form-control" 
-                  type="email" 
+                  type="email"
+                  name="email"
+                  id="email" 
                   title="Please enter your Email address"  
                   value={this.state.reset_Email} 
                   onChange={this.onChangeResetEmail}
@@ -51,6 +53,6 @@ export default class Reset extends Component{
             </form>
         
         </div>
-        )
-    }
-}
+        );
+    };
+};

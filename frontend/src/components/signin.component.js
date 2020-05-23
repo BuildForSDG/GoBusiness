@@ -48,6 +48,8 @@ export default class SignIn extends Component {
                       <label>Email address<span className="require mx-1">*</span></label>
                       <input className="form-control" 
                       type="email" 
+                      name="email"
+                      id="email"
                       title="Please enter your Email address"  
                       value={this.state.signIn_email} 
                       onChange={this.onChangeSignInEmail} 
@@ -57,7 +59,9 @@ export default class SignIn extends Component {
                   <div className="form-group">
                       <label>Password<span className="require mx-1">*</span></label>
                       <input className="form-control" 
-                      type="password" 
+                      type="password"
+                      name="password"
+                      id="password" 
                       value={this.state.signIn_password} 
                       onChange={this.onChangeSignInPassword}
                       minLength="6"maxLength="12" size="12" 
