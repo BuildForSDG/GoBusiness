@@ -49,9 +49,11 @@ body {
 .signup:hover {
   font-weight: bold !important;
 }
-h3{
+
+h3 , h2 {
   color: #fff;
 }
+
 .form {
   background: linear-gradient(145deg, #d9dee1, #ffffff);
 }

@@ -68,6 +68,7 @@ export default class SignUp extends Component {
       console.log(`SignUp Email: ${this.state.signUp_email}`);
       console.log(`SignUp Password: ${this.state.signUp_password}`);
       console.log(`SignUp ConfirmPassword: ${this.state.signUp_confirmPassword}`);
+      alert("Signup successful");
       
       this.setState({
         signUp_firstName: "",
