@@ -50,7 +50,11 @@ body {
   font-weight: bold !important;
 }
 
-h3 , h2 {
+.start {
+  background-color: black !important;
+}
+
+h3, h2 {
   color: #fff;
 }
 
