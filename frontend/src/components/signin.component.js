@@ -64,7 +64,7 @@ export default class SignIn extends Component {
                     <input type="submit"value="Sign In" className="btn btn-primary  px-5"/>
                   </div>
                   
-                  <p className="text-center mt-5">Don't have an Account? <a href="/signup">Sign up</a></p>
+                  <p className="text-center mt-5 acct">Don't have an Account? <a href="/signup">Sign up</a></p>
                 </form>
                 <a href="/reset"><p className="text-center my-3">Forgot Your Password?</p></a>
             </div>
