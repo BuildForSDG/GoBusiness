@@ -93,6 +93,10 @@ a:hover {
   color: red;
 }
 
+.error {
+  color: red;
+}
+
 .footer {
   display: flex;
   flex-direction: column;
