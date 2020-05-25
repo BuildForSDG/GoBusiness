@@ -2,6 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import store from './store';
+
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,22 +23,19 @@ class App extends Component {
   render() {
    
     return (
-      < Router>
-        <div className="container">
-          <Header/>
-         
-        
-          <Route path="/" exact component={ Home } />
-          <Route path="/signup" component={ SignUp } />
-          <Route path="/signin" component={ SignIn } />
-          <Route path="/reset"  component={ Reset } />
-          <Route path="/business" component={ Business } />
- 
-        
-        <Footer/>
-      </div>
-     
-      </Router>
+      <Provider store={store}>
+        < Router>
+          <div className="container">
+            <Header/>
+            <Route path="/" exact component={ Home } />
+            <Route path="/signup" component={ SignUp } />
+            <Route path="/signin" component={ SignIn } />
+            <Route path="/reset"  component={ Reset } />
+            <Route path="/business" component={ Business } />
+            <Footer/>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

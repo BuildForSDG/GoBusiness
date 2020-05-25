@@ -96,7 +96,7 @@ export default class SignUp extends Component {
       return (
               <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
                   <h3 className="text-center mb-4">Create an Account</h3>
-                  <form className="mt-2 form p-4"onSubmit={this.onSubmit}>
+                  <form className="mt-2 form p-4" noValidate onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label htmlFor="firstName">First Name<span className="require mx-1">*</span></label>
                         <input className="form-control" 
@@ -105,7 +105,8 @@ export default class SignUp extends Component {
                         id="firstName"
                         title="Please enter your First name"
                         value={this.state.signUp_firstName} 
-                        onChange={this.onChangeSignUpFirstName}  
+                        onChange={this.onChangeSignUpFirstName}
+                        error={errors.signUp_firstName}  
                         pattern="[A-Za-z]+$"
                         placeholder="First Name" required  autoFocus />                        
                     </div>
@@ -117,7 +118,8 @@ export default class SignUp extends Component {
                         id="lastName"
                         title="Please enter your Last name"
                         value={this.state.signUp_lastName} 
-                        onChange={this.onChangeSignUpLastName}  
+                        onChange={this.onChangeSignUpLastName}
+                        error={errors.signUp_lastName}   
                         pattern="[A-Za-z]+$"
                         placeholder="Last Name" required />
                        
@@ -131,6 +133,7 @@ export default class SignUp extends Component {
                         title="Please enter your Phone number"  
                         value={this.state.signUp_phoneNumber} 
                         onChange={this.onChangeSignUpPhoneNumber} 
+                        error={errors.signUp_phoneNumber} 
                         pattern="[0]\d{10}$"
                         placeholder="080xxxxxxxx" required />
                         
@@ -144,6 +147,7 @@ export default class SignUp extends Component {
                         title="Please enter your Email address"  
                         value={this.state.signUp_email} 
                         onChange={this.onChangeSignUpEmail} 
+                        error={errors.signUp_email} 
                         pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                         placeholder="joe@example.com" required />
                          
@@ -156,7 +160,8 @@ export default class SignUp extends Component {
                       id="password"
                       title="Please enter your Password"
                       value={this.state.signUp_password} 
-                      onChange={this.onChangeSignUpPassword}  
+                      onChange={this.onChangeSignUpPassword} 
+                      error={errors.signUp_password} 
                       minLength="6"maxLength="12" size="12"
                       placeholder="Password" required />
                      
@@ -170,6 +175,7 @@ export default class SignUp extends Component {
                       title="Please confirm your Password"
                       value={this.state.signUp_confirmPassword} 
                       onChange={this.onChangeSignUpPasswordConfirm} 
+                      error={errors.signUp_confirmPassword}
                       minLength="8" maxLength="12" size="12"
                       placeholder="Confirm Password"  required />
                      

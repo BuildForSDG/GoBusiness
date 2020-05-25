@@ -89,7 +89,7 @@ a:hover {
   width: 160px !important;
 }
 
-.require {
+.require, .error {
   color: red;
 }
 
