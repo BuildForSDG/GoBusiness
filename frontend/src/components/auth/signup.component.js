@@ -29,6 +29,13 @@ class SignUp extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
  
+  componentDidMount(){
+    // if logged in and user navigates to Signup page,should redirect them to dashboard
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push("/business");
+    }
+  }
+
   componentWillReceiveProps(nextProps){
     if(nextProps.errors){
       this.setState({

@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { signinUser } from '../../actions/authActions';
+import { signInUser } from '../../actions/authActions';
 
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -19,6 +19,14 @@ export default class SignIn extends Component {
     this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentDidMount(){
+    // if logged in and user navigates to Signup page,should redirect them to dashboard
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push("/business");
+    }
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.auth.isAuthenticated){
@@ -71,7 +79,10 @@ export default class SignIn extends Component {
                 <form className="mt-2 form p-4"noValidate onSubmit={this.onSubmit}>
                   <div className="form-group">
                       <label>Email address<span className="require mx-1">*</span></label>
-                      <span className="error">{errors.signIn_email}</span>
+                      <span className="error">
+                      {errors.signIn_email}
+                      {errors.emailnotfound}
+                      </span>
                       <input className="form-control" 
                       type="email" 
                       name="email"
@@ -85,7 +96,10 @@ export default class SignIn extends Component {
                   </div>
                   <div className="form-group">
                       <label>Password<span className="require mx-1">*</span></label>
-                      <span className="error">{errors.signIn_password}</span>
+                      <span className="error">
+                      {errors.signIn_password}
+                      {errors.signIn_passwordincorrect}
+                      </span>
                       <input className="form-control" 
                       type="password"
                       name="password"
@@ -107,3 +121,19 @@ export default class SignIn extends Component {
     );
   };
 };
+
+SignIn.propTypes = {
+  signinUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { signInUser }
+)( SignIn );
