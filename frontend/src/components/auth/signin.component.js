@@ -2,6 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { signinUser } from '../../actions/authActions';
+
 
 export default class SignIn extends Component {
   constructor(props){
@@ -10,11 +14,23 @@ export default class SignIn extends Component {
       signIn_email: "",
       signIn_password: "",
       errors: {}
-    }
+    };
     this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
     this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.auth.isAuthenticated){
+        this.props.history.push("/business"); // push user to dashboard when they login
+    }
+    if(nextProps.errors){
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
   onChangeSignInEmail(e){
     this.setState({
       signIn_email: e.target.value
@@ -31,6 +47,7 @@ export default class SignIn extends Component {
       signIn_email: this.state.signIn_email,
       signIn_password: this.state.signIn_password
     };
+    
     if(!this.state.signIn_email || !this.state.signIn_password){
       return alert("All Fields are required!")
     }
@@ -54,6 +71,7 @@ export default class SignIn extends Component {
                 <form className="mt-2 form p-4"noValidate onSubmit={this.onSubmit}>
                   <div className="form-group">
                       <label>Email address<span className="require mx-1">*</span></label>
+                      <span className="error">{errors.signIn_email}</span>
                       <input className="form-control" 
                       type="email" 
                       name="email"
@@ -67,6 +85,7 @@ export default class SignIn extends Component {
                   </div>
                   <div className="form-group">
                       <label>Password<span className="require mx-1">*</span></label>
+                      <span className="error">{errors.signIn_password}</span>
                       <input className="form-control" 
                       type="password"
                       name="password"

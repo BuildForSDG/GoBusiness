@@ -154,7 +154,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email address<span className="require mx-1">*</span></label>
-                        <span>{errors.signUp_email}</span>
+                        <span className="error">{errors.signUp_email}</span>
                         <input className="form-control" 
                         type="email"
                         name="email"
@@ -169,7 +169,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                       <label className="password">Password ( 6 min and 12 max)<span className="require mx-1">*</span></label>
-                      <span>{errors.signUp_password}</span>
+                      <span className="error">{errors.signUp_password}</span>
                       <input className="form-control" 
                       type="password" 
                       name="password"
@@ -184,7 +184,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                       <label className="confirmPassword">Confirm Password<span className="require mx-1">*</span></label>
-                      <span>{errors.signUp_confirmPassword}</span>
+                      <span className="error">{errors.signUp_confirmPassword}</span>
                       <input className="form-control" 
                       type="password" 
                       name="confirmPassword"
@@ -214,4 +214,19 @@ class SignUp extends Component {
         };
 };
 
-export default connect();
+SignUp.propTypes = {
+  signUpUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired  
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+
+export default connect(
+  mapStateToProps,
+  { signUpUser }
+)(withRouter(SignUp));
