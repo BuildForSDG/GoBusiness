@@ -19,7 +19,7 @@ import SignIn from './components/auth/signin.component';
 import Reset from './components/auth/reset.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
-import Business from './components/business.component';
+import Business from './components/dashboard/business.component';
 import PrivateRoute from "./components/private-route/PrivateRoute";
 
 
