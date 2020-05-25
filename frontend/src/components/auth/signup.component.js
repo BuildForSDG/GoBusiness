@@ -14,8 +14,7 @@ export default class SignUp extends Component {
       signUp_phoneNumber: "",
       signUp_email: "",
       signUp_password: "",
-      signUp_confirmPassword: "",
-      errors: {}
+      signUp_confirmPassword: ""
     };
     this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
     this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this);
@@ -59,19 +58,16 @@ export default class SignUp extends Component {
   }
   onSubmit(e){
     e.preventDefault();
-    const newUser = {
-      signUp_firstName: this.state.signUp_firstName,
-      signUp_lastName: this.state.signUp_lastName,
-      signUp_phoneNumber: this.state.signUp_phoneNumber,
-      signUp_email: this.state.signUp_email,
-      signUp_password: this.state.signUp_password,
-      signUp_confirmPassword: this.state.signUp_confirmPassword
-    };
     if(this.state.signUp_password !== this.state.signUp_confirmPassword){
       alert("Password donot match!");
     } else {
       console.log(`SignUp Successful`);
-      console.log(newUser);
+      console.log(`SignUp FirstName: ${this.state.signUp_firstName}`);
+      console.log(`SignUp LastName: ${this.state.signUp_lastName}`);
+      console.log(`SignUp PhoneNumber: ${this.state.signUp_phoneNumber}`);
+      console.log(`SignUp Email: ${this.state.signUp_email}`);
+      console.log(`SignUp Password: ${this.state.signUp_password}`);
+      console.log(`SignUp ConfirmPassword: ${this.state.signUp_confirmPassword}`);
       alert("Signup successful");
       
       this.setState({
@@ -92,7 +88,6 @@ export default class SignUp extends Component {
    
   }
   render() {
-    const { errors } = this.state;
       return (
               <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
                   <h3 className="text-center mb-4">Create an Account</h3>

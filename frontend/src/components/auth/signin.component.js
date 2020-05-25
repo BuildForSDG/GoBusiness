@@ -26,10 +26,16 @@ export default class SignIn extends Component {
   }
   onSubmit(e){
     e.preventDefault();
+    const userData = {
+      signIn_email: this.state.signIn_email,
+      signIn_password: this.state.signIn_password
+    };
+    if(!this.state.signIn_email || !this.state.signIn_password){
+      return alert("All Fields are required!")
+    }
     console.log(`SignIn Successfully`);
-    console.log(`SignIn Email: ${this.state.signIn_email}`);
-    console.log(`SignIn Password ${this.state.signIn_password}`);
-
+    console.log(userData);
+   
     /*Api call should go here using axios */
    
     this.setState({
