@@ -1,43 +1,47 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { signOutUser } from "../../actions/authActions";
+import React, { useState, useEffect } from 'react';
+import { NavLink, Route } from 'react-router-dom';
 
+import { Role } from '../helpers';
+import { accountService } from '../services';
 
-class Business extends Component {
-   onSignOutClick = (e) => {
-       e.preventDefault();
-       this.props.signOutUser();
-   };
-   
-    render(){
-        const { user } = this.props.auth;
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-12 text-center">
-                    <h3>
-                        <b>Hey there,</b>{user.firstName.split(" ")[0]}
-                    </h3>
-                    <p>Welcome to Your Business Page</p>
-                    <input type="button" value="Sign Out" onClick={this.onSignOutClick} className="btn btn-primary px-5 my-3"/>
-                    </div>
+function Nav() {
+    const [ user, setUser] = useState({});
+
+    useEffect(() => {
+        const subscription = accountService.user.subscribe(x => setUser(x));
+        return subscription.unsubscribe;
+    },[]);
+
+    // only show nav when logged in
+    if(!user) return null;
+
+    return (
+        <div className="container">
+            <nav className="navbar navbar-expand navbar-dark bg-dark">
+                <div className="navbar-nav">
+                    <NavLink exact to="/" className="nav-item nav-link">GoBusiness</NavLink>
+                    <NavLink to="/profile" className="nav-item nav-link">Profile</NavLink>
+                    {user.role === Role.Admin && 
+                    <NavLink to="/admin" className="nav-item nav-link">Admin</NavLink>
+                    }
+                    <a onClick={accountService.signOut} className="nav-item nav-link">Sign out</a>
                 </div>
+            </nav>
+            <Route path="/admin" component={AdminNav} />
+        </div>
+    );
+}
+
+function AdminNav({ match }){
+    const { path } = match;
+
+    return (
+        <nav className="admin-nav navbar navbar-expand navbar-light">
+            <div className="navbar-nav">
+                <NavLink to={`${path}/users`} className="nav-item nav-link">Users</NavLink>
             </div>
-        );
-    };
-};
+        </nav>
+    );
+}
 
-Business.propTypes = {
-    signOutUser: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-    auth: state.auth
-});
-
-export default connect(
-    mapStateToProps,
-    { signOutUser }
-)(Business);
+export { Nav };

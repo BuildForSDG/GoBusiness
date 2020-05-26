@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { NavLink } from 'react-router-dom';
+
+
 
 export default class Header extends Component {
     constructor(props){
         super(props);
         this.state = {
-          menu : false
+          menu : false,
         };
         this.toggleMenu = this.toggleMenu.bind(this);
       }
+    
+
       toggleMenu(){
         this.setState({
           menu : !this.state.menu
