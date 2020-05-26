@@ -2,9 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { signInUser } from '../../actions/authActions';
+
 
 
 class SignIn extends Component {
@@ -13,31 +11,12 @@ class SignIn extends Component {
     this.state = {
       signIn_email: "",
       signIn_password: "",
-      errors: {}
     };
     this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
     this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount(){
-    // if logged in and user navigates to Signup page,should redirect them to dashboard
-    if(this.props.auth.isAuthenticated){
-      this.props.history.push("/business");
-    }
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.auth.isAuthenticated){
-        this.props.history.push("/business"); // push user to dashboard when they login
-    }
-    if(nextProps.errors){
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
-  }
 
   onChangeSignInEmail(e){
     this.setState({
@@ -71,18 +50,13 @@ class SignIn extends Component {
 
   };
   render() {
-    const { errors } = this.state;
     return (
             
             <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
                 <h3 className="text-center mb-4">Sign into your Account</h3>
-                <form className="mt-2 form p-4"noValidate onSubmit={this.onSubmit}>
+                <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
                   <div className="form-group">
                       <label>Email address<span className="require mx-1">*</span></label>
-                      <span className="error">
-                      {errors.signIn_email}
-                      {errors.emailnotfound}
-                      </span>
                       <input className="form-control" 
                       type="email" 
                       name="email"
@@ -90,22 +64,16 @@ class SignIn extends Component {
                       title="Please enter your Email address"  
                       value={this.state.signIn_email} 
                       onChange={this.onChangeSignInEmail} 
-                      error={errors.signIn_email}
                       pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                       placeholder="joe@example.com" required/>
                   </div>
                   <div className="form-group">
                       <label>Password<span className="require mx-1">*</span></label>
-                      <span className="error">
-                      {errors.signIn_password}
-                      {errors.signIn_passwordincorrect}
-                      </span>
                       <input className="form-control" 
                       type="password"
                       name="password"
                       id="password" 
                       value={this.state.signIn_password} 
-                      error={errors.signIn_password}
                       onChange={this.onChangeSignInPassword}
                       minLength="6"maxLength="12" size="12" 
                       placeholder="Password" required/>
@@ -122,18 +90,4 @@ class SignIn extends Component {
   };
 };
 
-SignIn.propTypes = {
-  signinUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
-
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
-});
-
-export default connect(
-  mapStateToProps,
-  { signInUser }
-)( SignIn );
+export default SignIn;
