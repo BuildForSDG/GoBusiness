@@ -17,7 +17,7 @@ function PrivateRoute({ component: Component, roles,...rest }) {
                 return <Redirect to={{ pathname: "/" }} />
             }
             // authorized so return component
-            return <Component {...props />}
+            return <Component {...props} />
         }} />
     )
 }
