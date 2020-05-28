@@ -11,7 +11,7 @@ export default class Profile extends Component {
     }
 
     render(){
-        const { currentUser } = this.state
+        //const { currentUser } = this.state
         return (
             <div className="container">
                 <header className="jumbotron">

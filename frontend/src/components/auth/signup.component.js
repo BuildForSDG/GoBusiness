@@ -2,8 +2,42 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import CheckButton from 'react-validation/build/button';
+import { isEmail } from 'validator';
 
+import AuthService from '../services/auth.service';
 
+const required = value => {
+  if(!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+};
+
+const email = value => {
+  if(!isEmail(value)) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        This is not a valid email.
+      </div>
+    )
+  }
+} 
+
+const password = value => {
+  if(value.minLength === 6 || value.maxLength === 12) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        The password must be between 6 and 12 characters
+      </div>
+    );
+  }
+};
 
 
 class SignUp extends Component {
@@ -16,6 +50,8 @@ class SignUp extends Component {
       signUp_email: "",
       signUp_password: "",
       signUp_confirmPassword: "",
+      successful: false,
+      message: ""
   
     };
     this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
@@ -75,17 +111,42 @@ class SignUp extends Component {
     } else {
       console.log(`SignUp Successful`);
       console.log(newUser);
-      alert("Signup successful");
       
       this.setState({
-        signUp_firstName: "",
-        signUp_lastName: "",
-        signUp_phoneNumber: "",
-        signUp_email: "",
-        signUp_password: "",
-        signUp_confirmPassword: ""
+       message: "",
+       successful: false
       });
-    };
+
+      this.form.validateAll();
+
+      if(this.checkBtn.context._errors.length === 0) {
+        AuthService.signUp(
+          this.state.signUp_firstName,
+          this.state.signUp_lastName,
+          this.state.signUp_phoneNumber,
+          this.state.signUp_email,
+          this.state.signUp_password
+        ).then(
+          response => {
+            this.setState({
+              message: response.data.message,
+              successful: true
+            });
+          },
+          error => {
+            const resMessage = 
+            (
+              error.response && error.response.data && 
+              error.response.data.message
+            ) || error.message || error.toString();
+            this.setState({
+              successful: false,
+              message: resMessage
+            });
+          }
+        );
+      }
+    }
    
     
    
@@ -97,10 +158,12 @@ class SignUp extends Component {
       return (
               <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
                   <h3 className="text-center mb-4">Create an Account</h3>
-                  <form className="mt-2 form p-4"  onSubmit={this.onSubmit}>
-                    <div className="form-group">
+                  <Form className="mt-2 form p-4"  onSubmit={this.onSubmit} ref={c => {this.form = c;}}>
+                    {!this.state.successful && (
+                      <div>
+                         <div className="form-group">
                         <label htmlFor="firstName">First Name<span className="require mx-1">*</span></label>
-                        <input className="form-control" 
+                        <Input className="form-control" 
                         type="text" 
                         name="firstName"
                         id="firstName"
@@ -112,7 +175,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastName">Last Name<span className="require mx-1">*</span></label>                      
-                        <input className="form-control" 
+                        <Input className="form-control" 
                         type="text" 
                         name="lastName"
                         id="lastName"
@@ -124,7 +187,7 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Phone Number<span className="require mx-1">*</span></label>                    
-                        <input className="form-control"
+                        <Input className="form-control"
                         type="tel"
                         name="phoneNumber"
                         id="phoneNumber"
@@ -136,25 +199,27 @@ class SignUp extends Component {
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email address<span className="require mx-1">*</span></label>                       
-                        <input className="form-control" 
+                        <Input className="form-control" 
                         type="email"
                         name="email"
                         id="email"
                         title="Please enter your Email address"  
                         value={this.state.signUp_email}                    
                         onChange={this.onChangeSignUpEmail} 
+                        validations={[required, email]}
                         pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
                         placeholder="joe@example.com" required />                         
                     </div>
                     <div className="form-group">
                       <label className="password">Password ( 6 min and 12 max)<span className="require mx-1">*</span></label>                    
-                      <input className="form-control" 
+                      <Input className="form-control" 
                       type="password" 
                       name="password"
                       id="password"
                       title="Please enter your Password"
                       value={this.state.signUp_password}                   
-                      onChange={this.onChangeSignUpPassword}  
+                      onChange={this.onChangeSignUpPassword}
+                      validations={[required, password]}  
                       minLength="6"maxLength="12" size="12"
                       placeholder="Password" required />                     
                     </div>
@@ -180,8 +245,29 @@ class SignUp extends Component {
                       <input type="submit"value="Business" title="Sign up as a Business/SME " className="btn btn-primary m-2 px-5 user"/>
                       <input type="submit"value="Investor" title="Sign up as an Investor" className="btn btn-primary m-2 px-5 user"/>
                     </div>
+                      </div>
+                    )}
+                    {this.state.message && (
+                      <div className="form-group">
+                        <div className={
+                          this.state.successful
+                          ? "alert alert-success"
+                          : "alert alert-danger"
+                        }
+                        role="alert"
+                        > 
+                            {this.state.message}
+                        </div>
+                      </div>
+                    )}
+                    <CheckButton 
+                    style={{ display: "none" }}
+                    ref={c => {
+                      this.checkBtn = c;
+                    }}
+                    />
                     <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin">Sign in</Link></p>
-                  </form>
+                  </Form>
               </div>
             );
         };
