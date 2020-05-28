@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-export default class Reset extends Component{
+export default class ResetPassword extends Component{
   constructor(props){
     super(props);
     this.state = {
