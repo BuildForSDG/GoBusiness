@@ -47,19 +47,19 @@ body {
 }
 
 .signup {
-  color: #311b92!important;
+  color: #311b92 !important;
   background-color: #fff;
   border: none;
   outline: none;
   border-radius: 5px;
 }
+
 .signup:hover {
   font-weight: bold !important;
   background-color: black;
   color: #fff !important;
-
- 
 }
+
 .signup:active {
   background-color: black;
 }
