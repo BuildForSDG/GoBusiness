@@ -1,70 +1,71 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser, signOutUser } from './actions/authActions';
+import { BrowserRouter as Router, Route,Switch, Link} from 'react-router-dom';
 
-import { Provider } from 'react-redux';
-import store from './store';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import AuthService from './components/services/auth.service';
 
 import Home from './components/views/home.component';
 import SignUp from './components/auth/signup.component';
 import SignIn from './components/auth/signin.component';
-import Reset from './components/auth/reset.component';
+import ResetPassword from './components/auth/reset.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
-import Business from './components/dashboard/business.component';
-import PrivateRoute from "./components/private-route/PrivateRoute";
+import BusinessUser from './components/dashboard/business.component';
+import InvestorUser from './components/dashboard/investor.component';
+import AdminUser from './components/dashboard/admin.component';
 
 
-//Check for token to keep user logged in
-if(localStorage.jwtToken){
-  // Set auth token header auth
-  const token = localStorage.jwtToken;
-  setAuthToken(token);
-  // Decode token and get user info and exp
-  const decoded = jwt_decode(token);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-
-  // Check for expired token
-  const currentTime = Date.now()/1000; // to get in milliseconds
-  if(decoded.exp < currentTime){
-    // Logout user
-    store.dispatch(signOutUser());
-
-    // Redirect to signin
-    window.location.href = "/signin";
-  }
-}
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.signOut = this.signOut.bind(this);
+
+    this.state = {
+      showInvestorBoard: false,
+      showAdminBoard:false,
+      currentUser: undefined
+    };
+  }
   
+  componentDidMount() {
+    const user = AuthService.getCurrentuser();
+    if(user) {
+      this.setState({
+        currentUser: user,
+        showInvestorBoard: user.roles.includes("ROLE_INVESTOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN")
+      });
+    }
+  }
+
+  signOut() {
+    AuthService.signOut();
+  }
+
   render() {
-   
     return (
-      <Provider store={store}>
         < Router>
           <div className="container">
-            <Header/>
-            <Route path="/" exact component={ Home } />
-            <Route path="/signup" component={ SignUp } />
-            <Route path="/signin" component={ SignIn } />
-            <Route path="/reset"  component={ Reset } />
+            <Header />
             <Switch>
-              <PrivateRoute exact path="/business" component={Business} />
+              <Route path="/" exact component={ Home } />
+              <Route path="/signin" component={ SignIn } />
+              <Route path="/signup" component={ SignUp }/>
+              <Route path="/reset" component={ ResetPassword }/>
+              <Route path="/user" component={ BusinessUser } />
+              <Route path="/investor" component={ InvestorUser }/>
+              <Route path="/admin" component={ AdminUser }/>
             </Switch>
             <Footer/>
           </div>
         </Router>
-      </Provider>
     );
   }
 }
