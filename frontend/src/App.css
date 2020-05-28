@@ -151,5 +151,8 @@ button.navbar-toggler {
 .form-check-input {
   width: 0.9rem;
   height: 0.9rem;
-  
+}
+
+.profile-img-card {
+  border-radius: 50%;
 }

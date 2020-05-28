@@ -1,34 +1,68 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch, Link} from 'react-router-dom';
 
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import AuthService from './components/services/auth.service';
 
 import Home from './components/views/home.component';
 import SignUp from './components/auth/signup.component';
 import SignIn from './components/auth/signin.component';
-import Reset from './components/auth/reset.component';
+import ResetPassword from './components/auth/reset.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
+import BusinessUser from './components/dashboard/business.component';
+import InvestorUser from './components/dashboard/investor.component';
+import AdminUser from './components/dashboard/admin.component';
+
 
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.signOut = this.signOut.bind(this);
+
+    this.state = {
+      showInvestorBoard: false,
+      showAdminBoard:false,
+      currentUser: undefined
+    };
+  }
   
+  componentDidMount() {
+    const user = AuthService.getCurrentuser();
+    if(user) {
+      this.setState({
+        currentUser: user,
+        showInvestorBoard: user.roles.includes("ROLE_INVESTOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN")
+      });
+    }
+  }
+
+  signOut() {
+    AuthService.signOut();
+  }
+
   render() {
-   
     return (
         < Router>
           <div className="container">
-            <Header/>
-            <Route path="/" exact component={ Home } />
-            <Route path="/signin" component={ SignIn } />
-            <Route path="/signup" component={ SignUp }/>
-            <Route path="/reset" component={ Reset }/>
+            <Header />
+            <Switch>
+              <Route path="/" exact component={ Home } />
+              <Route path="/signin" component={ SignIn } />
+              <Route path="/signup" component={ SignUp }/>
+              <Route path="/reset" component={ ResetPassword }/>
+              <Route path="/user" component={ BusinessUser } />
+              <Route path="/investor" component={ InvestorUser }/>
+              <Route path="/admin" component={ AdminUser }/>
+            </Switch>
             <Footer/>
           </div>
         </Router>

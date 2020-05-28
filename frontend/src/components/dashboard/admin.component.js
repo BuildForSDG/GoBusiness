@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserService from '../services/user.service';
 
-export default class BusinessUser extends Component {
+export default class AdminUser extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -11,7 +11,7 @@ export default class BusinessUser extends Component {
     }
 
     componentDidMount() {
-        UserService.getBusinessBoard().then(
+        UserService.getAdminBoard().then(
             response => {
                 this.setState({
                     content: response.data
