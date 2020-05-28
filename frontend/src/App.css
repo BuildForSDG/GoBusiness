@@ -38,16 +38,30 @@ body {
 }
 
 .signin {
-  background-color: none !important;
-  color: #d9dee1 !important;
+  color: #fff !important;
 }
 
 .signin:hover {
-  font-weight: bold !important;
+  font-weight: bold;
+  
 }
 
+.signup {
+  color: #311b92!important;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
 .signup:hover {
   font-weight: bold !important;
+  background-color: black;
+  color: #fff !important;
+
+ 
+}
+.signup:active {
+  background-color: black;
 }
 
 .start {
