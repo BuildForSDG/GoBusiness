@@ -47,9 +47,9 @@ body {
 }
 
 .signup {
-  color: #311b92 !important;
-  background-color: #fff;
-  border: none;
+  color: #fff !important;
+  background-color: transparent;
+  border: 0.5px solid #fff;
   outline: none;
   border-radius: 5px;
 }
@@ -58,6 +58,7 @@ body {
   font-weight: bold !important;
   background-color: black;
   color: #fff !important;
+  border: none;
 }
 
 .signup:active {
@@ -169,4 +170,8 @@ button.navbar-toggler {
 
 .profile-img-card {
   border-radius: 50%;
+}
+
+.steps {
+  color: black;
 }

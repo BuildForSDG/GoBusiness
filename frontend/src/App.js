@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route,Switch, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch,Redirect, Link} from 'react-router-dom';
 
 
 import './App.css';
@@ -20,6 +20,13 @@ import BusinessUser from './components/dashboard/business.component';
 import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
 
+
+// logged in user
+const isLoggedIn = () => {
+  return localStorage.getItem("TOKEN_KEY") !== null;
+}
+
+// Protected Route
 
 
 
@@ -64,6 +71,7 @@ class App extends Component {
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
+              
             </Switch>
             <Footer/>
           </div>
