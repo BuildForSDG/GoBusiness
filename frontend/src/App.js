@@ -12,7 +12,7 @@ import AuthService from './components/services/auth.service';
 import Home from './components/views/home.component';
 import SignUp from './components/auth/signup.component';
 import SignIn from './components/auth/signin.component';
-import ResetPassword from './components/auth/reset.component';
+import ForgotPassword from './components/auth/forgotpassword.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
 import BusinessUser from './components/dashboard/business.component';
@@ -58,7 +58,7 @@ class App extends Component {
               <Route path="/" exact component={ Home } />
               <Route path="/signin" component={ SignIn } />
               <Route path="/signup" component={ SignUp }/>
-              <Route path="/reset" component={ ResetPassword }/>
+              <Route path="/forgotpassword" component={ ForgotPassword }/>
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>

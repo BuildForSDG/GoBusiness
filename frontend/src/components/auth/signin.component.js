@@ -159,7 +159,7 @@ export default class SignIn extends Component {
                  
                   <p className="text-center mt-5 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
                 </Form>
-                <Link to="/reset"><p className="text-center my-3">Forgot Your Password?</p></Link>
+                <Link to="/forgotpassword"><p className="text-center my-3">Forgot Your Password?</p></Link>
             </div>
     );
   };
