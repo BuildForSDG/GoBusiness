@@ -13,6 +13,7 @@ import Home from './components/views/home.component';
 import SignUp from './components/auth/signup.component';
 import SignIn from './components/auth/signin.component';
 import ForgotPassword from './components/auth/forgotpassword.component';
+import ResetPassword from './components/auth/resetpassword.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
 import BusinessUser from './components/dashboard/business.component';
@@ -56,9 +57,10 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/" exact component={ Home } />
-              <Route path="/signin" component={ SignIn } />
+              <Route path="/signin/:notify?" component={ SignIn } />
               <Route path="/signup" component={ SignUp }/>
-              <Route path="/forgotpassword" component={ ForgotPassword }/>
+              <Route path="/password/forgot" component={ ForgotPassword }/>
+              <Route path="/password/reset/:token" component={ ResetPassword }/>
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>

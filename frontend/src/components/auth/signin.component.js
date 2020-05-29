@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { isEmail } from 'validator';
 
 import AuthService from "../services/auth.service";
+import swal from 'sweetalert';
 
 
 const required = value => {
@@ -42,6 +43,19 @@ export default class SignIn extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(localStorage.getItem("TOKEN_KEY") != null){
+      return this.props.history.push('/dashboard');
+    }
+    let notify = this.props.match.params["notify"]
+    if(notify !== undefined){
+      if(notify === 'error'){
+        swal("Activation Fail please try again !",'',"error")
+      } else if(notify === 'success'){
+        swal("Activation Success you can signin !", '', "success")
+      }
+    }
+  }
 
   onChangeSignInEmail(e){
     this.setState({

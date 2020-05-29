@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
+import swal from "sweetalert";
 
 
 export default class ResetPassword extends Component{
@@ -26,8 +27,12 @@ export default class ResetPassword extends Component{
   
   onSubmit(e){
     e.preventDefault();
-    console.log(`Email Reset Successful`);
-    console.log(`Reset Email: ${this.state.reset_Email}`);
+    console.log(`Password Reset Successful`);
+    if(this.state.password !== this.state.confirmPassword){
+      swal("Aw!","Your passwords donot match","error")
+    } else {
+      
+    }
 
     /**Api call should go here using axios */
 
