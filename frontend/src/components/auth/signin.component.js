@@ -75,7 +75,7 @@ export default class SignIn extends Component {
     };
     
     if(!this.state.signIn_email || !this.state.signIn_password){
-      return required;
+      return swal("Aw!","All fields are required!","warning");
     }
     console.log(`SignIn Successfully`);
     console.log(userData);
@@ -173,7 +173,7 @@ export default class SignIn extends Component {
                  
                   <p className="text-center mt-5 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
                 </Form>
-                <Link to="/forgotpassword"><p className="text-center my-3">Forgot Your Password?</p></Link>
+                <Link to="/password/forgot"><p className="text-center my-3">Forgot Your Password?</p></Link>
             </div>
     );
   };

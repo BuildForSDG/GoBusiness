@@ -31,15 +31,15 @@ export default class ResetPassword extends Component{
     if(this.state.password !== this.state.confirmPassword){
       swal("Aw!","Your passwords donot match","error")
     } else {
-      
+      this.setState({
+        password:"",
+        confirmPassword: ""
+      })
     }
 
     /**Api call should go here using axios */
 
-    this.setState({
-      password:"",
-      confirmPassword: ""
-    })
+   
   }
     render() {
         return (
@@ -53,7 +53,7 @@ export default class ResetPassword extends Component{
                   type="password"
                   name="password"
                   id="password" 
-                  title="Please enter your Email address"  
+                  title="Please enter your new Password"  
                   value={this.state.password} 
                   onChange={this.onChangePassword}
                   minLength="6"maxLength="12" size="12" 
@@ -65,7 +65,7 @@ export default class ResetPassword extends Component{
                   type="password"
                   name="passwordConfirm"
                   id="passwordConfirm" 
-                  title="Please enter your Email address"  
+                  title="Please enter your new Password Again"  
                   value={this.state.confirmPassword} 
                   onChange={this.onChangeConfirmPassword}
                   minLength="6"maxLength="12" size="12" 

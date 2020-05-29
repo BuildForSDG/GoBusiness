@@ -60,7 +60,7 @@ class App extends Component {
               <Route path="/signin/:notify?" component={ SignIn } />
               <Route path="/signup" component={ SignUp }/>
               <Route path="/password/forgot" component={ ForgotPassword }/>
-              <Route path="/password/reset/:token" component={ ResetPassword }/>
+              <Route path="/password/reset/" component={ ResetPassword }/>
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
