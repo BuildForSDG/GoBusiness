@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
-export default class ResetPassword extends Component{
+export default class ForgotPassword extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -20,6 +21,7 @@ export default class ResetPassword extends Component{
     e.preventDefault();
     console.log(`Email Reset Successful`);
     console.log(`Reset Email: ${this.state.reset_Email}`);
+    swal("Great!", `Email has been sent to  ${this.state.reset_Email}.  Follow the instruction to  reset your password`,"success");
 
     /**Api call should go here using axios */
 
@@ -30,7 +32,7 @@ export default class ResetPassword extends Component{
     render() {
         return (
             <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
-            <h3 className="text-center mb-4">Reset Password</h3>
+            <h3 className="text-center mb-4">Forgot Password</h3>
             <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
               <p className="text-justify acct">Enter your email address below and we'll send you a link to reset your password</p>  
               <div className="form-group">

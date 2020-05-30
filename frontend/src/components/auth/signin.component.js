@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { isEmail } from 'validator';
 
 import AuthService from "../services/auth.service";
+import swal from 'sweetalert';
 
 
 const required = value => {
@@ -42,6 +43,19 @@ export default class SignIn extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(localStorage.getItem("TOKEN_KEY") != null){
+      return this.props.history.push('/dashboard');
+    }
+    let notify = this.props.match.params["notify"]
+    if(notify !== undefined){
+      if(notify === 'error'){
+        swal("Activation Fail please try again !",'',"error")
+      } else if(notify === 'success'){
+        swal("Activation Success you can signin !", '', "success")
+      }
+    }
+  }
 
   onChangeSignInEmail(e){
     this.setState({
@@ -61,7 +75,7 @@ export default class SignIn extends Component {
     };
     
     if(!this.state.signIn_email || !this.state.signIn_password){
-      return required;
+      return swal("Aw!","All fields are required!","warning");
     }
     console.log(`SignIn Successfully`);
     console.log(userData);
@@ -159,7 +173,7 @@ export default class SignIn extends Component {
                  
                   <p className="text-center mt-5 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
                 </Form>
-                <Link to="/reset"><p className="text-center my-3">Forgot Your Password?</p></Link>
+                <Link to="/password/forgot"><p className="text-center my-3">Forgot Your Password?</p></Link>
             </div>
     );
   };

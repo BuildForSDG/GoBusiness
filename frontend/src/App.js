@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route,Switch, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch,Redirect, Link} from 'react-router-dom';
 
 
 import './App.css';
@@ -12,13 +12,21 @@ import AuthService from './components/services/auth.service';
 import Home from './components/views/home.component';
 import SignUp from './components/auth/signup.component';
 import SignIn from './components/auth/signin.component';
-import ResetPassword from './components/auth/reset.component';
+import ForgotPassword from './components/auth/forgotpassword.component';
+import ResetPassword from './components/auth/resetpassword.component';
 import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
 import BusinessUser from './components/dashboard/business.component';
 import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
 
+
+// logged in user
+const isLoggedIn = () => {
+  return localStorage.getItem("TOKEN_KEY") !== null;
+}
+
+// Protected Route
 
 
 
@@ -56,12 +64,14 @@ class App extends Component {
             <Header />
             <Switch>
               <Route path="/" exact component={ Home } />
-              <Route path="/signin" component={ SignIn } />
+              <Route path="/signin/:notify?" component={ SignIn } />
               <Route path="/signup" component={ SignUp }/>
-              <Route path="/reset" component={ ResetPassword }/>
+              <Route path="/password/forgot" component={ ForgotPassword }/>
+              <Route path="/password/reset/" component={ ResetPassword }/>
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
+              
             </Switch>
             <Footer/>
           </div>

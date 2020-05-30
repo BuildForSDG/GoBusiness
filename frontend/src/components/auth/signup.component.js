@@ -6,6 +6,7 @@ import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
 import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
+import swal from 'sweetalert';
 
 import AuthService from '../services/auth.service';
 
@@ -107,14 +108,15 @@ class SignUp extends Component {
       signUp_confirmPassword: this.state.signUp_confirmPassword
     }
     if(this.state.signUp_password !== this.state.signUp_confirmPassword){
-      alert("Password donot match!");
+      swal("Error","Password donot match!","error");
     } else {
       console.log(`SignUp Successful`);
       console.log(newUser);
+      swal("Great!","Signup was Successful","success")
       
       this.setState({
-       message: "",
-       successful: false
+        message: "",
+        successful: false
       });
 
       this.form.validateAll();
