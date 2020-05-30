@@ -42,22 +42,22 @@ body {
 }
 
 .signin:hover {
-  font-weight: bold;
+  font-weight: bold !important;
+  z-index: 10;
   
 }
 
 .signup {
   color: #fff !important;
-  background-color: transparent;
-  border: 0.5px solid #fff;
   outline: none;
-  border-radius: 5px;
+  background: #6200ea;
+  box-shadow:  20px 20px 60px #5300c7;       
+  border-radius: 10px;
 }
 
 .signup:hover {
   font-weight: bold !important;
   background-color: black;
-  color: #fff !important;
   border: none;
 }
 
@@ -89,7 +89,8 @@ h4,h3, h1 {
 }
 
 p {
-  color: #fff;
+  color: #d9dee1;
+  font-weight: bold;
 }
 
 a {
@@ -148,6 +149,8 @@ button.navbar-toggler {
   background-image: url(./menu.svg) !important;
 }
 
+
+
 #root {
   width: 100%;
   display: flex;
@@ -173,5 +176,27 @@ button.navbar-toggler {
 }
 
 .steps {
-  color: black;
+  color: #fff;
+}
+
+.card {
+  color: #fff;
+  border-radius: 50px;
+  background: #6200ea !important;
+  box-shadow:  20px 20px 60px #5300c7;           
+  outline: none !important;
+}
+
+hr {
+  border-top: 1px solid #fff !important;
+  width: 50%;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('./components//images/investor.svg') no-repeat center right scroll;
 }
