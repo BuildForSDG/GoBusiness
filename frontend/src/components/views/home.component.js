@@ -35,7 +35,7 @@ export default class Home extends Component {
                         <h3><b>Businesses</b></h3><hr/>
                     </div>
                     <div className="col-sm-4 col-md-4 text-center my-2">
-                      <div className="card h-100">
+                      <div className="card h-100 ">
                         <img src={Profile} className="card-img-top" alt="Signup" />
                         <div className="card-body">
                           <p className="card-text steps">Get Started by Signing Up</p>
