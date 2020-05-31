@@ -198,5 +198,23 @@ hr {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('./components//images/investor.svg') no-repeat center right scroll;
+  background: url('./components/images/businessman__monochromatic.svg');
 }
+
+/** Small devices (landscape phones, 576px and up)*/
+@media (min-width: 300px) { 
+  .hero {
+    background-image: none;
+  }
+ }
+
+/** Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  .hero {
+    background: url('./components//images//businessman__monochromatic.svg') no-repeat center left scroll;
+    background-size: contain;
+  }
+  .welcome {
+    align-content: flex-start;
+  }
+ }
