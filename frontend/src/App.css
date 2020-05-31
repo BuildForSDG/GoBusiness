@@ -173,6 +173,7 @@ button.navbar-toggler {
 
 .profile-img-card {
   border-radius: 50%;
+  background-color: #6200ea;
 }
 
 .steps {
@@ -198,5 +199,22 @@ hr {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('./components//images/investor.svg') no-repeat center right scroll;
+  background: url('./components/images/businessman__monochromatic.svg');
 }
+
+/** Small devices (landscape phones, 576px and up)*/
+@media (min-width: 300px) { 
+  .hero {
+    background-image: none;
+  }
+ }
+
+/** Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  .hero {
+    background: url('./components//images//businessman__monochromatic.svg') no-repeat center right scroll;
+    background-size: contain;
+    align-items: baseline;
+  }
+
+ }
