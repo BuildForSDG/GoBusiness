@@ -9,6 +9,7 @@ import { isEmail } from 'validator';
 
 import AuthService from "../services/auth.service";
 import swal from 'sweetalert';
+import ProfileImg from '../images/avataaars (2).svg';
 
 
 const required = value => {
@@ -121,7 +122,7 @@ export default class SignIn extends Component {
                 <h3 className="text-center mb-4">Sign into your Account</h3>
                 <Form className="mt-2 form p-4" onSubmit={this.onSubmit} validateAll>
                   <div className="text-center">
-                    <img className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="profile-img" />
+                    <img className="profile-img-card" src={ProfileImg} alt="profile-img" />
                   </div>
                   <div className="form-group">
                       <label>Email address<span className="require mx-1">*</span></label>
