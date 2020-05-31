@@ -211,10 +211,9 @@ hr {
 /** Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
   .hero {
-    background: url('./components//images//businessman__monochromatic.svg') no-repeat center left scroll;
+    background: url('./components//images//businessman__monochromatic.svg') no-repeat center right scroll;
     background-size: contain;
+    align-items: baseline;
   }
-  .welcome {
-    align-content: flex-start;
-  }
+
  }
