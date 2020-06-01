@@ -34,7 +34,8 @@ export default class ResetPassword extends Component{
       this.setState({
         password:"",
         confirmPassword: ""
-      })
+      });
+      swal("Great!","Password Reset was Successful","success");
     }
 
     /**Api call should go here using axios */
