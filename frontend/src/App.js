@@ -19,6 +19,7 @@ import Header from './components/views/header.component';
 import BusinessUser from './components/dashboard/business.component';
 import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
+import BizDetails from './components/auth/businessDetails.component';
 
 
 // logged in user
@@ -71,7 +72,8 @@ class App extends Component {
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
-              
+              <Route path="/business" component={ BusinessUser } />
+              <Route path="/business/details" component={ BizDetails } />
             </Switch>
             <Footer/>
           </div>

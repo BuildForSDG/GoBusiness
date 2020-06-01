@@ -149,7 +149,7 @@ export default class SignIn extends Component {
                       minLength="6"maxLength="12" size="12" 
                       placeholder="Password" required/>
                   </div>
-                  <div className="form-group text-center my-4">
+                  <div className="form-group text-center my-2">
                     <button
                       className="btn btn-primary px-5"
                       disabled={this.state.loading}
@@ -172,9 +172,9 @@ export default class SignIn extends Component {
               }}
             />
                  
-                  <p className="text-center mt-5 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
+                  <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
                 </Form>
-                <Link to="/password/forgot"><p className="text-center my-3">Forgot Your Password?</p></Link>
+                <Link to="/password/forgot"><p className="text-center my-2">Forgot Your Password?</p></Link>
             </div>
     );
   };
