@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const app = require('./app');
 
 const port = process.env.PORT || 4000;
