@@ -8,6 +8,7 @@ import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
 import swal from 'sweetalert';
 
+
 import AuthService from '../services/auth.service';
 
 const required = value => {
@@ -112,7 +113,7 @@ class SignUp extends Component {
     } else {
       console.log(`SignUp Successful`);
       console.log(newUser);
-      swal("Great!","Signup was Successful","success")
+     
       
       this.setState({
         message: "",
@@ -149,10 +150,11 @@ class SignUp extends Component {
         );
       }
     }
-   
+    // swal("Great!","Signup was Successful","success")
     
    
     /**Api Call should come here using axios*/
+    
 
    
   }
