@@ -71,7 +71,7 @@ class App extends Component {
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
-              
+              <Route path="/business" component={ BusinessUser } />
             </Switch>
             <Footer/>
           </div>
