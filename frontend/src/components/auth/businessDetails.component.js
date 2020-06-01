@@ -7,14 +7,20 @@ export default class BizDetails extends Component {
         super(props);
         this.state = {
             biz_name: "",
-            biz_category: "",
-            biz_registration: "",
-            biz_description: ""
+            biz_description: "",
+            biz_address: "",
+            biz_cacNumber: "",
+            biz_website: "",
+            biz_email: "",
+            biz_phoneNumber: ""
         };
         this.onChangeBizName = this.onChangeBizName.bind(this);
-        this.onChangeBizCategory = this.onChangeBizCategory.bind(this);
-        this.onChangeBizRegistration = this.onChangeBizRegistration.bind(this);
-        this.onChangeBizDescription = this.onChangeBizRegistration.bind(this);
+        this.onChangeBizDescription = this.onChangeBizDescription.bind(this);
+        this.onChangeBizAddress = this.onChangeBizAddress.bind(this);
+        this.onChangeBizCacNumber = this.onChangeBizCacNumber.bind(this);
+        this.onChangeBizWebsite = this.onChangeBizWebsite.bind(this);
+        this.onChangeBizEmail = this.onChangeBizEmail.bind(this);
+        this.onChangeBizPhoneNumber = this.onChangeBizPhoneNumber.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
     
@@ -24,21 +30,39 @@ export default class BizDetails extends Component {
         })
     }
 
-    onChangeBizCategory(e){
-        this.setState({
-            biz_category: e.target.value
-        })
-    }
-
-    onChangeBizRegistration(e){
-        this.setState({
-            biz_description: e.target.value
-        })
-    }
-
     onChangeBizDescription(e){
         this.setState({
             biz_description: e.target.value
+        })
+    }
+
+    onChangeBizAddress(e){
+        this.setState({
+            biz_address: e.target.value
+        })
+    }
+
+    onChangeBizCacNumber(e){
+        this.setState({
+            biz_cacNumber: e.target.value
+        })
+    }
+
+    onChangeBizWebsite(e){
+        this.setState({
+            biz_website: e.target.value
+        })
+    }
+
+    onChangeBizEmail(e){
+        this.setState({
+            biz_email: e.target.value
+        })
+    }
+
+    onChangeBizPhoneNumber(e){
+        this.setState({
+            biz_phoneNumber: e.target.value
         })
     }
 
