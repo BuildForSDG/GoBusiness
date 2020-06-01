@@ -13,14 +13,18 @@ const signup = (req, res) => {
   }
 
   // Passed all validations
-  const { name, email, password } = req.body;
+  const {
+    firstname, lastname, phone, email, password
+  } = req.body;
   User.findOne({ email }, (err, user) => {
     if (err) return res.status(500).json({ status: false, error: 'Server error:: Could not retrieve record' });
 
     if (user) return res.status(400).json({ status: false, error: 'User record already exist' });
 
     // new User
-    const newUser = new User({ name, email, password });
+    const newUser = new User({
+      firstname, lastname, phone, email, password
+    });
     // Hash password
     bcrypt.genSalt(10, (err, salt) => {
       if (err) return res.status(500).json({ status: false, error: 'Server error:: Failed to generate salt' });
@@ -93,7 +97,9 @@ const getUserByToken = (req, res) => {
     // User found
     const data = {
       id: user._id,
-      name: user.name,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      phone: user.phone,
       email: user.email,
       auth: user.auth
     };

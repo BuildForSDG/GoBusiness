@@ -4,7 +4,34 @@ const supertest = require('supertest');
 const app = require('../app');
 const User = require('../models/User');
 
-const auth = {};
+const testUser = {
+  firstname: 'test',
+  lastname: 'tester',
+  email: 'test@test.com',
+  password: '123456'
+};
+const testBusiness = {
+  owner: '',
+  name: '',
+  description: '',
+  address: '',
+  email: '',
+  phone: '',
+  cac_number: '',
+  website: ''
+};
+
+const testInvestment = {
+  businessOwner: '',
+  title: '',
+  description: '',
+  start_date: '',
+  end_date: '',
+  budget: '',
+  unitCost: '',
+  interest: ''
+};
+const auth = {}; // auth.token = '<JWT token >'
 const request = supertest(app);
 
 beforeAll(async () => {
@@ -24,11 +51,7 @@ it('The root path should have a message property', async (done) => {
 });
 
 it('Signup new user', async (done) => {
-  const res = await request.post('/api/auth/signup').send({
-    name: 'Samuel',
-    email: 'test@test.com',
-    password: '123456'
-  });
+  const res = await request.post('/api/auth/signup').send(testUser);
 
   expect(res.status).toBe(201);
   expect(res.body).toHaveProperty('message');
@@ -38,8 +61,8 @@ it('Signup new user', async (done) => {
 
 it('Login a registered user', async (done) => {
   const res = await request.post('/api/auth/login').send({
-    email: 'test@test.com',
-    password: '123456'
+    email: testUser.email,
+    password: testUser.password
   });
 
   expect(res.status).toBe(200);
@@ -100,3 +123,6 @@ it('Should not signup a user without name', async (done) => {
   expect(res.body).toHaveProperty('errors');
   done();
 });
+
+// Business
+// Investment

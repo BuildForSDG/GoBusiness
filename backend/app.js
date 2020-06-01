@@ -39,8 +39,13 @@ app.use(express.json({ extended: true }));
  *
  */
 const authRoutes = require('./routes/authRoutes');
+const businessRoute = require('./routes/businessRoute');
+const investmentRoute = require('./routes/investmentRoute');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/business', businessRoute);
+app.use('/api/investments', investmentRoute);
+
 app.use('/', (req, res) => res.status(200).json({
   status: true,
   message: 'GoBusiness is working'

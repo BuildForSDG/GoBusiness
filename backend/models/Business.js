@@ -2,14 +2,25 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const UserSchema = new Schema(
+const BusinessSchema = new Schema(
   {
-    firstname: {
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      unique: true,
+      required: true
+    },
+    name: {
       type: String,
       required: true,
       trim: true
     },
-    lastname: {
+    description: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    address: {
       type: String,
       required: true,
       trim: true
@@ -24,21 +35,17 @@ const UserSchema = new Schema(
       required: true,
       trim: true
     },
-    password: {
-      type: String,
-      required: true
-    },
-    role: {
+    cac_number: {
       type: String,
       required: true,
-      default: 'user'
+      trim: true
     },
-    auth: {
-      type: Array,
-      default: ['user']
+    website: {
+      type: String,
+      trim: true
     }
   },
   { timestamps: true }
 );
 
-module.exports = User = mongoose.model('user', UserSchema);
+module.exports = Business = mongoose.model('business', BusinessSchema);

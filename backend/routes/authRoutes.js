@@ -12,7 +12,9 @@ const checkAuth = require('../middleware/checkAuth');
 router.post(
   '/signup',
   [
-    check('name', 'Name field is required').notEmpty(),
+    check('firstname', 'Firstname field is required').notEmpty(),
+    check('lastname', 'Lastname field is required').notEmpty(),
+    check('phone', 'Phone number is required').notEmpty(),
     check('email', 'Email field is required').isEmail(),
     check('password', 'Password field is required').notEmpty()
   ],
