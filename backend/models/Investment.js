@@ -57,7 +57,8 @@ const InvestmentSchema = new Schema(
     investors: [
       {
         investor: {
-          type: Schema.Types.ObjectId
+          type: Schema.Types.ObjectId,
+          ref: 'User'
         },
         units: {
           type: Number

@@ -1,14 +1,18 @@
 const express = require('express');
 const { check } = require('express-validator');
 
+const checkAuth = require('../middleware/checkAuth');
+const checkAdmin = require('../middleware/checkAdmin');
+
 const router = express.Router();
 const {
   createInvestment,
   updateInvestmentDetails,
   toggleInvestmentValidity,
-  getInvestmentByFilter
+  getInvestmentByFilter,
+  registerInvestment,
+  getAllInvestmentSubscribers
 } = require('../controllers/investmentController');
-const checkAuth = require('../middleware/checkAuth');
 
 /** *
  * @route GET /api/investments
@@ -16,6 +20,29 @@ const checkAuth = require('../middleware/checkAuth');
  * @access public
  */
 router.get('/', getInvestmentByFilter);
+
+/** *
+ * @route PUT /api/investments/:investmentId/subscription
+ * @desc register an investors investment
+ * @access private
+ */
+router.put(
+  '/:investmentId/subscriptions',
+  [check('units', 'Units of investment is required').notEmpty()],
+  checkAuth,
+  registerInvestment
+);
+
+/** *
+ * @route GET /api/investments/:investmentId/investors
+ * @desc Get all users that has invested in this investment
+ * @access private
+ */
+// Get the details of the investors of this investment
+//
+// 1. if Admin => getAll
+// 2. if investmentOwner => get investors of the investment he created
+router.get('/:investmentId/investors', checkAuth, getAllInvestmentSubscribers);
 
 /** *
  * @route POST /api/investments
@@ -45,9 +72,16 @@ router.post(
 router.put('/:investmentId', checkAuth, updateInvestmentDetails);
 
 /** *
- * @route GET /api/investments/:investmentId/validity
- * @desc Get All investments
- * @access public
+ * @route PUT /api/investments/:investmentId/invest
+ * @desc Users can Invest
+ * @access private
  */
-router.put('/:investmentId/validity', toggleInvestmentValidity);
+router.put('/:investmentId/invest', checkAuth, registerInvestment);
+
+/** *
+ * @route GET /api/investments/:investmentId/validity
+ * @desc Flag investment as valid or invalid
+ * @access private
+ */
+router.put('/:investmentId/validity', checkAuth, checkAdmin, toggleInvestmentValidity);
 module.exports = router;

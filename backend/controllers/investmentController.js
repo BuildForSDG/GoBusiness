@@ -51,10 +51,43 @@ const createInvestment = (req, res) => {
 
 // Super admin can toggle investments as valid or invalid
 // By flipping the isverified key
-const toggleInvestmentValidity = (req, res) => res.status(200).json({
-  status: true,
-  message: 'Investment working'
-});
+const toggleInvestmentValidity = (req, res) => {
+  const { investmentId } = req.params;
+  // const currentUserId = req.authUser.id;
+
+  Investment.findOne({ _id: investmentId })
+    .then((investment) => {
+      if (!investment) {
+        return res.status(400).json({
+          status: false,
+          error: 'No such Investment is possible'
+        });
+      }
+      // A valid investment exists
+      // Toggle it
+      investment.isVerified = !investment.isVerified;
+      // Update investment
+      investment.save((err) => {
+        if (err) {
+          return res.status(500).json({
+            status: false,
+            error: 'Failed in verification investment'
+          });
+        }
+
+        // Update
+        return res.status(200).json({
+          status: true,
+          message: 'Investment verification completed',
+          data: investment
+        });
+      });
+    })
+    .catch((err) => res.status(500).json({
+      status: false,
+      errors: 'Failed to get Investments'
+    }));
+};
 
 // When investment details are updated, isVerified is set to false
 // Until admin verifies
@@ -84,6 +117,9 @@ const updateInvestmentDetails = (req, res) => {
       if (budget) investment.budget = budget;
       if (unitCost) investment.unitCost = unitCost;
       if (interest) investment.interest = interest;
+      // If an investment is edited,
+      // Then it must need be approved by admin
+       investment.isVerified = false;
 
       investment.save((err) => {
         if (err) return res.status(500).json({ status: false, error: 'Could not create a new investment' });
@@ -127,9 +163,93 @@ const getInvestmentByFilter = (req, res) => {
     }));
 };
 
+const registerInvestment = (req, res) => {
+  const errorsContainer = validationResult(req);
+  if (!errorsContainer.isEmpty()) {
+    return res.status(422).json({
+      status: false,
+      errors: errorsContainer.errors.map((err) => err.msg)
+    });
+  }
+
+  const { investmentId } = req.params;
+  const currentUserId = req.authUser.id;
+
+  Investment.findOne({ _id: investmentId })
+    .then((investment) => {
+      if (!investment) {
+        return res.status(400).json({
+          status: false,
+          error: 'No such Investment is possible'
+        });
+      }
+      // A valid investment exists
+
+      const { units } = req.body;
+      // Get other details from th investment
+      // const unitCost = investment.unitCost;
+      const currentInvestment = { investor: currentUserId, units };
+      investment.investors = [...investment.investors, currentInvestment];
+      // Update investment
+      investment.save((err) => {
+        if (err) {
+          return res.status(500).json({
+            status: false,
+            error: 'Failed to register investment'
+          });
+        }
+
+        // Update
+        return res.status(200).json({
+          status: true,
+          message: 'Investment registered',
+          data: investment
+        });
+      });
+    })
+    .catch((err) => res.status(500).json({
+      status: false,
+      errors: 'Failed to get Investments'
+    }));
+};
+
+// For a given investment, Who &  How many people has subscribed to it
+// Get all users that has invested in this investment
+// 1. if Admin => getAll
+// 2. if investmentOwner => get investors of the investment he created
+const getAllInvestmentSubscribers = (req, res) => {
+  const { investmentId } = req.params;
+  // const currentUserId = req.authUser.id;
+  let filter = {
+    _id: investmentId
+  };
+
+  if(!req.authUser.auth.includes('admin')){
+    filter.owner = req.authUser.id
+  }
+
+  Investment.findOne(filter)
+    .populate({
+      path: 'investors.investor',
+      select: ['firstname', 'lastname', 'phone'],
+      model: User
+    })
+    .then((investment) => res.status(200).json({
+      status: true,
+      message: 'Investment investors list',
+      data: investment
+    }))
+    .catch((err) => res.status(500).json({
+      status: false,
+      errors: 'Failed to get Investments'
+    }));
+};
+
 module.exports = {
   createInvestment,
   updateInvestmentDetails,
   toggleInvestmentValidity,
-  getInvestmentByFilter
+  getInvestmentByFilter,
+  getAllInvestmentSubscribers,
+  registerInvestment
 };
