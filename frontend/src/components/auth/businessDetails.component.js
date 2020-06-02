@@ -6,6 +6,8 @@ import TextArea from 'react-validation/build/textarea';
 import { isEmail } from 'validator';
 import swal from 'sweetalert';
 
+import AuthService from '../services/auth.service';
+
 
 const required = value => {
     if(!value) {
@@ -96,14 +98,54 @@ export default class BizDetails extends Component {
        e.preventDefault(e);
        const bizDetails = {
            biz_name: this.state.biz_name,
-           biz_category: this.state.biz_category,
-           biz_registration: this.state.biz_registration
+           biz_description: this.state.biz_description,
+           biz_address: this.state.biz_address,
+           biz_cacNumber: this.state.biz_cacNumber,
+           biz_website: this.state.biz_website,
+           biz_email: this.state.biz_email,
+           biz_phoneNumber: this.state.biz_phoneNumber          
        };
-       if(!this.state.biz_name || !this.state.biz_category || !this.state.biz_registration || !this.state.biz_description){
+       if(!this.state.biz_name || !this.state.biz_description || !this.state.biz_address || !this.state.biz_cacNumber
+        || !this.state.biz_email || !this.state.biz_phoneNumber ) {
             swal("Aw!","All fields are Required","error");
        } else {
         console.log(bizDetails);
         /**Api Call here */
+        this.setState({
+          message: "",
+          successful: false
+        });
+
+        if(this.checkBtn.context._errors.length === 0) {
+          AuthService.bizDetails(
+            this.state.biz_name,
+            this.state.biz_description,
+            this.state.biz_address,
+            this.state.biz_cacNumber,
+            this.state.biz_email,
+            this.state.biz_phoneNumber
+          ).then(
+            response => {
+              this.setState({
+                message: response.data.message,
+                successful: true
+              });
+            },
+            error => {
+              const resMessage = 
+              (
+                error.response && error.response.data && 
+                error.response.data.message
+              ) || error.message || error.toString();
+              this.setState({
+                successful: false,
+                message: resMessage
+              });
+            }
+          );
+        }
+
+
        }
     };
     render(){

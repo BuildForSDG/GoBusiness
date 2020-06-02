@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_URL = '/api/auth/';
+const API_URL = 'http://localhost:4000/api/auth/';
 
 class AuthService {
     signIn(email, password) {
@@ -29,6 +29,18 @@ class AuthService {
             phoneNumber,
             email,
             password
+        });
+    }
+
+    bizDetails(bizName, bizDecription, bizAddress, cacNumber, website, email, phoneNumber) {
+        return axios.post(API_URL + "business/details",{
+            bizName,
+            bizDecription,
+            bizAddress,
+            cacNumber,
+            website,
+            email,
+            phoneNumber,
         });
     }
 

@@ -164,6 +164,7 @@ button.navbar-toggler {
   color: #311b92;
   background-color: #6200ea;
   text-transform: capitalize;
+  flex: 1 0 auto;
 }
 
 .form-check-input {
