@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 // const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const errorHandler = require('./middleware/error-handler');
 require('dotenv').config();
@@ -30,10 +30,10 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 
 // parse requests of content-type - application/json
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 /** ****
  *  ROUTING
  *
