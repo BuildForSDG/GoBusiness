@@ -41,8 +41,10 @@ app.use(express.json({ extended: true }));
 const authRoutes = require('./routes/authRoutes');
 const businessRoute = require('./routes/businessRoute');
 const investmentRoute = require('./routes/investmentRoute');
+const userRoute = require('./routes/userRoute');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoute);
 app.use('/api/business', businessRoute);
 app.use('/api/investments', investmentRoute);
 

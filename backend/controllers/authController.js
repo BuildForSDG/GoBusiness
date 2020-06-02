@@ -23,7 +23,11 @@ const signup = (req, res) => {
 
     // new User
     const newUser = new User({
-      firstname, lastname, phone, email, password
+      firstname,
+      lastname,
+      phone,
+      email,
+      password
     });
     // Hash password
     bcrypt.genSalt(10, (err, salt) => {
@@ -111,4 +115,8 @@ const getUserByToken = (req, res) => {
   });
 };
 
-module.exports = { signup, login, getUserByToken };
+module.exports = {
+  signup,
+  login,
+  getUserByToken
+};
