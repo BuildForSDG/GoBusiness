@@ -54,7 +54,7 @@ class Passwordreset extends Component {
       <form className="mt-2 form p-4" onSubmit={handleSubmit}>
               <p className="text-justify acct">You are only one step a way from your new password, recover your password now.</p>  
               <div className="form-group">
-                  <label>Password:</label>
+                  <label htmlFor="password">Password:</label>
                   <input 
                   type="password"
                   name="password"
@@ -74,7 +74,7 @@ class Passwordreset extends Component {
                   ) : null}
               </div>
               <div className="form-group">
-                  <label>Confirm Password:</label>
+                  <label htmlFor="passwordConfirm">Confirm Password:</label>
                   <input 
                   type="password"
                   name="passwordConfirm"

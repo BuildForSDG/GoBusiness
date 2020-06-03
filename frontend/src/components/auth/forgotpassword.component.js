@@ -52,8 +52,8 @@ class Passwordforgot extends Component {
       <form className="mt-2 form p-4" onSubmit={handleSubmit}>
         <p className="text-justify acct">Enter your email address below and we'll send you a link to reset your password</p>  
         <div className="form-group">
-            <label>Email address<span className="require mx-1">*</span></label>
-            <input className="form-control" 
+            <label htmlFor="email">Email address<span className="require mx-1">*</span></label>
+            <input
             type="email"
             name="email"
             id="email" 
@@ -100,7 +100,6 @@ class Passwordforgot extends Component {
                 }}
                 validationSchema={PasswordForgotSchema}
               >
-                {/* {this.showForm()}            */}
                 {props => this.showForm(props)}
               </Formik>
         </div>          
