@@ -1,182 +1,85 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-unused-vars */
-import React, { Component, Children } from 'react';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import CheckButton from 'react-validation/build/button';
+import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { isEmail } from 'validator';
-
-import AuthService from "../services/auth.service";
-import swal from 'sweetalert';
-import ProfileImg from '../images/avataaars (2).svg';
+import swal from "sweetalert";
 
 
-const required = value => {
-  if(!value) {
-    return (
-      <div className="alert alert-danger" role="alert">This field is required</div>
-    );
-  }
-};
-
-
-const email = value => {
-  if(!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">This is not a valid email.</div>
-    );
-  }
-};
-
-
-export default class SignIn extends Component {
+export default class ResetPassword extends Component{
   constructor(props){
     super(props);
     this.state = {
-      signIn_email: "",
-      signIn_password: "",
-      loading: false,
-      message: ""
-    };
-    this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
-    this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
+     password: "",
+     confirmPassword: ""
+    }
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
-  componentDidMount() {
-    if(localStorage.getItem("TOKEN_KEY") != null){
-      return this.props.history.push('/dashboard');
-    }
-    let notify = this.props.match.params["notify"]
-    if(notify !== undefined){
-      if(notify === 'error'){
-        swal("Activation Fail please try again !",'',"error")
-      } else if(notify === 'success'){
-        swal("Activation Success you can signin !", '', "success")
-      }
-    }
+  onChangePassword(e){
+      this.setState({
+          password: e.target.value
+      })
   }
-
-  onChangeSignInEmail(e){
-    this.setState({
-      signIn_email: e.target.value
-    });
+  onChangeConfirmPassword(e){
+      this.setState({
+          confirmPassword: e.target.value
+      })
   }
-  onChangeSignInPassword(e){
-    this.setState({
-      signIn_password: e.target.value
-    });
-  }
+  
   onSubmit(e){
     e.preventDefault();
-    const userData = {
-      signIn_email: this.state.signIn_email,
-      signIn_password: this.state.signIn_password
-    };
-    
-    if(!this.state.signIn_email || !this.state.signIn_password){
-      return swal("Aw!","All fields are required!","warning");
-    }
-    console.log(`SignIn Successfully`);
-    console.log(userData);
-   
-    /*Api call should go here using axios */
-   
-    this.setState({
-      message: "",
-      loading: true
-    });
-
-    //this.form.validateAll();
-
-    if (this.checkBtn.context._errors.length === 0) {
-      AuthService.signIn(this.state.signIn_email, this.state.signIn_password)
-      .then(() => {
-        this.props.history.push("/profile");
-        window.location.reload();
-      },
-      error => {
-        const resMessage = (error.response && error.response.data && error.response.data.message) || 
-        error.message || error.toString();
-
-        this.setState({
-          loading: false,
-          message: resMessage
-        });
-      }
-      );
+    console.log(`Password Reset Successful`);
+    if(this.state.password !== this.state.confirmPassword){
+      swal("Aw!","Your passwords donot match","error")
     } else {
       this.setState({
-        loading: false
+        password:"",
+        confirmPassword: ""
       });
+      swal("Great!","Password Reset was Successful","success");
     }
 
-  };
+    /**Api call should go here using axios */
 
-  render() {
-    return (
-            
+   
+  }
+    render() {
+        return (
             <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
+            <h3 className="text-center mb-4">Reset Password</h3>
+            <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
+              <p className="text-justify acct">You are only one step a way from your new password, recover your password now.</p>  
+              <div className="form-group">
+                  <label>Password:</label>
+                  <input className="form-control" 
+                  type="password"
+                  name="password"
+                  id="password" 
+                  title="Please enter your new Password"  
+                  value={this.state.password} 
+                  onChange={this.onChangePassword}
+                  minLength="6"maxLength="12" size="12" 
+                  placeholder="Enter new Password" required/>
+              </div>
+              <div className="form-group">
+                  <label>Confirm Password:</label>
+                  <input className="form-control" 
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm" 
+                  title="Please enter your new Password Again"  
+                  value={this.state.confirmPassword} 
+                  onChange={this.onChangeConfirmPassword}
+                  minLength="6"maxLength="12" size="12" 
+                  placeholder="Enter new Password Again" required/>
+              </div>
+              <div className="form-group mt-4 text-center">
+                <input type="submit"value="Save new Password" className="btn btn-primary  px-5"/>
+              </div>
               
-                <h3 className="text-center mb-4">Sign into your Account</h3>
-                <Form className="mt-2 form p-4" onSubmit={this.onSubmit} validateAll>
-                  <div className="text-center">
-                    <img className="profile-img-card" src={ProfileImg} alt="profile-img" />
-                  </div>
-                  <div className="form-group">
-                      <label>Email address<span className="require mx-1">*</span></label>
-                      <Input className="form-control" 
-                      type="email" 
-                      name="email"
-                      id="email"
-                      title="Please enter your Email address"  
-                      value={this.state.signIn_email} 
-                      onChange={this.onChangeSignInEmail} 
-                      validations={[required, email]}
-                      pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                      placeholder="joe@example.com" required/>
-                  </div>
-                  <div className="form-group">
-                      <label>Password<span className="require mx-1">*</span></label>
-                      <Input className="form-control" 
-                      type="password"
-                      name="password"
-                      id="password" 
-                      value={this.state.signIn_password} 
-                      onChange={this.onChangeSignInPassword}
-                      validations={[required]}
-                      minLength="6"maxLength="12" size="12" 
-                      placeholder="Password" required/>
-                  </div>
-                  <div className="form-group text-center my-2">
-                    <button
-                      className="btn btn-primary px-5"
-                      disabled={this.state.loading}
-                    >
-                      {this.state.loading && (
-                        <span className="spinner-border spinner-border-sm"></span>
-                      )}
-                      <span>Sign In</span>
-                    </button>
-                  </div>
-                  {this.state.message && (
-                    <div className="form-group">
-                      <div className="alert alert-danger" role="alert">{this.state.message}</div>
-                    </div>
-                  )}
-                   <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-                 
-                  <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
-                </Form>
-                <Link to="/password/forgot"><p className="text-center my-2">Forgot Your Password?</p></Link>
-            </div>
-    );
-  };
+              <p className="text-center mt-5 acct"><Link to="/signin" className="mx-2">Sign In</Link>  or  <Link to="/signup" className="mx-2">Sign Up</Link></p>
+            </form>
+        
+        </div>
+        );
+    };
 };
-
