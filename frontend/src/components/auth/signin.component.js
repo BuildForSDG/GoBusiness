@@ -89,7 +89,7 @@ class Signin extends Component {
               required
             />
             <div className="input-group-append">
-              <div classname="input-group-text">
+              <div className="input-group-text">
                 <span className="fas fa-user"></span>
               </div>
             </div>
@@ -126,18 +126,18 @@ class Signin extends Component {
             <small id="passwordHelp" className="text-danger">{errors.password}</small>
           ): null}
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="icheck-primary">
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="icheck-primary">
               <input type="checkbox" id="remember" />
               <label htmlFor="remember" className="ml-2">Remember Me</label>
             </div>
           </div>
-          <div class="col-sm-12 text-center mt-4">
+          <div className="col-sm-12 text-center mt-4">
             <button
               type="submit"
               disabled={isSubmitting}
-              class="btn btn-primary px-5"
+              className="btn btn-primary px-5"
             >
               Sign In
             </button>
