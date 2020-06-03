@@ -42,7 +42,7 @@ class Signin extends Component {
       .then(res => {
         if(res.data.result === "success") {
           localStorage.setItem("TOKEN_KET", res.data.token);
-          swal("Success", res.data.message, "success")
+          swal("Success!", res.data.message, "success")
           .then(value => {
             history.push('/dashboard');
           });
