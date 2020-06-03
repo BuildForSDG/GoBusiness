@@ -1,182 +1,176 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-unused-vars */
-import React, { Component, Children } from 'react';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import CheckButton from 'react-validation/build/button';
+import React,{ Component } from "react";
 import { Link } from 'react-router-dom';
-import { isEmail } from 'validator';
-
-import AuthService from "../services/auth.service";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
 import swal from 'sweetalert';
 import ProfileImg from '../images/avataaars (2).svg';
 
+const SigninSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid Email")
+    .required("Email is Required!"),
+  password: Yup.string()
+    .required("Password is Required"),
+});
 
-const required = value => {
-  if(!value) {
-    return (
-      <div className="alert alert-danger" role="alert">This field is required</div>
-    );
-  }
-};
-
-
-const email = value => {
-  if(!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">This is not a valid email.</div>
-    );
-  }
-};
-
-
-export default class SignIn extends Component {
-  constructor(props){
+class Signin extends Component {
+  constructor(props) {
     super(props);
-    this.state = {
-      signIn_email: "",
-      signIn_password: "",
-      loading: false,
-      message: ""
-    };
-    this.onChangeSignInEmail = this.onChangeSignInEmail.bind(this);
-    this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
 
-  componentDidMount() {
+    this.state = {
+      alert: null
+    };
+  }
+  componentDidMount(){
     if(localStorage.getItem("TOKEN_KEY") != null){
       return this.props.history.push('/dashboard');
     }
     let notify = this.props.match.params["notify"]
     if(notify !== undefined){
-      if(notify === 'error'){
-        swal("Activation Fail please try again !",'',"error")
+      if(notify === "error"){
+        swal("Activation Fail please try again!", '', "error")
       } else if(notify === 'success'){
-        swal("Activation Success you can signin !", '', "success")
+        swal("Activation Success youcan Signin!", '', "success")
       }
     }
   }
 
-  onChangeSignInEmail(e){
-    this.setState({
-      signIn_email: e.target.value
-    });
-  }
-  onChangeSignInPassword(e){
-    this.setState({
-      signIn_password: e.target.value
-    });
-  }
-  onSubmit(e){
-    e.preventDefault();
-    const userData = {
-      signIn_email: this.state.signIn_email,
-      signIn_password: this.state.signIn_password
-    };
-    
-    if(!this.state.signIn_email || !this.state.signIn_password){
-      return swal("Aw!","All fields are required!","warning");
-    }
-    console.log(`SignIn Successfully`);
-    console.log(userData);
-   
-    /*Api call should go here using axios */
-   
-    this.setState({
-      message: "",
-      loading: true
-    });
-
-    //this.form.validateAll();
-
-    if (this.checkBtn.context._errors.length === 0) {
-      AuthService.signIn(this.state.signIn_email, this.state.signIn_password)
-      .then(() => {
-        this.props.history.push("/profile");
-        window.location.reload();
-      },
-      error => {
-        const resMessage = (error.response && error.response.data && error.response.data.message) || 
-        error.message || error.toString();
-
-        this.setState({
-          loading: false,
-          message: resMessage
-        });
-      }
-      );
-    } else {
-      this.setState({
-        loading: false
+  submitForm = (values,history) => {
+    axios
+      .post("http://localhost:4000/auth/signin", values)
+      .then(res => {
+        if(res.data.result === "success") {
+          localStorage.setItem("TOKEN_KET", res.data.token);
+          swal("Success", res.data.message, "success")
+          .then(value => {
+            history.push('/dashboard');
+          });
+        } else if (res.data.result === "error") {
+          swal("Error!", res.data.message, "error");
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        return swal("Error!", error.message, "error");
       });
-    }
-
+  };
+  showForm = ({
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    isSubmitting
+  }) => {
+    return (
+      <form onSubmit={handleChange} className="p-4 form mt-2">
+        <div className="text-center">
+           <img className="profile-img-card" src={ProfileImg} alt="profile-img" />
+        </div>
+        <div className="form-group has-feedback">
+          <label htmlFor="email">Email</label>
+            <input 
+              type="email" 
+              name="email"
+              id="email"
+              title="Please enter your Email"
+              onChange={handleChange}
+              value={values.email}
+              placeholder="Email"
+              pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+              className={
+                errors.email && touched.email
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+              autoFocus
+              required
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+            {errors.firstName && touched.firstName ? (
+              <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+            ): null}
+          </div>
+          <div className="form-group has-feedback">
+          <label>Password</label>
+          <input 
+            type="password" 
+            name="password"
+            id="password"
+            title="Please enter your Password"
+            onChange={handleChange}
+            value={values.password}
+            placeholder="Password"
+            minLength="6"
+            maxLength="12"
+            size="12"
+            className={
+              errors.password && touched.password
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+          {errors.password && touched.password ? (
+            <small id="passwordHelp" className="text-danger">{errors.password}</small>
+          ): null}
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember" className="ml-2">Remember Me</label>
+            </div>
+          </div>
+          <div class="col-sm-12 text-center mt-4">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              class="btn btn-primary px-5"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </form>
+    );
   };
 
   render() {
     return (
-            
-            <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
-              
-                <h3 className="text-center mb-4">Sign into your Account</h3>
-                <Form className="mt-2 form p-4" onSubmit={this.onSubmit} validateAll>
-                  <div className="text-center">
-                    <img className="profile-img-card" src={ProfileImg} alt="profile-img" />
-                  </div>
-                  <div className="form-group">
-                      <label>Email address<span className="require mx-1">*</span></label>
-                      <Input className="form-control" 
-                      type="email" 
-                      name="email"
-                      id="email"
-                      title="Please enter your Email address"  
-                      value={this.state.signIn_email} 
-                      onChange={this.onChangeSignInEmail} 
-                      validations={[required, email]}
-                      pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                      placeholder="joe@example.com" required/>
-                  </div>
-                  <div className="form-group">
-                      <label>Password<span className="require mx-1">*</span></label>
-                      <Input className="form-control" 
-                      type="password"
-                      name="password"
-                      id="password" 
-                      value={this.state.signIn_password} 
-                      onChange={this.onChangeSignInPassword}
-                      validations={[required]}
-                      minLength="6"maxLength="12" size="12" 
-                      placeholder="Password" required/>
-                  </div>
-                  <div className="form-group text-center my-2">
-                    <button
-                      className="btn btn-primary px-5"
-                      disabled={this.state.loading}
-                    >
-                      {this.state.loading && (
-                        <span className="spinner-border spinner-border-sm"></span>
-                      )}
-                      <span>Sign In</span>
-                    </button>
-                  </div>
-                  {this.state.message && (
-                    <div className="form-group">
-                      <div className="alert alert-danger" role="alert">{this.state.message}</div>
-                    </div>
-                  )}
-                   <CheckButton
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-            />
-                 
-                  <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
-                </Form>
-                <Link to="/password/forgot"><p className="text-center my-2">Forgot Your Password?</p></Link>
-            </div>
-    );
-  };
-};
+      <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
+          <h3 className="text-center mb-4">Signin to Your Account</h3>
+           
+          <Formik 
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            this.submitForm(values, this.props.history);
+            setSubmitting(false);
+          }}
+          validationSchema={SigninSchema}
+          >
+            {props => this.showForm(props)}
+          </Formik>
+          <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
+          <Link to="/password/forgot"><p className="text-center my-2">Forgot Your Password?</p></Link>
+        </div>
+        
+    )
+  }
+}
 
+export default Signin;
