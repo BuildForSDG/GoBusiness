@@ -55,23 +55,13 @@ class App extends Component {
             <Header />
             <Route path="/" exact component={ Home } />
             <Switch>
-              <div>
-                {isLoggedIn() && (
-                  <Header />
-                )}
+                {isLoggedIn() && <Header />}
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
                 <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
-              </div>
-             
-             
-              <Route path="/user" component={ BusinessUser } />
-              <Route path="/investor" component={ InvestorUser }/>
-              <Route path="/admin" component={ AdminUser }/>
-              <Route path="/business/details" component={ BizDetails } />
             </Switch>
             <Footer/>
           </div>

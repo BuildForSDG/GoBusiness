@@ -41,7 +41,7 @@ class Signin extends Component {
       .post("http://localhost:4000/auth/signin", values)
       .then(res => {
         if(res.data.result === "success") {
-          localStorage.setItem("TOKEN_KET", res.data.token);
+          localStorage.setItem("TOKEN_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
             history.push('/dashboard');
