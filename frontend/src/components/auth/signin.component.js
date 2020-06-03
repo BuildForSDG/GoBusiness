@@ -143,6 +143,7 @@ class Signin extends Component {
             </button>
           </div>
         </div>
+        <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
       </form>
     );
   };
@@ -165,7 +166,7 @@ class Signin extends Component {
           >
             {props => this.showForm(props)}
           </Formik>
-          <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup">Sign up</Link></p>
+          
           <Link to="/password/forgot"><p className="text-center my-2">Forgot Your Password?</p></Link>
         </div>
         

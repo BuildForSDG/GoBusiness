@@ -20,6 +20,7 @@ import BusinessUser from './components/dashboard/business.component';
 import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
 import BizDetails from './components/auth/businessDetails.component';
+import Profile from './components/auth/profile.component';
 
 
 // logged in user
@@ -28,51 +29,48 @@ const isLoggedIn = () => {
 }
 
 // Protected Route
-
+const SecureRoute = ({ component: Component, ...rest }) => (
+  <Route 
+    {...rest}
+    render={props => 
+      isLoggedIn() === true ? (
+        <Component {...props} />
+      ): (
+        <Redirect to="/signin" />
+      )
+    }
+  />
+);
 
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.signOut = this.signOut.bind(this);
-
-    this.state = {
-      showInvestorBoard: false,
-      showAdminBoard:false,
-      currentUser: undefined
-    };
+  componentDidUpdate(nextProps, nextState){
+    console.log("update");
   }
   
-  componentDidMount() {
-    const user = AuthService.getCurrentuser();
-    if(user) {
-      this.setState({
-        currentUser: user,
-        showInvestorBoard: user.roles.includes("ROLE_INVESTOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN")
-      });
-    }
-  }
-
-  signOut() {
-    AuthService.signOut();
-  }
-
   render() {
     return (
         < Router>
           <div className="container">
             <Header />
+            <Route path="/" exact component={ Home } />
             <Switch>
-              <Route path="/" exact component={ Home } />
-              <Route path="/signin/:notify?" component={ SignIn } />
-              <Route path="/signup" component={ SignUp }/>
-              <Route path="/password/forgot" component={ ForgotPassword }/>
-              <Route path="/password/reset/" component={ ResetPassword }/>
+              <div>
+                {isLoggedIn() && (
+                  <Header />
+                )}
+                <Route path="/signup" component={ SignUp }/>
+                <Route path="/signin/:notify?" component={ SignIn } />
+                <Route path="/password/forgot" component={ ForgotPassword }/>
+                <Route path="/password/reset/" component={ ResetPassword }/>
+                <SecureRoute path="/business" component={ BusinessUser } />
+                <SecureRoute path="/profile" component={ Profile } />
+              </div>
+             
+             
               <Route path="/user" component={ BusinessUser } />
               <Route path="/investor" component={ InvestorUser }/>
               <Route path="/admin" component={ AdminUser }/>
-              <Route path="/business" component={ BusinessUser } />
               <Route path="/business/details" component={ BizDetails } />
             </Switch>
             <Footer/>
