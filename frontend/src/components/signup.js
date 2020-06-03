@@ -1,54 +1,79 @@
-import React, { Component } from 'react';
+import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 
-export default class ForgotPassword extends Component{
+export default class ResetPassword extends Component{
   constructor(props){
     super(props);
     this.state = {
-      reset_Email: ""
+     password: "",
+     confirmPassword: ""
     }
-    this.onChangeResetEmail = this.onChangeResetEmail.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  onChangeResetEmail(e){
-    this.setState({
-      reset_Email: e.target.value
-    })
+  onChangePassword(e){
+      this.setState({
+          password: e.target.value
+      })
   }
+  onChangeConfirmPassword(e){
+      this.setState({
+          confirmPassword: e.target.value
+      })
+  }
+  
   onSubmit(e){
     e.preventDefault();
-    console.log(`Email Reset Successful`);
-    console.log(`Reset Email: ${this.state.reset_Email}`);
-    swal("Great!", `Email has been sent to  ${this.state.reset_Email}.  Follow the instruction to  reset your password`,"success");
+    console.log(`Password Reset Successful`);
+    if(this.state.password !== this.state.confirmPassword){
+      swal("Aw!","Your passwords donot match","error")
+    } else {
+      this.setState({
+        password:"",
+        confirmPassword: ""
+      });
+      swal("Great!","Password Reset was Successful","success");
+    }
 
     /**Api call should go here using axios */
 
-    this.setState({
-      reset_Email:""
-    })
+   
   }
     render() {
         return (
             <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
-            <h3 className="text-center mb-4">Forgot Password</h3>
+            <h3 className="text-center mb-4">Reset Password</h3>
             <form className="mt-2 form p-4" onSubmit={this.onSubmit}>
-              <p className="text-justify acct">Enter your email address below and we'll send you a link to reset your password</p>  
+              <p className="text-justify acct">You are only one step a way from your new password, recover your password now.</p>  
               <div className="form-group">
-                  <label>Email address<span className="require mx-1">*</span></label>
+                  <label>Password:</label>
                   <input className="form-control" 
-                  type="email"
-                  name="email"
-                  id="email" 
-                  title="Please enter your Email address"  
-                  value={this.state.reset_Email} 
-                  onChange={this.onChangeResetEmail}
-                  pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                  placeholder="joe@example.com" required/>
+                  type="password"
+                  name="password"
+                  id="password" 
+                  title="Please enter your new Password"  
+                  value={this.state.password} 
+                  onChange={this.onChangePassword}
+                  minLength="6"maxLength="12" size="12" 
+                  placeholder="Enter new Password" required/>
+              </div>
+              <div className="form-group">
+                  <label>Confirm Password:</label>
+                  <input className="form-control" 
+                  type="password"
+                  name="passwordConfirm"
+                  id="passwordConfirm" 
+                  title="Please enter your new Password Again"  
+                  value={this.state.confirmPassword} 
+                  onChange={this.onChangeConfirmPassword}
+                  minLength="6"maxLength="12" size="12" 
+                  placeholder="Enter new Password Again" required/>
               </div>
               <div className="form-group mt-4 text-center">
-                <input type="submit"value="Reset Password" className="btn btn-primary  px-5"/>
+                <input type="submit"value="Save new Password" className="btn btn-primary  px-5"/>
               </div>
               
               <p className="text-center mt-5 acct"><Link to="/signin" className="mx-2">Sign In</Link>  or  <Link to="/signup" className="mx-2">Sign Up</Link></p>
