@@ -15,13 +15,17 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid Email")
     .required("Email is Required!"),
+  type: Yup.string()
+    .required("Select an Option!"),
   password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
     .required("Password is Required"),
   confirm_password: Yup.string()
     .oneOf(
       [Yup.ref("password"), null],
       "Both password need to be the same!"
-    )
+    ),
+  
 });
 
 class SignUp extends Component {
@@ -61,8 +65,11 @@ class SignUp extends Component {
   }) => {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
+        <div className="text-center">
+          <p className="required ">All fields marked <span className="require"> * </span> are required</p>
+        </div>
         <div className="form-group has-feedback">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">First Name<span className="require">*</span></label>
           <input 
             type="text" 
             name="firstName"
@@ -85,7 +92,7 @@ class SignUp extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Last Name</label>
+          <label>Last Name<span className="require">*</span></label>
           <input 
             type="text" 
             name="lastName"
@@ -107,7 +114,7 @@ class SignUp extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Phone Number</label>
+          <label>Phone Number<span className="require">*</span></label>
           <input 
             type="tel" 
             name="phoneNumber"
@@ -129,7 +136,7 @@ class SignUp extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Email</label>
+          <label htmlFor="email">Email<span className="require">*</span></label>
           <input 
             type="email" 
             name="email"
@@ -151,7 +158,32 @@ class SignUp extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Password</label>
+          <label htmlFor="type">Type<span className="require">*</span></label>
+          <select 
+            type="select"
+            name="type"
+            id="type"
+            title="Please select an Option"
+            onChange={handleChange}
+            value={values.type}
+            placeholder="Select an Option"
+            className={
+              errors.type && touched.type
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+          >
+            <option value=""></option>
+            <option value="Business">Business</option>
+            <option value="Investor">Investor</option>
+          </select>
+          {errors.type && touched.type ? (
+            <small id="passwordHelp" className="text-danger">{errors.type}</small>
+          ): null}
+        </div>
+        <div className="form-group has-feedback">
+          <label htmlFor="password">Password<span className="pass"><span className="require">* </span>( 6 min and 12 max characters )</span></label>
           <input 
             type="password" 
             name="password"
@@ -175,7 +207,7 @@ class SignUp extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Confirm Password</label>
+          <label>Confirm Password<span className="require">*</span></label>
           <input 
             type="password" 
             name="confirm_password"
@@ -198,12 +230,25 @@ class SignUp extends Component {
             <small id="passwordHelp" className="text-danger">{errors.confirm_password}</small>
           ): null}
         </div>
-        <div className="row form-group mt-4 text-center">
-            <div className="col-sm-12 col-md-12">
+        
+        <div className="row form-group mt-4 ">
+        <div className="col-sm-12">
+            <div className="icheck-primary">
+              <input 
+              type="checkbox"
+              name="tsAndCs" 
+              id="tsAndCs" 
+              title="Please Accept and Coditions"
+              required
+              />
+              <label htmlFor="tsAndCs" className="ml-2">Accept Terms and Conditions</label>
+            </div>
+          </div>
+            <div className="col-sm-12 col-md-12 text-center mt-3">
               <button
               disabled={isSubmitting}
               type="submit" 
-              className="btn btn-primary m-2 px-5 user">Submit</button>
+              className="btn btn-primary m-2 px-5 user">Sign Up</button>
               <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin">Sign in</Link></p>
             </div>
         </div>
@@ -221,8 +266,9 @@ class SignUp extends Component {
             lastName: "",
             phoneNumber: "",
             email: "",
+            type: "",
             password: "",
-            confirm_password: ""
+            confirm_password: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             this.submitForm(values, this.props.history);
