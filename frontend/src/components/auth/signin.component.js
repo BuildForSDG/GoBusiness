@@ -65,7 +65,7 @@ class Signin extends Component {
     isSubmitting
   }) => {
     return (
-      <form onSubmit={handleChange} className="p-4 form mt-2">
+      <form onSubmit={handleSubmit} className="p-4 form mt-2">
         <div className="text-center">
            <img className="profile-img-card" src={ProfileImg} alt="profile-img" />
         </div>
@@ -88,9 +88,9 @@ class Signin extends Component {
               autoFocus
               required
             />
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
+            <div className="input-group-append">
+              <div classname="input-group-text">
+                <span className="fas fa-user"></span>
               </div>
             </div>
             {errors.firstName && touched.firstName ? (
@@ -117,9 +117,9 @@ class Signin extends Component {
             }
             required
           />
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+          <div className="input-group-append">
+            <div className="input-group-text">
+              <span className="fas fa-lock"></span>
             </div>
           </div>
           {errors.password && touched.password ? (
