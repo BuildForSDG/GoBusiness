@@ -4,7 +4,7 @@ const express = require('express');
 // const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const errorHandler = require('./middleware/error-handler');
+// const errorHandler = require('./middleware/error-handler');
 require('dotenv').config();
 const initDB = require('./config/initDB');
 // express app
@@ -54,7 +54,7 @@ app.use('/', (req, res) => res.status(200).json({
 }));
 
 // global error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
 // set port,listen for requests
 // const PORT = process.env.PORT || 4000;
