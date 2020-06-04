@@ -37,8 +37,11 @@ class Signin extends Component {
   }
 
   submitForm = (values,history) => {
+    const headers = {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
     axios
-      .post("http://localhost:4000/api/auth/login", values)
+      .post("http://localhost:4000/api/auth/login", values, {headers: headers})
       .then(res => {
         if(res.data.result === "success") {
           localStorage.setItem("TOKEN_KEY", res.data.token);
