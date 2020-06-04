@@ -23,7 +23,7 @@ const SignupSchema = Yup.object().shape({
   confirm_password: Yup.string()
     .oneOf(
       [Yup.ref("password"), null],
-      "Both password need to be the same!"
+      "Passwords do not Match!"
     ),
   
 });
@@ -39,7 +39,7 @@ class SignUp extends Component {
 
   submitForm = (values, history) => {
     axios
-      .post("http://localhost:4000/auth/signup", values)
+      .post("http://localhost:4000/api/auth/signup", values)
       .then(res => {
         console.log(res.data.result);
         if(res.data.result === "success") {
