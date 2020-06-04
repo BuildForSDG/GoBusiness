@@ -38,8 +38,11 @@ class SignUp extends Component {
   }
 
   submitForm = (values, history) => {
+    const headers = {
+      'Content-Type' : 'application/x-www-form-urlencoded',
+    }
     axios
-      .post("http://localhost:4000/api/auth/signup", values)
+      .post("http://localhost:4000/api/auth/signup", values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         if(res.data.result === "success") {
