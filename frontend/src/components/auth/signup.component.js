@@ -39,12 +39,14 @@ class SignUp extends Component {
 
   submitForm = (values, history) => {
     const headers = {
-      'Content-Type' : 'application/x-www-form-urlencoded',
+      'Content-Type' : 'application/x-www-form-urlenconded',
     }
+    const baseURL = 'https://gobusiness-backend.herokuapp.com/';
     axios
-      .post("http://localhost:4000/api/auth/signup", values,{headers: headers})
+      .post(baseURL + "/auth/signup", values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
+        console.log(values);
         if(res.data.result === "success") {
           swal("Success!",res.data.message,"warning")
           .then(value => history.push("/signin"));
