@@ -19,6 +19,8 @@ class Signin extends Component {
     super(props);
 
     this.state = {
+      email:"",
+      password:"",
       alert: null
     };
   }
@@ -43,6 +45,8 @@ class Signin extends Component {
     axios
       .post("http://localhost:4000/api/auth/login", values, {headers: headers})
       .then(res => {
+        console.log(res.data.result);
+        console.log(values);
         if(res.data.result === "success") {
           localStorage.setItem("TOKEN_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
