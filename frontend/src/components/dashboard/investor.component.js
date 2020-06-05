@@ -1,37 +1,65 @@
 import React, { Component } from 'react';
+import { Link } from'react-router-dom';
 
-import UserService from '../services/user.service';
 
-export default class InvestorUser extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            content: ""
-        };
-    }
-
-    componentDidMount() {
-        UserService.getInvestorBoard().then(
-            response => {
-                this.setState({
-                    content: response.data
-                });
-            },
-            error => {
-                this.setState({
-                    content:
-                    (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-                });
-            }
-        );
-    }
+export default class BusinessUser extends Component {
 
     render(){
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-12 col-md-6">
-                        <h3>{this.state.content}</h3>
+                    <div className="col-sm-12 col-md-6 text-center mt-3">
+                        <h3>Investor Dashboard</h3>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-lg-6 col-6 my-3">
+                        <div className="small-box">
+                            <div className="inner text-center p-4">
+                                <h3>150</h3>
+                                <p>View Businesses</p>
+                            </div>
+                            <div className="icon">
+                                <i />
+                            </div>
+                            <Link to="#" className="p-4 small-box-footer">More info</Link>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 col-6 my-3">
+                        <div className="small-box">
+                            <div className="inner text-center p-4">
+                                <h3>200</h3>
+                                <p>My Profile</p>
+                            </div>
+                            <div className="icon">
+                                <i />
+                            </div>
+                            <Link to="#" className="p-4 small-box-footer">Update profile</Link>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 col-6 my-3">
+                        <div className="small-box">
+                            <div className="inner text-center p-4">
+                                <h3>200</h3>
+                                <p>New Investments</p>
+                            </div>
+                            <div className="icon">
+                                <i />
+                            </div>
+                            <Link to="#" className="p-4 small-box-footer">View</Link>
+                        </div>
+                    </div>
+                    <div className="col-lg-6 col-6 my-3">
+                        <div className="small-box">
+                            <div className="inner text-center p-4">
+                                <h3>200</h3>
+                                <p>My Investments</p>
+                            </div>
+                            <div className="icon">
+                                <i />
+                            </div>
+                            <Link to="#" className="p-4 small-box-footer">More info</Link>
+                        </div>
                     </div>
                 </div>
             </div>

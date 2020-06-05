@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
 import ProfileImg from '../images/avataaars (2).svg';
+import { async } from "q";
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
@@ -38,12 +39,12 @@ class Signin extends Component {
     }
   }
 
-  submitForm = (values,history) => {
+  submitForm = async (values,history) => {
     const headers = {
       "Content-Type": "application/json"
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
-    axios
+    await axios
       .post(baseURL + "/auth/login", values, {headers: headers})
       .then(res => {
         console.log(res.data.result);
@@ -69,6 +70,7 @@ class Signin extends Component {
     touched,
     handleChange,
     handleSubmit,
+    onSubmit,
     setFieldValue,
     isSubmitting
   }) => {

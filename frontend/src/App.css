@@ -216,6 +216,22 @@ hr {
   background: url('./components/images/businessman__monochromatic.svg');
 }
 
+.small-box {
+  color: #fff;
+  border-radius: 10px;
+  background: #6200ea !important;
+  box-shadow:  20px 20px 60px #5300c7;           
+  outline: none !important;
+}
+
+.small-box-footer {
+  color: #d9dee1;
+}
+.small-box-footer:hover {
+  color: #fff;
+  font-weight: bold;
+}
+
 /** Small devices (landscape phones, 576px and up)*/
 @media (min-width: 300px) { 
   .hero {
