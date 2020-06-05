@@ -40,11 +40,10 @@ class Signin extends Component {
 
   submitForm = (values,history) => {
     const headers = {
-      'Content-Type' : 'application/json',
+      "Content-Type": "application/x-www-form-urlencoded"
     }
-    const baseURL = 'https://gobusiness-backend.herokuapp.com/';
     axios
-      .post(baseURL + "/auth/login", values,{headers: headers})
+      .post("http://localhost:4000/api/auth/login", values, {headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);

@@ -39,7 +39,8 @@ class SignUp extends Component {
 
   submitForm = (values, history) => {
     const headers = {
-      'Content-Type' : 'application/x-www-form-urlenconded',
+      'Content-Type' : 'application/x-www-form-urlencoded',
+      'token': 'x-auth-token'
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com/';
     axios
