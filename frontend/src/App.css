@@ -34,7 +34,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: rgba(0,0,0,0.9) !important;
+  background-color: #1A237E !important;
 }
 
 .signin {
@@ -57,7 +57,7 @@ body {
 
 .signup:hover {
   font-weight: bold !important;
-  background-color: black;
+  background-color: #1A237E;
   border: none;
 }
 
@@ -160,8 +160,6 @@ button.navbar-toggler {
   background-image: url(./menu.svg) !important;
 }
 
-
-
 #root {
   width: 100%;
   display: flex;
@@ -227,6 +225,7 @@ hr {
 .small-box:hover {
   width: 102%;
   height: 102%;
+  background-color: #1A237E !important;
 }
 
 .small-box-footer {

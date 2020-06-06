@@ -10,6 +10,7 @@ import MyInvestTmg from '../images/briefcase (2).svg';
 
 
 
+
 export default class BusinessUser extends Component {
 
     render(){
@@ -17,7 +18,6 @@ export default class BusinessUser extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 col-md-6 text-justify mt-3">
-                        <img className="img-fluid" src={ AccountUserImg } />
                         <h3>Business Dashboard</h3>
                     </div>
                        
@@ -26,16 +26,16 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ DetailsImg } />
+                                <img className="img-fluid m-3 icon" src={ DetailsImg } alt="" />
                                 <p>Business Profile</p>
                             </div>
-                            <Link to="#" className="p-4 small-box-footer">Create</Link>
+                            <Link to="/business/details" className="p-4 small-box-footer">Create</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ AccountUserImg } />
+                                <img className="img-fluid m-3 icon" src={ AccountUserImg } alt="" />
                                 <p>Personal Profile</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">Update profile</Link>
@@ -44,7 +44,7 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ RequestImg } />
+                                <img className="img-fluid m-3 icon" src={ RequestImg } alt="" />
                                 <p>Investment Request</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">Make Request</Link>
@@ -53,7 +53,7 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ MyInvestTmg } />
+                                <img className="img-fluid m-3 icon" src={ MyInvestTmg } alt="" />
                                 <p>Investment</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">View</Link>

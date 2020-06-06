@@ -150,12 +150,15 @@ export default class BizDetails extends Component {
     };
     render(){
         return (
-            <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
+            <div className="col-sm-12 col-md-6 col-lg-5 mb-3 " style={{marginTop: 10}}>
             <h3 className="text-center mb-4">Tell us About your Business</h3>
             <Form className="mt-2 form p-4"  onSubmit={this.onSubmit} ref={c => {this.form = c;}}>
               {!this.state.successful && (
-                <div>
-                   <div className="form-group">
+              <div>
+                <div className="text-center">
+                  <p className="required ">All fields marked <span className="require"> * </span> are required</p>
+                </div>
+                <div className="form-group">
                   <label htmlFor="bizName">Business Name<span className="require mx-1">*</span></label>
                   <Input className="form-control" 
                   type="text" 
@@ -202,7 +205,7 @@ export default class BizDetails extends Component {
                   value={this.state.biz_cacNumber}
                   onChange={this.onChangeBizCacNumber}
                   pattern="[A-za-z0–9_]"
-                  placeNumber="CAC Registration Number"
+                  placeholder="CAC Registration Number"
                   required
                   />
               </div>
@@ -250,9 +253,14 @@ export default class BizDetails extends Component {
                   <label className="form-check-label" htmlFor="invalidCheck">Agree to Terms and Conditions</label>
                 </div>
               </div>
-              <div className="form-group mt-4 text-center">
-                <input type="submit"value="Create Business" title="Create your Business profile" className="btn btn-primary m-2 px-5 user"/>
-              </div>
+              <div className="col-sm-12 text-center mt-4">
+            <button
+              type="submit"
+              className="btn btn-primary px-5"
+            >
+              Create
+            </button>
+          </div>
                 </div>
               )}
               {this.state.message && (

@@ -15,7 +15,6 @@ export default class BusinessUser extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 col-md-6  text-justify mt-3">
-                    <img className="img-fluid" src={ AccountUserImg } />
                         <h3>Investor Dashboard</h3>
                     </div>
                 </div>
@@ -23,7 +22,7 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ SearchImg } />
+                                <img className="img-fluid m-3 icon" src={ SearchImg } alt="" />
                                 <p>View Businesses</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">More info</Link>
@@ -32,7 +31,7 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ AccountUserImg } />
+                                <img className="img-fluid m-3 icon" src={ AccountUserImg } alt="" />
                                 <p>My Profile</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">Update profile</Link>
@@ -41,16 +40,16 @@ export default class BusinessUser extends Component {
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ NewInvestImg } />
+                                <img className="img-fluid m-3 icon" src={ NewInvestImg } alt="" />
                                 <p>New Investments</p>
                             </div>
-                            <Link to="#" className="p-4 small-box-footer">View</Link>
+                            <Link to="/investor/investments" className="p-4 small-box-footer">View</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <img className="img-fluid m-3 icon" src={ InvestImg } />
+                                <img className="img-fluid m-3 icon" src={ InvestImg } alt="" />
                                 <p>My Investments</p>
                             </div>
                             <Link to="#" className="p-4 small-box-footer">More info</Link>
