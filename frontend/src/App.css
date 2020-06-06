@@ -224,13 +224,26 @@ hr {
   outline: none !important;
 }
 
+.small-box:hover {
+  width: 102%;
+  height: 102%;
+}
+
 .small-box-footer {
   color: #d9dee1;
 }
+
 .small-box-footer:hover {
   color: #fff;
   font-weight: bold;
 }
+
+.icon {
+  width: 20%;
+  height: 20%;
+}
+
+
 
 /** Small devices (landscape phones, 576px and up)*/
 @media (min-width: 300px) { 
