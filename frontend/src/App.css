@@ -34,7 +34,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #1A237e !important;
+  background-color: #1a237e !important;
 }
 
 .signin {
@@ -57,7 +57,7 @@ body {
 
 .signup:hover {
   font-weight: bold !important;
-  background-color: #1A237e;
+  background-color: #1a237e;
   border: none;
 }
 
