@@ -34,7 +34,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #1A237E !important;
+  background-color: #1A237e !important;
 }
 
 .signin {
@@ -57,7 +57,7 @@ body {
 
 .signup:hover {
   font-weight: bold !important;
-  background-color: #1A237E;
+  background-color: #1A237e;
   border: none;
 }
 
@@ -225,7 +225,7 @@ hr {
 .small-box:hover {
   width: 102%;
   height: 102%;
-  background-color: #1A237E !important;
+  background-color: #1A237e !important;
 }
 
 .small-box-footer {
