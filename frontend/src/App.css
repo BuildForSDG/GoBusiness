@@ -34,7 +34,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: rgba(0,0,0,0.9) !important;
+  background-color: #1a237e !important;
 }
 
 .signin {
@@ -57,7 +57,7 @@ body {
 
 .signup:hover {
   font-weight: bold !important;
-  background-color: black;
+  background-color: #1a237e;
   border: none;
 }
 
@@ -160,8 +160,6 @@ button.navbar-toggler {
   background-image: url(./menu.svg) !important;
 }
 
-
-
 #root {
   width: 100%;
   display: flex;
@@ -224,13 +222,27 @@ hr {
   outline: none !important;
 }
 
+.small-box:hover {
+  width: 102%;
+  height: 102%;
+  background-color: #1a237e !important;
+}
+
 .small-box-footer {
   color: #d9dee1;
 }
+
 .small-box-footer:hover {
   color: #fff;
   font-weight: bold;
 }
+
+.icon {
+  width: 20%;
+  height: 20%;
+}
+
+
 
 /** Small devices (landscape phones, 576px and up)*/
 @media (min-width: 300px) { 

@@ -21,6 +21,7 @@ import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
 import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
+import Investment from './components/auth/investments.component';
 
 
 // logged in user
@@ -53,15 +54,21 @@ class App extends Component {
         < Router>
           <div className="container">
             <Header />
+           
             <Route path="/" exact component={ Home } />
+            <Route path="/business/details" component={ BizDetails }/>
             <Route path="/business" component={ BusinessUser } />
+            
             <Route path="/investor" component={ InvestorUser }/>
+            <Route path="/investor/investments" component={ Investment } />
+           
             <Switch>
                 {isLoggedIn() && <Header />}
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
+                
                
                 <SecureRoute path="/profile" component={ Profile } />
             </Switch>
