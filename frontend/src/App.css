@@ -229,11 +229,11 @@ hr {
 }
 
 .small-box-footer {
-  color: #d9dee1;
+color: #fff !important;
+  
 }
 
 .small-box-footer:hover {
-  color: #fff;
   font-weight: bold;
 }
 
