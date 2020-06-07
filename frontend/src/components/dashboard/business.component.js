@@ -29,7 +29,7 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ DetailsImg } alt="" />
                                 <p>Business Profile</p>
                             </div>
-                            <Link to="/business/details" className="p-4 small-box-footer">Create</Link>
+                            <Link to="/business/details" className="pl-3 small-box-footer">Create</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-6 my-3">
@@ -38,7 +38,7 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ AccountUserImg } alt="" />
                                 <p>Personal Profile</p>
                             </div>
-                            <Link to="#" className="p-4 small-box-footer">Update profile</Link>
+                            <Link to="#" className="pl-3 small-box-footer">Update</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-6 my-3">
@@ -47,16 +47,16 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ RequestImg } alt="" />
                                 <p>Investment Request</p>
                             </div>
-                            <Link to="#" className="p-4 small-box-footer">Make Request</Link>
+                            <Link to="#" className="pl-3 small-box-footer">Request</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-6 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
                                 <img className="img-fluid m-3 icon" src={ MyInvestTmg } alt="" />
-                                <p>Investment</p>
+                                <p>Investor List</p>
                             </div>
-                            <Link to="#" className="p-4 small-box-footer">View</Link>
+                            <Link to="#" className="pl-3  small-box-footer">View</Link>
                         </div>
                     </div>
                 </div>
