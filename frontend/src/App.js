@@ -22,6 +22,7 @@ import AdminUser from './components/dashboard/admin.component';
 import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
 import Investment from './components/auth/investments.component';
+import NewInvestment from './components/auth/new.component';
 
 
 // logged in user
@@ -61,6 +62,7 @@ class App extends Component {
             
             <Route path="/investor" component={ InvestorUser }/>
             <Route path="/investor/investments" component={ Investment } />
+            <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>
                 {isLoggedIn() && <Header />}

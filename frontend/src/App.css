@@ -31,6 +31,7 @@ body {
   outline: none;
   background-color: #311b92 !important;
   border: none !important;
+  border-radius: 3.125rem !important;
 }
 
 .btn-primary:hover {
@@ -52,7 +53,7 @@ body {
   outline: none;
   background: #6200ea;
   box-shadow:  20px 20px 60px #5300c7;       
-  border-radius: 10px;
+  border-radius: 0.625rem;
 }
 
 .signup:hover {
@@ -81,6 +82,7 @@ h4,h3, h1 {
 
 .form {
   background: linear-gradient(145deg, #d9dee1, #ffffff);
+  border-radius: 0.625rem;
 }
 
 .acct {
@@ -112,7 +114,7 @@ a:hover {
 }
 
 .user {
-  width: 160px !important;
+  width: 10rem !important;
 }
 
 .require {
@@ -194,7 +196,7 @@ button.navbar-toggler {
 
 .card {
   color: #fff;
-  border-radius: 50px;
+  border-radius: 3.125rem;
   background: #6200ea !important;
   box-shadow:  20px 20px 60px #5300c7;           
   outline: none !important;
@@ -216,7 +218,7 @@ hr {
 
 .small-box {
   color: #fff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background: #6200ea !important;
   box-shadow:  20px 20px 60px #5300c7;           
   outline: none !important;
