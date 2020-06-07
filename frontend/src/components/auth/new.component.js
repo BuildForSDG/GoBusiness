@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 
 
-export default class Investment extends Component {
+export default class NewInvestment extends Component {
     render(){
         return(
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12">
-                        <h3>My Investments</h3>
+                        <h3>New Investments</h3>
                     </div>
                 </div>
                 <div className="row">
