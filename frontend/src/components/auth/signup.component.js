@@ -42,7 +42,7 @@ class SignUp extends Component {
       'Content-Type' : 'application/x-www-form-urlencoded',
       'token': 'x-auth-token'
     }
-    const baseURL = 'https://gobusiness-backend.herokuapp.com/';
+    const baseURL = 'https://gobusiness-backend.herokuapp.com';
     axios
       .post(baseURL + "/auth/signup", values,{headers: headers})
       .then(res => {

@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import UserService from '../services/auth.service';
-import Investor from '../images/investor.svg';
+
 import Profile from '../images/personal_data__monochromatic.svg';
 import Funding from '../images/revenue_.svg';
 import UpdateProfile from '../images/update_profile.svg';
