@@ -129,6 +129,8 @@ class SignUp extends Component {
             onChange={handleChange}
             value={values.phoneNumber}
             placeholder="080xxxxxxxx"
+            maxLength="11"
+            size="11"
             pattern="[0]\d{10}$"
             className={
               errors.phoneNumber && touched.phoneNumber

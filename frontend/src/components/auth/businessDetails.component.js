@@ -142,6 +142,8 @@ export default class BusinessDetails extends Component {
             title="Please enter your CAC Registration No"
             onChange={handleChange}
             value={values.businessCacNumber}
+            maxLength="12"
+            size="12"
             pattern="[A-za-z0–9]+$"
             placeholder="CAC Registration Number"
             className={
