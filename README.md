@@ -55,13 +55,13 @@ Project by Team-027
 
 Members
 1. Kingsley Umujeyan                <a href="https://github.com/kuicpet">Github Profile</a>  TTL
-2. Jesuniyi Temitope Israel         <a href="https://github.com/temitope-israel">Github Profile</a>
-3. Gbenga Stephen Ogunmoroti        <a href="https://github.com/oracleman200 ">Github Profile</a>
+2. Samuel Chibueze                  <a href="https://github.com/sechibueze">Github Profile</a> Backend
+3. Jesuniyi Temitope Israel         <a href="https://github.com/temitope-israel">Github Profile</a>
+4. Gbenga Stephen Ogunmoroti        <a href="https://github.com/oracleman200 ">Github Profile</a>
 4. Teri Eyenike                     <a href="https://github.com/terieyenike">Github Profile</a>
 5. Deji Adesoga                     <a href="https://github.com/desoga10">Github Profile</a>
-6. Samuel Chibueze                  <a href="https://github.com/sechibueze">Github Profile</a>
-7. KingLicon                        <a href="https://github.com/KingLicon">Github Profile</a>
-8. Evanson Igiri                    <a href="https://github.com/evansinho">Github Profile</a>
+
+
 
 ## Contributing
 If this project sounds interesting to you and you'd like to contribute, thank you!
