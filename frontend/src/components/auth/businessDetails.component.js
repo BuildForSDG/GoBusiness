@@ -1,289 +1,272 @@
-import React , { Component } from 'react';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import CheckButton from 'react-validation/build/button';
-import TextArea from 'react-validation/build/textarea';
-import { isEmail } from 'validator';
+import React,{ Component } from "react";
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
 import swal from 'sweetalert';
 
-import AuthService from '../services/auth.service';
+const BusinessSchema = Yup.object().shape({
+  businessName: Yup.string()
+    .min(5,"Business Name to Short")
+    .max(50,"Business Name to Long")
+    .required("Business Name is Required!"),
+  businessDescription: Yup.string()
+    .min(20,"Descriptionis too Short!")
+    .max(200,"Description too Long!")
+    .required("Business Description is Required!"),
+  businessAddress: Yup.string()
+    .required("Business Address is Required!"),
+  businessCacNumber: Yup.string()
+    .required("Business CAC Number is Required!"),
+  businessWebsite: Yup.string(),
+  businessEmail: Yup.string()
+    .email("Invalid Email")
+    .required("Emailis Required!"),
+  businessPhoneNumber: Yup.string()
+    .required("Phone Number is Required!")
+});
 
+export default class BusinessDetails extends Component {
+  constructor(props) {
+    super(props);
 
-const required = value => {
-    if(!value) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This field is required!
-        </div>
-      );
-    }
-  };
-  
-  const email = value => {
-    if(!isEmail(value)) {
-      return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
-      )
-    }
-  } 
-
-
-export default class BizDetails extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            biz_name: "",
-            biz_description: "",
-            biz_address: "",
-            biz_cacNumber: "",
-            biz_website: "",
-            biz_email: "",
-            biz_phoneNumber: ""
-        };
-        this.onChangeBizName = this.onChangeBizName.bind(this);
-        this.onChangeBizDescription = this.onChangeBizDescription.bind(this);
-        this.onChangeBizAddress = this.onChangeBizAddress.bind(this);
-        this.onChangeBizCacNumber = this.onChangeBizCacNumber.bind(this);
-        this.onChangeBizWebsite = this.onChangeBizWebsite.bind(this);
-        this.onChangeBizEmail = this.onChangeBizEmail.bind(this);
-        this.onChangeBizPhoneNumber = this.onChangeBizPhoneNumber.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+    this.state = {
+      alert: null
     };
-    
-    onChangeBizName(e){
-        this.setState({
-            biz_name: e.target.value
-        })
+  }
+  submitForm = (values, history) => {
+    const headers = {
+      'Content-Type' : 'application/x-www-form-urlencoded',
+      'token': 'x-auth-token'
     }
-
-    onChangeBizDescription(e){
-        this.setState({
-            biz_description: e.target.value
-        })
-    }
-
-    onChangeBizAddress(e){
-        this.setState({
-            biz_address: e.target.value
-        })
-    }
-
-    onChangeBizCacNumber(e){
-        this.setState({
-            biz_cacNumber: e.target.value
-        })
-    }
-
-    onChangeBizWebsite(e){
-        this.setState({
-            biz_website: e.target.value
-        })
-    }
-
-    onChangeBizEmail(e){
-        this.setState({
-            biz_email: e.target.value
-        })
-    }
-
-    onChangeBizPhoneNumber(e){
-        this.setState({
-            biz_phoneNumber: e.target.value
-        })
-    }
-
-    onSubmit(e){
-       e.preventDefault(e);
-       const bizDetails = {
-           biz_name: this.state.biz_name,
-           biz_description: this.state.biz_description,
-           biz_address: this.state.biz_address,
-           biz_cacNumber: this.state.biz_cacNumber,
-           biz_website: this.state.biz_website,
-           biz_email: this.state.biz_email,
-           biz_phoneNumber: this.state.biz_phoneNumber          
-       };
-       if(!this.state.biz_name || !this.state.biz_description || !this.state.biz_address || !this.state.biz_cacNumber
-        || !this.state.biz_email || !this.state.biz_phoneNumber ) {
-            swal("Aw!","All fields are Required","error");
-       } else {
-        console.log(bizDetails);
-        /**Api Call here */
-        this.setState({
-          message: "",
-          successful: false
-        });
-
-        if(this.checkBtn.context._errors.length === 0) {
-          AuthService.bizDetails(
-            this.state.biz_name,
-            this.state.biz_description,
-            this.state.biz_address,
-            this.state.biz_cacNumber,
-            this.state.biz_email,
-            this.state.biz_phoneNumber
-          ).then(
-            response => {
-              this.setState({
-                message: response.data.message,
-                successful: true
-              });
-            },
-            error => {
-              const resMessage = 
-              (
-                error.response && error.response.data && 
-                error.response.data.message
-              ) || error.message || error.toString();
-              this.setState({
-                successful: false,
-                message: resMessage
-              });
-            }
-          );
+    const baseURL = 'https://gobusiness-backend.herokuapp.com';
+    axios
+      .post(baseURL + "/auth/signup", values,{headers: headers})
+      .then(res => {
+        console.log(res.data.result);
+        console.log(values);
+        if(res.data.result === "success") {
+          swal("Success!",res.data.message,"warning")
+          .then(value => history.push("/signin"));
+        } else if (res.data.message === "error") {
+          swal("Error",res.data.message,"error");
         }
-
-
-       }
-    };
-    render(){
-        return (
-            <div className="col-sm-12 col-md-6 col-lg-5 mb-3 " style={{marginTop: 10}}>
-            <h3 className="text-center mb-4">Tell us About your Business</h3>
-            <Form className="mt-2 form p-4"  onSubmit={this.onSubmit} ref={c => {this.form = c;}}>
-              {!this.state.successful && (
-              <div>
-                <div className="text-center">
-                  <p className="required ">All fields marked <span className="require"> * </span> are required</p>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="bizName">Business Name<span className="require mx-1">*</span></label>
-                  <Input className="form-control" 
-                  type="text" 
-                  name="bizName"
-                  id="bizName"
-                  title="Please enter your Business name"
-                  value={this.state.biz_name}                       
-                  onChange={this.onChangeBizName}  
-                  pattern="[A-Za-z]+$"
-                  placeholder="Business Name" required  autoFocus />                        
-              </div>
-              <div className="form-group">
-                  <label htmlFor="bizDescription">Description<span className="require mx-1">*</span></label>                      
-                  <TextArea className="form-control" 
-                  type="text" 
-                  name="bizDescription"
-                  id="bizDescription"
-                  title="Please enter Business Description"
-                  value={this.state.biz_description}                      
-                  onChange={this.onChangeBizName}  
-                  pattern="[A-Za-z]+$"
-                  placeholder="Describe Your Business" required />                      
-              </div>
-              <div className="form-group">
-                  <label htmlFor="bizAddress">Address<span className="require mx-1">*</span></label>
-                  <Input className="form-control"
-                  type="text"
-                  name="bizAddress"
-                  id="bizAddress"
-                  title="Please enter Business Address"
-                  value={this.state.biz_address}
-                  onChange={this.onChangeBizAddress}
-                  placeholder="Business Address"
-                  required
-                  />
-              </div>
-              <div className="form-group">
-                  <label htmlFor="cacNumber">CAC Registration Number<span className="require mx-1">*</span></label>
-                  <Input className="form-control"
-                  type="text"
-                  name="cacNumber"
-                  id="cacNumber"
-                  title="Please enter your CAC Registration No"
-                  value={this.state.biz_cacNumber}
-                  onChange={this.onChangeBizCacNumber}
-                  pattern="[A-za-z0–9_]"
-                  placeholder="CAC Registration Number"
-                  required
-                  />
-              </div>
-              <div>
-                  <label htmlFor="website">Website(Optional)</label>
-                  <Input className="form-control"
-                  type="text"
-                  name="website"
-                  id="website"
-                  title="Please enter your Business Website"  
-                  value={this.state.biz_website}                     
-                  onChange={this.onChangeBizWebsite} 
-                  pattern="@^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$@i"
-                  />
-              </div>
-              <div className="form-group">
-                  <label htmlFor="phoneNumber">Phone Number<span className="require mx-1">*</span></label>                    
-                  <Input className="form-control"
-                  type="tel"
-                  name="phoneNumber"
-                  id="phoneNumber"
-                  title="Please enter your Phone number"  
-                  value={this.state.biz_phoneNumber}                     
-                  onChange={this.onChangeBizPhoneNumber} 
-                  pattern="[0]\d{10}$"
-                  placeholder="080xxxxxxxx" required />                       
-              </div>
-              <div className="form-group">
-                  <label htmlFor="email">Email<span className="require mx-1">*</span></label>                       
-                  <Input className="form-control" 
-                  type="email"
-                  name="email"
-                  id="email"
-                  title="Please enter your Email address"  
-                  value={this.state.biz_email}                    
-                  onChange={this.onChangeBizEmail} 
-                  validations={[required, email]}
-                  pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                  placeholder="joe@example.com" required />                         
-              </div>
-              
-              <div className="form-group">
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" value="" id="invalidCheck"title="Please Check to Agree to the Terms and Conditions" required/>
-                  <label className="form-check-label" htmlFor="invalidCheck">Agree to Terms and Conditions</label>
-                </div>
-              </div>
-              <div className="col-sm-12 text-center mt-4">
-            <button
-              type="submit"
-              className="btn btn-primary px-5"
-            >
-              Create
-            </button>
-          </div>
-                </div>
-              )}
-              {this.state.message && (
-                <div className="form-group">
-                  <div className={
-                    this.state.successful
-                    ? "alert alert-success"
-                    : "alert alert-danger"
-                  }
-                  role="alert"
-                  > 
-                      {this.state.message}
-                  </div>
-                </div>
-              )}
-              <CheckButton 
-              style={{ display: "none" }}
-              ref={c => {
-                this.checkBtn = c;
-              }}
-              />
-            </Form>
+      })
+      .catch(error => {
+        console.log(error);
+        swal("Error","Unexpected error","error");
+      });
+  };
+  showForm = ({
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    isSubmitting
+  }) => {
+    return (
+      <form onSubmit={handleSubmit} className="p-4 form mt-2">
+         <div className="text-center">
+          <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
-        )
-    }
+        <div className="form-group has-feedback">
+            <label htmlFor="businessName">Business Name<span className="require mx-1">*</span></label>
+            <input 
+            type="text" 
+            name="businessName"
+            id="businessName"
+            title="Please enter your Business name"
+            onChange={handleChange}
+            value={values.businessName}
+            pattern="[A-Za-z]+$"
+            placeholder="Business Name"
+            className={
+              errors.businessName && touched.businessName
+              ? "form-control is-invalid"
+              : "form-control"
+            } 
+            required  autoFocus />  
+            {errors.businessName && touched.businessName ? (
+            <small id="passwordHelp" className="text-danger">{errors.businessName}</small>
+            ): null}                     
+        </div>
+        <div className="form-group has-feedback">
+            <label htmlFor="businessDescription">Description<span className="require mx-1">*</span></label>                      
+            <textarea
+            type="text" 
+            name="businessDescription"
+            id="businessDescription"
+            title="Please enter Business Description"
+            onChange={handleChange}
+            value={values.businessDescription}
+            pattern="[A-Za-z]+$"
+            placeholder="A Brief Description"
+            className={
+              errors.businessDescription && touched.businessDescription
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+             required /> 
+            {errors.businessDescription && touched.businessDescription ? (
+            <small id="passwordHelp" className="text-danger">{errors.businessDescription}</small>
+            ): null}                     
+        </div>
+        <div className="form-group has-feedback">
+            <label htmlFor="businessAddress">Address<span className="require mx-1">*</span></label>
+            <input
+            type="text"
+            name="businessAddress"
+            id="businessAddress"
+            title="Please enter Business Address"
+            onChange={handleChange}
+            value={values.businessAddress}
+            placeholder="Business Address"
+            className={
+              errors.businessAddress && touched.businessAddress
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+            />
+             {errors.businessAddress && touched.businessAddress ? (
+            <small id="passwordHelp" className="text-danger">{errors.businessAddress}</small>
+            ): null}
+        </div>
+        <div className="form-group has-feedback">
+            <label htmlFor="businessCacNumber">CAC Registration Number<span className="require mx-1">*</span></label>
+            <input
+            type="text"
+            name="businessCacNumber"
+            id="businessCacNumber"
+            title="Please enter your CAC Registration No"
+            onChange={handleChange}
+            value={values.businessCacNumber}
+            pattern="[A-za-z0–9]+$"
+            placeholder="CAC Registration Number"
+            className={
+              errors.businessCacNumber && touched.businessCacNumber
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+            />
+             {errors.businessCacNumber && touched.businessCacNumber ? (
+              <small id="passwordHelp" className="text-danger">{errors.businessCacNumber}</small>
+            ): null}
+          </div>
+          <div className="form-group has-feedback">
+              <label htmlFor="businessWebsite">Website(Optional)</label>
+              <input 
+              type="url"
+              name="businessWebsite"
+              id="businessWebsite"
+              title="Please enter your Business Website"  
+              onChange={handleChange}
+              value={values.businessWebsite}
+             pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+              placeholder="http://www.example.com"
+              className={
+                errors.businessWebsite && touched.businessWebsite
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+              />
+               {errors.businessWebsite && touched.businessWebsite ? (
+               <small id="passwordHelp" className="text-danger">{errors.businessWebsite}</small>
+               ): null}
+          </div>
+          <div className="form-group hasfeedback">
+              <label htmlFor="businessPhoneNumber">Phone Number<span className="require mx-1">*</span></label>                    
+              <input 
+              type="tel"
+              name="businessPhoneNumber"
+              id="businessPhoneNumber"
+              title="Please enter your Phone number"  
+              onChange={handleChange}
+              value={values.businessPhoneNumber}
+              pattern="[0]\d{10}$"
+              placeholder="080xxxxxxxx"
+              className={
+                errors.businessPhoneNumber && touched.businessPhoneNumber
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+              required />
+               {errors.businessPhoneNumber && touched.businessPhoneNumber ? (
+              <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+              ): null}                       
+          </div>
+          <div className="form-group hasfeedback">
+              <label htmlFor="businessEmail">Email<span className="require mx-1">*</span></label>                       
+              <input 
+              type="businessEmail"
+              name="businessEmail"
+              id="email"
+              title="Please enter your Email address"  
+              onChange={handleChange}
+              value={values.businessEmail}
+              pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+              placeholder="joe@example.com"
+              className={
+                errors.businessEmail && touched.businessEmail
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+               required />
+              {errors.businessEmail && touched.businessEmail ? (
+              <small id="passwordHelp" className="text-danger">{errors.businessEmail}</small>
+              ): null}                         
+          </div>
+              <div className="row form-group mt-4 ">
+                <div className="col-sm-12">
+                  <div className="icheck-primary">
+                    <input 
+                    type="checkbox"
+                    name="tsAndCs" 
+                    id="tsAndCs" 
+                    title="Please Accept and Coditions"
+                    required
+                    />
+                  <label htmlFor="tsAndCs" className="ml-2">Accept Terms and Conditions</label>
+                </div>
+              </div>
+              <div className="col-sm-12 col-md-12 text-center mt-3">
+                <button
+                  disabled={isSubmitting}
+                  type="submit" 
+                  className="btn btn-primary m-2 px-5 user">Create</button>
+              </div>    
+          </div>
+      </form>
+    );
+  };
+  render() {
+    return (   
+        <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
+          <h3 className="text-center mb-4">Tell Us About Your Business</h3>
+          <Formik 
+          initialValues={{
+            businessName: "",
+            businessDescription: "",
+            businessAddress: "",
+            businessCacNumber: "",
+            businessWebsite: "",
+            businessEmail: "",
+            businessPhoneNumber: "",
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            this.submitForm(values, this.props.history);
+            setSubmitting(false);
+          }}
+          validationSchema={ BusinessSchema }
+          >
+            {props => this.showForm(props)}
+          </Formik>
+        </div>
+    );
+  }
+
+
+
 }

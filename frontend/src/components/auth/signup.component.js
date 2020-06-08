@@ -50,7 +50,7 @@ class SignUp extends Component {
         console.log(values);
         if(res.data.result === "success") {
           swal("Success!",res.data.message,"warning")
-          .then(value => history.push("/signin"));
+          .then(value => history.push("/business"));
         } else if (res.data.message === "error") {
           swal("Error",res.data.message,"error");
         }
