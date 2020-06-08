@@ -21,8 +21,8 @@ import InvestorUser from './components/dashboard/investor.component';
 import AdminUser from './components/dashboard/admin.component';
 import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
-import Investment from './components/auth/investments.component';
-import NewInvestment from './components/auth/new.component';
+import MyInvestment from './components/views/myInvestments.component';
+import NewInvestment from './components/views/newInvestments.component';
 
 
 // logged in user
@@ -61,7 +61,7 @@ class App extends Component {
             <Route path="/business" component={ BusinessUser } />
             
             <Route path="/investor" component={ InvestorUser }/>
-            <Route path="/investor/investments" component={ Investment } />
+            <Route path="/investor/investments" component={ MyInvestment } />
             <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>

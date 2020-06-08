@@ -53,7 +53,7 @@ body {
   outline: none;
   background: #6200ea;
   box-shadow:  20px 20px 60px #5300c7;       
-  border-radius: 0.625rem;
+  border-radius: 3.125rem;
 }
 
 .signup:hover {
