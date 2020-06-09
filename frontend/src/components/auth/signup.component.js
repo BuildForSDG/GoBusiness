@@ -37,14 +37,14 @@ class SignUp extends Component {
     };
   }
 
-  submitForm = (values, history) => {
+  submitForm = async (values, history) => {
     const headers = {
-      'Content-Type' : 'application/x-www-form-urlencoded',
+      'Content-Type' : 'application/json',
       'token': 'x-auth-token'
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
-    axios
-      .post(baseURL + "/api/auth/signup", values,{headers: headers})
+    await axios
+      .post(`${baseURL}/api/auth/signup`, values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);
