@@ -44,7 +44,7 @@ class SignUp extends Component {
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
     axios
-      .post(baseURL + "/auth/signup", values,{headers: headers})
+      .post(baseURL + "/api/auth/signup", values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);
@@ -129,6 +129,8 @@ class SignUp extends Component {
             onChange={handleChange}
             value={values.phoneNumber}
             placeholder="080xxxxxxxx"
+            maxLength="11"
+            size="11"
             pattern="[0]\d{10}$"
             className={
               errors.phoneNumber && touched.phoneNumber
