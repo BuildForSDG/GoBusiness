@@ -38,7 +38,7 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ AccountUserImg } alt="" />
                                 <p>Personal Profile</p>
                             </div>
-                            <Link to="#" className="pl-3 small-box-footer">Update</Link>
+                            <Link to="/profile" className="pl-3 small-box-footer">Update</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 my-3">

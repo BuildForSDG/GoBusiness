@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
 import ProfileImg from '../images/avataaars (2).svg';
-import { async } from "q";
+
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()

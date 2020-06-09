@@ -3,7 +3,6 @@ import { Link } from'react-router-dom';
 
 
 import AccountUserImg from '../images/user.svg';
-import SearchImg from '../images/search.svg';
 import InvestImg from '../images/archive.svg';
 import NewInvestImg from '../images/target.svg';
 
@@ -25,7 +24,7 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ AccountUserImg } alt="" />
                                 <p>Personal Profile</p>
                             </div>
-                            <Link to="#" className="pl-3 small-box-footer">Update profile</Link>
+                            <Link to="profile" className="pl-3 small-box-footer">Update profile</Link>
                         </div>
                     </div>
                     <div className="col-lg-4 col-sm-12 col-md-4 my-3">
