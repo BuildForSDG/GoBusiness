@@ -44,7 +44,7 @@ class SignUp extends Component {
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
     axios
-      .post(baseURL + "/auth/signup", values,{headers: headers})
+      .post(baseURL + "/api/auth/signup", values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);
