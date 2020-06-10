@@ -21,11 +21,7 @@ const SignupSchema = Yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .required("Password is Required"),
   confirm_password: Yup.string()
-<<<<<<< HEAD
-    .required("Please Confirm Password")
-=======
     .required("Confirm your Password")
->>>>>>> develop
     .oneOf(
       [Yup.ref("password"), null],
       "Passwords do not Match!"
