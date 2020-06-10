@@ -1,11 +1,12 @@
-barebones setup for JavaScript / Node projects replace this with a one-liner phrase describing this project or app
+GoBusiness is an SMEs Investing Platform to help support SMEs in Nigeria.
 
-[![Codacy Badge](https://img.shields.io/badge/Code%20Quality-D-red)](https://img.shields.io/badge/Code%20Quality-D-red)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6d8cbed49a214b8aaf9718bd47e2cb0f)](https://app.codacy.com/gh/BuildForSDG/GoBusiness?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/GoBusiness&utm_campaign=Badge_Grade_Settings)
+
 
 
 ## About
 
-What is this project about. Ok to enrich here or the section above it with an image. 
+GoBusiness is a platform where SMEs can be funded by Potential Investors. 
 
 Once this repo has been setup on Codacy by the TTL, replace the above badge with the actual one from the Codacy dashboard, and add the code coverage badge as well. This is mandatory
 
@@ -16,11 +17,16 @@ This is a simple JavaScript starter repo template for setting up your project. T
 - Eslint & Prettier: For formatting code to match ESlint AirBnB coding standard. You might need to install the ESlint and Prettier plugins for your code editor to make the most of these utilities
 
 ## Why
-
-Talk about what problem this solves, what SDG(s) and SGD targets it addresses and why these are imoirtant
+GoBusiness seeks to solve the problem of Funding for Businesses especailly Small scale businesses in communities.
+This projects seeks to solve SDG(s) GOAL 1: NO POVERTY
+If Small businesses can get funded without collaterals and high Interest Loans requirements,it will lead to expansion and reduce employments which inturn takes people out of poverty.
+The goal is to help mobilize resources to end poverty by growing SMEs.
 
 ## Usage
- How would someone use what you have built, include URLs to the deployed app, service e.t.c when you have it setup
+ Hosted App link <a>here</a>
+ A Small Business owner can signup on the platform,give details of the business and request for funding while awaiting potential investors.
+ A Potential Investors can signup and view several businesses seeking funding and decide which he/she is interested in.
+ The Platform will do due deligence to verify that the businessis exists and is viable such that Investors are certain of returns for their investment.
 
 
 ## Setup
@@ -45,8 +51,17 @@ This starter uses [Parcel](https://parceljs.org/getting_started.html) as the bun
 - Run your app in local dev mode: `yarn start`. This puts the bundled app in a `dist` folder, set up a local web server at localhost:1234, and continues to watch for your code changes which it syncs with the local server. This means if you loaded the app in a browser, it will auto-refresh as you code along. Feel free to use whatever bundler best meets your needs. Parcel was only added as a sample and for those looking for a simple but effective solution to the hassle of bundlers. 
 
 ## Authors
+Project by Team-027
 
-List the team behind this project. Their names linked to their Github, LinkedIn, or Twitter accounts should siffice. Ok to signify the role they play in the project, including the TTL and mentor
+Members
+1. Kingsley Umujeyan                <a href="https://github.com/kuicpet">Github Profile</a>  TTL
+2. Samuel Chibueze                  <a href="https://github.com/sechibueze">Github Profile</a> Backend
+3. Jesuniyi Temitope Israel         <a href="https://github.com/temitope-israel">Github Profile</a>
+4. Gbenga Stephen Ogunmoroti        <a href="https://github.com/oracleman200 ">Github Profile</a>
+4. Teri Eyenike                     <a href="https://github.com/terieyenike">Github Profile</a>
+5. Deji Adesoga                     <a href="https://github.com/desoga10">Github Profile</a>
+
+
 
 ## Contributing
 If this project sounds interesting to you and you'd like to contribute, thank you!
