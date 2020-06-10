@@ -21,6 +21,7 @@ const SignupSchema = Yup.object().shape({
     .min(6, "Password must be at least 6 characters")
     .required("Password is Required"),
   confirm_password: Yup.string()
+    .required("Please Confirm Password")
     .oneOf(
       [Yup.ref("password"), null],
       "Passwords do not Match!"
@@ -44,7 +45,7 @@ class SignUp extends Component {
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
     await axios
-      .post(`${baseURL}/api/auth/signup`, values,{headers: headers})
+      .post(`${baseURL}/api/auth/signup`,values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);

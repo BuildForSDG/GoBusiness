@@ -71,7 +71,7 @@ class App extends Component {
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
                 
-               
+                
                 <SecureRoute path="/profile" component={ Profile } />
             </Switch>
             <Footer/>
