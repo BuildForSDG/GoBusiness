@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
 import ProfileImg from '../images/avataaars (2).svg';
+import baseURL from '../services/url';
 
 
 const SigninSchema = Yup.object().shape({
@@ -43,7 +44,6 @@ class Signin extends Component {
     const headers = {
       "Content-Type": "application/json"
     }
-    const baseURL = 'https://gobusiness-backend.herokuapp.com';
     await axios
       .post(`${baseURL}/api/auth/login`, values, {headers: headers})
       .then(res => {
