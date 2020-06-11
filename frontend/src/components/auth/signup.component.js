@@ -42,12 +42,12 @@ class SignUp extends Component {
   submitForm = async (values, history) => {
     const headers = {
       'Content-Type' : 'application/json',
-      'token': 'x-auth-token'
+      'x-auth-token' : 'jwtToken'
     }
     await axios
       .post(`${baseURL}/auth/signup`, values,{headers: headers})
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data);
         console.log(values);
         if(res.data.result === "success") {
           swal("Success!",res.data.message,"warning")
@@ -116,8 +116,8 @@ class SignUp extends Component {
             }
             required
           />
-          {errors.firstName && touched.firstName ? (
-            <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+          {errors.lastName && touched.lastName ? (
+            <small id="passwordHelp" className="text-danger">{errors.lastName}</small>
           ): null}
         </div>
         <div className="form-group has-feedback">
@@ -141,7 +141,7 @@ class SignUp extends Component {
             required
           />
           {errors.phoneNumber && touched.phoneNumber ? (
-            <small id="passwordHelp" className="text-danger">{errors.lastName}</small>
+            <small id="passwordHelp" className="text-danger">{errors.phoneNumber}</small>
           ): null}
         </div>
         <div className="form-group has-feedback">

@@ -46,11 +46,11 @@ class Signin extends Component {
       "x-auth-token": "jwtToken"
     }
     await axios
-      .post(`${baseURL}/api/auth/login`, values, {headers: headers})
+      .post(`${baseURL}/auth/login`, values, {headers: headers})
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data);
         console.log(values);
-        if(res.data.result === "success") {
+        if(res.data === "success") {
           localStorage.setItem("TOKEN_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
@@ -97,15 +97,14 @@ class Signin extends Component {
                 : "form-control"
               }
               autoFocus
-              required
             />
             <div className="input-group-append">
               <div className="input-group-text">
                 <span className="fas fa-user"></span>
               </div>
             </div>
-            {errors.firstName && touched.firstName ? (
-              <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+            {errors.email && touched.email ? (
+              <small id="passwordHelp" className="text-danger">{errors.email}</small>
             ): null}
           </div>
           <div className="form-group has-feedback">
@@ -126,7 +125,6 @@ class Signin extends Component {
               ? "form-control is-invalid"
               : "form-control"
             }
-            required
           />
           <div className="input-group-append">
             <div className="input-group-text">
