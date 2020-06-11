@@ -54,7 +54,7 @@ class Signin extends Component {
           localStorage.setItem("TOKEN_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
-            history.push('/dashboard');
+            history.push('/business');
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
