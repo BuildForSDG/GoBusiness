@@ -66,7 +66,7 @@ class Passwordforgot extends Component {
               : "form-control"
             }
             pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-            placeholder="Enter your Email" required/>
+            placeholder="Enter your Email"/>
             {errors.email && touched.email ? (
               <small id="passwordHelp" className="text-danger">{errors.email}</small>
             ) : null}
