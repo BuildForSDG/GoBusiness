@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
+import baseURL from '../services/url';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -43,9 +44,8 @@ class SignUp extends Component {
       'Content-Type' : 'application/json',
       'token': 'x-auth-token'
     }
-    const baseURL = 'https://gobusiness-backend.herokuapp.com';
     await axios
-      .post(`${baseURL}/api/auth/signup`, values,{headers: headers})
+      .post(`${baseURL}/auth/signup`, values,{headers: headers})
       .then(res => {
         console.log(res.data.result);
         console.log(values);
