@@ -27,8 +27,8 @@ class Signin extends Component {
     };
   }
   componentDidMount(){
-    if(localStorage.getItem("TOKEN_KEY") != null){
-      return this.props.history.push('/dashboard');
+    if(localStorage.getItem("JWT_SECRET_KEY") != null){
+      return this.props.history.goBack();
     }
     let notify = this.props.match.params["notify"]
     if(notify !== undefined){
@@ -50,8 +50,8 @@ class Signin extends Component {
       .then(res => {
         console.log(res.data);
         console.log(values);
-        if(res.data === "success") {
-          localStorage.setItem("TOKEN_KEY", res.data.token);
+        if(res.data.message === "success") {
+          localStorage.setItem("JWT_SECRET_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
             history.push('/business');
