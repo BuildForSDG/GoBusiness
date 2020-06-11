@@ -27,7 +27,7 @@ import NewInvestment from './components/views/newInvestments.component';
 
 // logged in user
 const isLoggedIn = () => {
-  return localStorage.getItem("TOKEN_KEY") !== null;
+  return localStorage.getItem("JWT_SECRET_KEY") !== null;
 }
 
 // Protected Route
@@ -58,7 +58,7 @@ class App extends Component {
            
             <Route path="/" exact component={ Home } />
             <Route path="/business/details" component={ BizDetails }/>
-            <Route path="/business" component={ BusinessUser } />
+            
             
             <Route path="/investor" component={ InvestorUser }/>
             <Route path="/investor/investments" component={ MyInvestment } />
@@ -71,7 +71,7 @@ class App extends Component {
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
                 
-                
+                <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
             </Switch>
             <Footer/>

@@ -66,7 +66,7 @@ class Passwordforgot extends Component {
               : "form-control"
             }
             pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-            placeholder="Enter your Email" required/>
+            placeholder="Enter your Email"/>
             {errors.email && touched.email ? (
               <small id="passwordHelp" className="text-danger">{errors.email}</small>
             ) : null}
@@ -86,7 +86,7 @@ class Passwordforgot extends Component {
   };
 
   render() {
-    let result = this.state.response;
+    // let result = this.state.response;
     return (
       <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}}>
         <h3 className="text-center mb-4">Forgot Password</h3>

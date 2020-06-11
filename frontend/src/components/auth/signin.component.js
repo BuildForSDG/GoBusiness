@@ -27,8 +27,8 @@ class Signin extends Component {
     };
   }
   componentDidMount(){
-    if(localStorage.getItem("TOKEN_KEY") != null){
-      return this.props.history.push('/dashboard');
+    if(localStorage.getItem("JWT_SECRET_KEY") != null){
+      return this.props.history.goBack();
     }
     let notify = this.props.match.params["notify"]
     if(notify !== undefined){
@@ -46,15 +46,15 @@ class Signin extends Component {
       "x-auth-token": "jwtToken"
     }
     await axios
-      .post(`${baseURL}/api/auth/login`, values, {headers: headers})
+      .post(`${baseURL}/auth/login`, values, {headers: headers})
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data);
         console.log(values);
-        if(res.data.result === "success") {
-          localStorage.setItem("TOKEN_KEY", res.data.token);
+        if(res.data.message === "success") {
+          localStorage.setItem("JWT_SECRET_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
-            history.push('/dashboard');
+            history.push('/business');
           });
         } else if (res.data.result === "error") {
           swal("Error!", res.data.message, "error");
@@ -97,15 +97,14 @@ class Signin extends Component {
                 : "form-control"
               }
               autoFocus
-              required
             />
             <div className="input-group-append">
               <div className="input-group-text">
                 <span className="fas fa-user"></span>
               </div>
             </div>
-            {errors.firstName && touched.firstName ? (
-              <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+            {errors.email && touched.email ? (
+              <small id="passwordHelp" className="text-danger">{errors.email}</small>
             ): null}
           </div>
           <div className="form-group has-feedback">
@@ -126,7 +125,6 @@ class Signin extends Component {
               ? "form-control is-invalid"
               : "form-control"
             }
-            required
           />
           <div className="input-group-append">
             <div className="input-group-text">
