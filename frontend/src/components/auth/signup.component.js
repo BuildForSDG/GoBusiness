@@ -6,15 +6,15 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 const SignupSchema = Yup.object().shape({
-  firstName: Yup.string()
+  firstame: Yup.string()
     .required("First Name is Required!"),
-  lastName: Yup.string()
+  lastname: Yup.string()
     .required("Last Name is Required!"),
-  phoneNumber: Yup.string()
-    .required("Phone Number is Required!"),
   email: Yup.string()
     .email("Invalid Email")
     .required("Email is Required!"),
+  phone: Yup.string()
+    .required("Phone Number is Required!"),
   type: Yup.string()
     .required("Select an Option!"),
   password: Yup.string()
@@ -41,16 +41,16 @@ class SignUp extends Component {
   submitForm = async (values, history) => {
     const headers = {
       'Content-Type' : 'application/json',
-      'token': 'x-auth-token'
+      'x-auth-token' : 'jwtToken'
     }
     const baseURL = 'https://gobusiness-backend.herokuapp.com';
     await axios
-      .post(`${baseURL}/api/auth/signup`, values,{headers: headers})
+      .post(`${baseURL}/api/signup`, values,{headers: headers})
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data.data);
         console.log(values);
-        if(res.data.result === "success") {
-          swal("Success!",res.data.message,"warning")
+        if(res.data.data === "success") {
+          swal("Success!",res.data.message,"success")
           .then(value => history.push("/business"));
         } else if (res.data.message === "error") {
           swal("Error",res.data.message,"error");
@@ -76,11 +76,11 @@ class SignUp extends Component {
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
         <div className="form-group has-feedback">
-          <label htmlFor="firstName">First Name<span className="require">*</span></label>
+          <label htmlFor="firstname">First Name<span className="require">*</span></label>
           <input 
             type="text" 
-            name="firstName"
-            id="firstName"
+            name="firstname"
+            id="firstname"
             title="Please enter your First name"
             onChange={handleChange}
             value={values.firstName}
@@ -94,54 +94,30 @@ class SignUp extends Component {
             autoFocus
             required
           />
-          {errors.firstName && touched.firstName ? (
-            <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
+          {errors.firstname && touched.firstname ? (
+            <small id="passwordHelp" className="text-danger">{errors.firstname}</small>
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label>Last Name<span className="require">*</span></label>
+          <label htmlFor="lastname">Last Name<span className="require">*</span></label>
           <input 
             type="text" 
-            name="lastName"
-            id="lastName"
+            name="lastname"
+            id="lastname"
             title="Please enter your Last name"
             onChange={handleChange}
             value={values.lastName}
             placeholder="Last Name"
             pattern="[A-Za-z]+$"
             className={
-              errors.lastName && touched.lastName
+              errors.lastname && touched.lastname
               ? "form-control is-invalid"
               : "form-control"
             }
             required
           />
-          {errors.firstName && touched.firstName ? (
-            <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
-          ): null}
-        </div>
-        <div className="form-group has-feedback">
-          <label>Phone Number<span className="require">*</span></label>
-          <input 
-            type="tel" 
-            name="phoneNumber"
-            id="phoneNumber"
-            title="Please enter your Phone number"
-            onChange={handleChange}
-            value={values.phoneNumber}
-            placeholder="080xxxxxxxx"
-            maxLength="11"
-            size="11"
-            pattern="[0]\d{10}$"
-            className={
-              errors.phoneNumber && touched.phoneNumber
-              ? "form-control is-invalid"
-              : "form-control"
-            }
-            required
-          />
-          {errors.phoneNumber && touched.phoneNumber ? (
-            <small id="passwordHelp" className="text-danger">{errors.lastName}</small>
+          {errors.lastname && touched.lastname ? (
+            <small id="passwordHelp" className="text-danger">{errors.lastname}</small>
           ): null}
         </div>
         <div className="form-group has-feedback">
@@ -164,6 +140,30 @@ class SignUp extends Component {
           />
           {errors.email && touched.email ? (
             <small id="passwordHelp" className="text-danger">{errors.email}</small>
+          ): null}
+        </div>
+        <div className="form-group has-feedback">
+          <label htmlFor="phone">Phone Number<span className="require">*</span></label>
+          <input 
+            type="tel" 
+            name="phone"
+            id="phone"
+            title="Please enter your Phone number"
+            onChange={handleChange}
+            value={values.phoneNumber}
+            placeholder="080xxxxxxxx"
+            maxLength="11"
+            size="11"
+            pattern="[0]\d{10}$"
+            className={
+              errors.phone && touched.phone
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+          />
+          {errors.phone && touched.phone ? (
+            <small id="passwordHelp" className="text-danger">{errors.phone}</small>
           ): null}
         </div>
         <div className="form-group has-feedback">
@@ -271,9 +271,9 @@ class SignUp extends Component {
           <h3 className="text-center mb-4">Create an Account</h3>
           <Formik 
           initialValues={{
-            firstName: "",
-            lastName: "",
-            phoneNumber: "",
+            firstname: "",
+            lastname: "",
+            phone: "",
             email: "",
             type: "",
             password: "",
