@@ -42,7 +42,8 @@ class Signin extends Component {
 
   submitForm = async (values,history) => {
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "x-auth-token": "jwtToken"
     }
     await axios
       .post(`${baseURL}/api/auth/login`, values, {headers: headers})
