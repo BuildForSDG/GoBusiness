@@ -28,7 +28,7 @@ class Signin extends Component {
   }
   componentDidMount(){
     if(localStorage.getItem("JWT_SECRET_KEY") != null){
-      return this.props.history.goBack();
+      return this.props.history.push('/business');
     }
     let notify = this.props.match.params["notify"]
     if(notify !== undefined){
@@ -50,13 +50,13 @@ class Signin extends Component {
       .then(res => {
         console.log(res.data);
         console.log(values);
-        if(res.data.message === "success") {
+        if(res.data.status === true) {
           localStorage.setItem("JWT_SECRET_KEY", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
             history.push('/business');
           });
-        } else if (res.data.result === "error") {
+        } else if (res.data.status === false) {
           swal("Error!", res.data.message, "error");
         }
       })
@@ -71,8 +71,6 @@ class Signin extends Component {
     touched,
     handleChange,
     handleSubmit,
-    onSubmit,
-    setFieldValue,
     isSubmitting
   }) => {
     return (
@@ -169,7 +167,9 @@ class Signin extends Component {
           }}
           onSubmit={(values, { setSubmitting }) => {
             this.submitForm(values, this.props.history);
-            setSubmitting(false);
+            setTimeout(() => {
+              setSubmitting(false)
+            }, 3000);
           }}
           validationSchema={SigninSchema}
           >

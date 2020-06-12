@@ -6,6 +6,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import baseURL from '../services/url';
 
+
 const SignupSchema = Yup.object().shape({
   firstname: Yup.string()
     .required("First Name is Required!"),
@@ -48,17 +49,16 @@ class SignUp extends Component {
       .post(`${baseURL}/auth/signup`, values,{headers: headers})
       .then(res => {
         console.log(res.data);
-        console.log(values);
-        if(res.data.message === "success") {
-          swal("Success!",res.data.message,"warning")
+        if(res.data.status === true) {
+          swal("Success!",res.data.message,"success")
           .then(value => history.push("/signin"));
-        } else if (res.data.message === "error") {
+        } else if (res.data.status === false) {
           swal("Error",res.data.message,"error");
         }
       })
       .catch(error => {
         console.log(error);
-        swal("Error","Unexpected error","error");
+        swal("Error","Unexpected Error!","error");
       });
   };
   showForm = ({
@@ -67,7 +67,6 @@ class SignUp extends Component {
     touched,
     handleChange,
     handleSubmit,
-    setFieldValue,
     isSubmitting
   }) => {
     return (
@@ -281,7 +280,9 @@ class SignUp extends Component {
           }}
           onSubmit={(values, { setSubmitting }) => {
             this.submitForm(values, this.props.history);
-            setSubmitting(false);
+            setTimeout(() => {
+              setSubmitting(false)
+            }, 3000);
           }}
           validationSchema={SignupSchema}
           >

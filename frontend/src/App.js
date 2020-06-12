@@ -65,7 +65,7 @@ class App extends Component {
             <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>
-                {isLoggedIn() && <Header />}
+                isLoggedIn()
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
