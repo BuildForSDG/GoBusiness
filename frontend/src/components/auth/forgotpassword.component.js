@@ -96,7 +96,9 @@ class Passwordforgot extends Component {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   this.submitForm(values, this.props.history);
-                  setSubmitting(false);
+                  setTimeout(() => {
+                    setSubmitting(false)
+                  }, 3000);
                 }}
                 validationSchema={PasswordForgotSchema}
               >

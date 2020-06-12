@@ -124,6 +124,9 @@ class Passwordreset extends Component {
                     this.props.match.params["token"]
                   );
                   setSubmitting(true);
+                  setTimeout(() => {
+                    setSubmitting(false)
+                  }, 3000);
                 }}
                 validationSchema={PasswordresetSchema}
               >
