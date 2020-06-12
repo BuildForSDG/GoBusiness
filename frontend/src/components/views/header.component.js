@@ -1,44 +1,55 @@
 import React, { Component} from 'react';
-import { NavLink } from 'react-router-dom';
-
-import AuthService from '../services/auth.service';
-
+import { NavLink,Link,withRouter } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
-export default class Header extends Component {
+
+class Header extends Component {
     constructor(props){
         super(props);
         this.state = {
           menu : false,
-          showInvestorBoard: false,
-          showAdminBoard: false,
-          currentUser: undefined
+          currentUser: false
         };
         this.toggleMenu = this.toggleMenu.bind(this);
-        this.signOut = this.signOut.bind(this);
       }
     
-      componentDidMount(){
-        const user = AuthService.getCurrentuser();
-
-        if(user) {
-          this.setState({
-            currentUser: user,
-            showInvestorBoard: user.roles.includes("ROLE_INVESTOR"),
-            showAdminBoard: user.roles.includes("ROLE_ADMIN")
-          });
-        }
-      }
-
+      
       signOut() {
-        AuthService.signOut();
-      }
+       swal("Are you sure you want to SignOut",{
+         button: {
+           nope : {
+             text: "Let me Back",
+             value: "nope"
+           },
+           sure : {
+             text: "I'm Sure",
+             value: "sure"
+           }
+         }
+       }).then(value => {
+         switch(value) {
+           case "sure":
+             swal(" SignOut Successfully","success").then(val => {
+               localStorage.removeItem("JWT_SECRET_KEY");
+               return this.props.history.push("/signin");
+             });
+             break;
+            case "nope":
+              swal("ok","success");
+              break;
+              default:
+                swal("Got away safely!");
+         }
+       });
+      };
 
       toggleMenu(){
         this.setState({
           menu : !this.state.menu
         })
-      }
+      };
+
     render(){
         const show = ( this.state.menu) ? "show" : "" ;
         const { currentUser, showInvestorBoard, showAdminBoard } = this.state;
@@ -52,11 +63,18 @@ export default class Header extends Component {
               <ul className="navbar-nav ml-auto" >
                 {currentUser ? (
                 <div className="navbar-nav">
-                  <li className="nav-item">
-                    <NavLink to={"/profile"} className="nav-link">{currentUser.email}</NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink to="/signin" className="nav-link" onClick={this.signOut}>Sign Out</NavLink>
+                  <li className="nav-item dropdown">
+                    <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                      <span className="dropdown-item dropdown-header">menu</span>
+                        <div className="dropdown-divider" />
+                        <Link to="/profile" className="dropdown-item">
+                          <i className="fas fa-user-alt mr-2" /> Update Profile
+                        </Link>
+                        <div className="dropdown-divider" />
+                        <NavLink to={"/signin"} 
+                        onClick={() => this.signOut()}
+                        className="nav-link signup mx-3 px-5">Sign Out</NavLink>
+                    </div>
                   </li>
                 </div>
                 ):(
@@ -91,3 +109,5 @@ export default class Header extends Component {
         );
     };
 };
+
+export default withRouter(Header);
