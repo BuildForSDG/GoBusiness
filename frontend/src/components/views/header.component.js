@@ -52,7 +52,7 @@ class Header extends Component {
 
     render(){
         const show = ( this.state.menu) ? "show" : "" ;
-        const { currentUser, showInvestorBoard, showAdminBoard } = this.state;
+        const { currentUser } = this.state;
         return (
         <nav className="navbar navbar-expand-lg navbar-light bg my-2">
             <NavLink to="/" className="navbar-brand">GoBusiness</NavLink>
@@ -87,16 +87,6 @@ class Header extends Component {
                   </li>
                 </div>
                 )}
-                {showInvestorBoard && (
-                  <li className="nav-item">
-                    <NavLink to={"/investor"} className="nav-link">Investor Board</NavLink>
-                  </li>
-                )}
-                {(showAdminBoard && (
-                  <li className="nav-item">
-                    <NavLink to={"/admin"} className="nav-link">Admin Board</NavLink>
-                  </li>
-                ))}
                 {(currentUser && (
                   <li className="nav-item">
                     <NavLink to={"/user"}>User</NavLink>
