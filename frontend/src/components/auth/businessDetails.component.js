@@ -41,7 +41,7 @@ export default class BusinessDetails extends Component {
       'x-auth-token': 'jwtToken'
     }
     axios
-      .post(`${baseURL}/business`, values,{headers: headers})
+      .post(`${baseURL}/`, values,{headers: headers})
       .then(res => {
         console.log(res.data);
         console.log(values);
