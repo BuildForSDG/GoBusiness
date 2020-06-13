@@ -3,26 +3,28 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
+import baseURL from '../services/url';
+
 
 const BusinessSchema = Yup.object().shape({
-  businessName: Yup.string()
+  name: Yup.string()
     .min(5,"Business Name to Short")
     .max(50,"Business Name to Long")
     .required("Business Name is Required!"),
-  businessDescription: Yup.string()
+  description: Yup.string()
     .min(20,"Descriptionis too Short!")
     .max(200,"Description too Long!")
     .required("Business Description is Required!"),
-  businessAddress: Yup.string()
+  address: Yup.string()
     .required("Business Address is Required!"),
-  businessCacNumber: Yup.string()
+  email: Yup.string()
+    .email("Invalid Email")
+    .required("Emailis Required!"), 
+  phone: Yup.string()
+    .required("Phone Number is Required!"),
+  cac_number: Yup.string()
     .required("Business CAC Number is Required!"),
   businessWebsite: Yup.string(),
-  businessEmail: Yup.string()
-    .email("Invalid Email")
-    .required("Emailis Required!"),
-  businessPhoneNumber: Yup.string()
-    .required("Phone Number is Required!")
 });
 
 export default class BusinessDetails extends Component {
@@ -35,19 +37,18 @@ export default class BusinessDetails extends Component {
   }
   submitForm = (values, history) => {
     const headers = {
-      'Content-Type' : 'application/x-www-form-urlencoded',
-      'token': 'x-auth-token'
+      'Content-Type' : 'application/json',
+      'x-auth-token': 'jwtToken'
     }
-    const baseURL = 'https://gobusiness-backend.herokuapp.com';
     axios
-      .post(baseURL + "/auth/signup", values,{headers: headers})
+      .post(`${baseURL}/business/`, values,{headers: headers})
       .then(res => {
-        console.log(res.data.result);
+        console.log(res.data);
         console.log(values);
-        if(res.data.result === "success") {
-          swal("Success!",res.data.message,"warning")
-          .then(value => history.push("/signin"));
-        } else if (res.data.message === "error") {
+        if(res.data.status === true) {
+          swal("Success!",res.data.message,"success")
+          .then(value => history.push("/business"));
+        } else if (res.data.status === false) {
           swal("Error",res.data.message,"error");
         }
       })
@@ -62,7 +63,6 @@ export default class BusinessDetails extends Component {
     touched,
     handleChange,
     handleSubmit,
-    setFieldValue,
     isSubmitting
   }) => {
     return (
@@ -71,155 +71,157 @@ export default class BusinessDetails extends Component {
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
         <div className="form-group has-feedback">
-            <label htmlFor="businessName">Business Name<span className="require mx-1">*</span></label>
+            <label htmlFor="name">Business Name<span className="require mx-1">*</span></label>
             <input 
             type="text" 
-            name="businessName"
-            id="businessName"
+            name="name"
+            id="name"
             title="Please enter your Business name"
             onChange={handleChange}
-            value={values.businessName}
+            value={values.name}
             pattern="[A-Za-z]+$"
             placeholder="Business Name"
             className={
-              errors.businessName && touched.businessName
+              errors.name && touched.name
               ? "form-control is-invalid"
               : "form-control"
             } 
             required  autoFocus />  
-            {errors.businessName && touched.businessName ? (
-            <small id="passwordHelp" className="text-danger">{errors.businessName}</small>
+            {errors.name && touched.name ? (
+            <small id="passwordHelp" className="text-danger">{errors.name}</small>
             ): null}                     
         </div>
         <div className="form-group has-feedback">
-            <label htmlFor="businessDescription">Description<span className="require mx-1">*</span></label>                      
+            <label htmlFor="description">Description<span className="require mx-1">*</span></label>                      
             <textarea
             type="text" 
-            name="businessDescription"
-            id="businessDescription"
+            name="description"
+            id="description"
             title="Please enter Business Description"
             onChange={handleChange}
-            value={values.businessDescription}
+            value={values.description}
             pattern="[A-Za-z]+$"
             placeholder="A Brief Description"
             className={
-              errors.businessDescription && touched.businessDescription
+              errors.description && touched.description
               ? "form-control is-invalid"
               : "form-control"
             }
              required /> 
-            {errors.businessDescription && touched.businessDescription ? (
-            <small id="passwordHelp" className="text-danger">{errors.businessDescription}</small>
+            {errors.description && touched.description ? (
+            <small id="passwordHelp" className="text-danger">{errors.description}</small>
             ): null}                     
         </div>
         <div className="form-group has-feedback">
-            <label htmlFor="businessAddress">Address<span className="require mx-1">*</span></label>
+            <label htmlFor="address">Address<span className="require mx-1">*</span></label>
             <input
             type="text"
-            name="businessAddress"
-            id="businessAddress"
+            name="address"
+            id="address"
             title="Please enter Business Address"
             onChange={handleChange}
-            value={values.businessAddress}
+            value={values.address}
             placeholder="Business Address"
             className={
-              errors.businessAddress && touched.businessAddress
+              errors.address && touched.address
               ? "form-control is-invalid"
               : "form-control"
             }
             required
             />
-             {errors.businessAddress && touched.businessAddress ? (
-            <small id="passwordHelp" className="text-danger">{errors.businessAddress}</small>
+             {errors.address && touched.address ? (
+            <small id="passwordHelp" className="text-danger">{errors.address}</small>
             ): null}
         </div>
-        <div className="form-group has-feedback">
-            <label htmlFor="businessCacNumber">CAC Registration Number<span className="require mx-1">*</span></label>
-            <input
-            type="text"
-            name="businessCacNumber"
-            id="businessCacNumber"
-            title="Please enter your CAC Registration No"
-            onChange={handleChange}
-            value={values.businessCacNumber}
-            maxLength="12"
-            size="12"
-            pattern="[A-za-z0–9]+$"
-            placeholder="CAC Registration Number"
-            className={
-              errors.businessCacNumber && touched.businessCacNumber
-              ? "form-control is-invalid"
-              : "form-control"
-            }
-            required
-            />
-             {errors.businessCacNumber && touched.businessCacNumber ? (
-              <small id="passwordHelp" className="text-danger">{errors.businessCacNumber}</small>
-            ): null}
-          </div>
-          <div className="form-group has-feedback">
-              <label htmlFor="businessWebsite">Website(Optional)</label>
+        <div className="form-group hasfeedback">
+              <label htmlFor="email">Email<span className="require mx-1">*</span></label>                       
               <input 
-              type="url"
-              name="businessWebsite"
-              id="businessWebsite"
-              title="Please enter your Business Website"  
-              onChange={handleChange}
-              value={values.businessWebsite}
-             pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-              placeholder="http://www.example.com"
-              className={
-                errors.businessWebsite && touched.businessWebsite
-                ? "form-control is-invalid"
-                : "form-control"
-              }
-              />
-               {errors.businessWebsite && touched.businessWebsite ? (
-               <small id="passwordHelp" className="text-danger">{errors.businessWebsite}</small>
-               ): null}
-          </div>
-          <div className="form-group hasfeedback">
-              <label htmlFor="businessPhoneNumber">Phone Number<span className="require mx-1">*</span></label>                    
-              <input 
-              type="tel"
-              name="businessPhoneNumber"
-              id="businessPhoneNumber"
-              title="Please enter your Phone number"  
-              onChange={handleChange}
-              value={values.businessPhoneNumber}
-              pattern="[0]\d{10}$"
-              placeholder="080xxxxxxxx"
-              className={
-                errors.businessPhoneNumber && touched.businessPhoneNumber
-                ? "form-control is-invalid"
-                : "form-control"
-              }
-              required />
-               {errors.businessPhoneNumber && touched.businessPhoneNumber ? (
-              <small id="passwordHelp" className="text-danger">{errors.firstName}</small>
-              ): null}                       
-          </div>
-          <div className="form-group hasfeedback">
-              <label htmlFor="businessEmail">Email<span className="require mx-1">*</span></label>                       
-              <input 
-              type="businessEmail"
-              name="businessEmail"
+              type="email"
+              name="email"
               id="email"
               title="Please enter your Email address"  
               onChange={handleChange}
-              value={values.businessEmail}
+              value={values.email}
               pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
               placeholder="joe@example.com"
               className={
-                errors.businessEmail && touched.businessEmail
+                errors.email && touched.email
                 ? "form-control is-invalid"
                 : "form-control"
               }
                required />
-              {errors.businessEmail && touched.businessEmail ? (
-              <small id="passwordHelp" className="text-danger">{errors.businessEmail}</small>
+              {errors.email && touched.email ? (
+              <small id="passwordHelp" className="text-danger">{errors.email}</small>
               ): null}                         
           </div>
+          <div className="form-group hasfeedback">
+              <label htmlFor="phone">Phone Number<span className="require mx-1">*</span></label>                    
+              <input 
+              type="tel"
+              name="phone"
+              id="phone"
+              title="Please enter your Phone number"  
+              onChange={handleChange}
+              value={values.phone}
+              pattern="[0]\d{10}$"
+              placeholder="080xxxxxxxx"
+              className={
+                errors.phone && touched.phone
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+              required />
+               {errors.phone && touched.phone ? (
+              <small id="passwordHelp" className="text-danger">{errors.phone}</small>
+              ): null}                       
+          </div>
+        <div className="form-group has-feedback">
+            <label htmlFor="cac_number">CAC Registration Number<span className="require mx-1">*</span></label>
+            <input
+            type="text"
+            name="cac_number"
+            id="cac_number"
+            title="Please enter your CAC Registration No"
+            onChange={handleChange}
+            value={values.cac_number}
+            maxLength="12"
+            size="12"
+            
+            placeholder="CAC Registration Number"
+            className={
+              errors.cac_number && touched.cac_number
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+            />
+             {errors.cac_number && touched.cac_number ? (
+              <small id="passwordHelp" className="text-danger">{errors.cac_number}</small>
+            ): null}
+          </div>
+          <div className="form-group has-feedback">
+              <label htmlFor="website">Website( Optional )</label>
+              <input 
+              type="url"
+              name="website"
+              id="website"
+              title="Please enter your Business Website"  
+              onChange={handleChange}
+              value={values.website}
+             pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
+              placeholder="http://www.example.com"
+              className={
+                errors.website && touched.website
+                ? "form-control is-invalid"
+                : "form-control"
+              }
+              />
+               {errors.website && touched.website ? (
+               <small id="passwordHelp" className="text-danger">{errors.website}</small>
+               ): null}
+          </div>
+          
+         
               <div className="row form-group mt-4 ">
                 <div className="col-sm-12">
                   <div className="icheck-primary">
@@ -249,17 +251,19 @@ export default class BusinessDetails extends Component {
           <h3 className="text-center mb-4">Tell Us About Your Business</h3>
           <Formik 
           initialValues={{
-            businessName: "",
-            businessDescription: "",
-            businessAddress: "",
-            businessCacNumber: "",
-            businessWebsite: "",
-            businessEmail: "",
-            businessPhoneNumber: "",
+            name: "",
+            description: "",
+            address: "",
+            email: "",
+            phone: "",
+            cac_number: "",
+            website: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             this.submitForm(values, this.props.history);
-            setSubmitting(false);
+            setTimeout(() => {
+              setSubmitting(false)
+            }, 3000);
           }}
           validationSchema={ BusinessSchema }
           >

@@ -57,7 +57,7 @@ class App extends Component {
             <Header />
            
             <Route path="/" exact component={ Home } />
-            <Route path="/business/details" component={ BizDetails }/>
+           
             
             
             <Route path="/investor" component={ InvestorUser }/>
@@ -71,6 +71,7 @@ class App extends Component {
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
                 
+                <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
             </Switch>
