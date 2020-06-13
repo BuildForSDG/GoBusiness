@@ -56,7 +56,7 @@ class App extends Component {
           <div className="container">
             <Header />
            
-            <Route path="/" exact component={ Home } />
+           
            
             
             
@@ -66,6 +66,7 @@ class App extends Component {
            
             <Switch>
                 isLoggedIn()
+                <Route path="/" exact component={ Home } />
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>

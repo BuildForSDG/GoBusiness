@@ -41,7 +41,7 @@ export default class BusinessDetails extends Component {
       'x-auth-token': 'jwtToken'
     }
     axios
-      .post(`${baseURL}/business/`, values,{headers: headers})
+      .post(`${baseURL}/business`, values,{headers: headers})
       .then(res => {
         console.log(res.data);
         console.log(values);
@@ -54,7 +54,7 @@ export default class BusinessDetails extends Component {
       })
       .catch(error => {
         console.log(error);
-        swal("Error","Unexpected error","error");
+        swal("Error",`Unexpected error`,"error");
       });
   };
   showForm = ({
@@ -263,7 +263,7 @@ export default class BusinessDetails extends Component {
             this.submitForm(values, this.props.history);
             setTimeout(() => {
               setSubmitting(false)
-            }, 3000);
+            }, 5000);
           }}
           validationSchema={ BusinessSchema }
           >
