@@ -9,13 +9,12 @@ class Header extends Component {
         super(props);
         this.state = {
           menu : false,
-          currentUser: false
         };
         this.toggleMenu = this.toggleMenu.bind(this);
       }
     
       isLoggedIn = () => {
-        return localStorage.getItem("JWT_SECRET_KEY") !== null;
+        return localStorage.getItem("jwtToken") !== null;
       }
 
       signOut() {
@@ -34,7 +33,8 @@ class Header extends Component {
          switch(value) {
            case "sure":
              swal(" SignOut Successfully","success").then(val => {
-               localStorage.removeItem("JWT_SECRET_KEY");
+               localStorage.removeItem("jwtToken");
+               localStorage.clear();
                return this.props.history.push("/signin");
              });
              break;
@@ -67,7 +67,7 @@ class Header extends Component {
                 <div className="navbar-nav">
                   <li className="nav-item">
                         <NavLink to={"/signin"} 
-                        onClick={() => this.signOut()}
+                        onClick={()=> this.signOut() }
                         className="nav-link signup mx-3 px-5">Sign Out</NavLink>
                   </li>
                 </div>

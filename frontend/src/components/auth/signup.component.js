@@ -40,8 +40,8 @@ class SignUp extends Component {
     };
   }
   componentDidMount() {
-    if(localStorage.getItem("JWT_SECRET_KEY") != null){
-      return this.props.history.push('/business');
+    if(localStorage.getItem("jwtToken") != null){
+      return this.props.history.push('/signin');
     };
   }
 

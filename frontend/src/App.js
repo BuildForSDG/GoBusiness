@@ -28,8 +28,10 @@ import InvestmentDetails from './components/auth/investmentDetails.component';
 
 // logged in user
 const isLoggedIn = () => {
-  return localStorage.getItem("JWT_SECRET_KEY") !== null;
+  return localStorage.getItem("jwtToken") !== null;
 }
+// logged out user
+
 
 // Protected Route
 const SecureRoute = ({ component: Component, ...rest }) => (
@@ -66,7 +68,7 @@ class App extends Component {
             <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>
-                
+
                 <Route path="/" exact component={ Home } />
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />

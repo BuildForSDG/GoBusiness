@@ -27,7 +27,7 @@ class Signin extends Component {
     };
   }
   componentDidMount(){
-    if(localStorage.getItem("JWT_SECRET_KEY") != null){
+    if(localStorage.getItem("jwtToken") != null){
       return this.props.history.push('/business');
     }
     let notify = this.props.match.params["notify"]
@@ -51,7 +51,7 @@ class Signin extends Component {
         console.log(res.data);
         console.log(values);
         if(res.data.status === true) {
-          localStorage.setItem("JWT_SECRET_KEY", res.data.token);
+          localStorage.setItem("jwtToken", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
             history.push('/business');
