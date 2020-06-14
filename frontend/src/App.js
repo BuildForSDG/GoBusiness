@@ -23,6 +23,7 @@ import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
 import MyInvestment from './components/views/myInvestments.component';
 import NewInvestment from './components/views/newInvestments.component';
+import InvestmentDetails from './components/auth/investmentDetails.component';
 
 
 // logged in user
@@ -71,7 +72,8 @@ class App extends Component {
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
-                
+
+                <SecureRoute path="/business/investment/details" component={ InvestmentDetails } />
                 <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
