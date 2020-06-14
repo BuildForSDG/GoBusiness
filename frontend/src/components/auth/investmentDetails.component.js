@@ -7,28 +7,34 @@ import swal from 'sweetalert';
 import baseURL from '../services/url';
 
 
-const BusinessSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(5,"Business Name to Short")
-    .max(50,"Business Name to Long")
-    .required("Business Name is Required!"),
+const InvestmentSchema = Yup.object().shape({
+  title: Yup.string()
+    .min(5,"Title to Short")
+    .max(50,"Title to Long")
+    .required("Title is Required!"),
   description: Yup.string()
-    .min(20,"Descriptionis too Short!")
-    .max(200,"Description too Long!")
-    .required("Business Description is Required!"),
-  address: Yup.string()
-    .required("Business Address is Required!"),
-  email: Yup.string()
-    .email("Invalid Email")
-    .required("Emailis Required!"), 
-  phone: Yup.string()
-    .required("Phone Number is Required!"),
-  cac_number: Yup.string()
-    .required("Business CAC Number is Required!"),
-  businessWebsite: Yup.string(),
+    .min(20,"Description is too Short!")
+    .max(200,"Description is too Long!")
+    .required("Investment Description is Required!"),
+  start_date: Yup.date()
+    .required("Start Date is Required!"),
+  end_date: Yup.date()
+    .required("End Date is Required!"), 
+  budget: Yup.number()
+    .min(4,"Min Amount is 1000")
+    .max(7,"Max Amount is 1000000")
+    .required("Budget is Required!"),
+  unitCost: Yup.number()
+    .min(2,"Min Unit Cost is 10")
+    .max(5,"Max Unit Cost is 10000")
+    .required("Unit Cost is Required!"),
+  interest: Yup.string()
+    .min(1,"Min Interesr is 1%")
+    .max(2,"Max Interest is 50%")
+    .required("Interest is Required!")
 });
 
-export default class BusinessDetails extends Component {
+export default class InvestmentDetails extends Component {
   constructor(props) {
     super(props);
 
@@ -42,12 +48,12 @@ export default class BusinessDetails extends Component {
       'x-auth-token': 'jwtToken'
     }
     axios
-      .post(`${baseURL}/`, values,{headers: headers})
+      .post(`${baseURL}/investments`, values,{headers: headers})
       .then(res => {
         console.log(res.data);
         console.log(values);
         if(res.data.status === true) {
-          swal("Success!","Business profile created Successfully","success")
+          swal("Success!",res.data.message,"success")
           .then(value => history.push("/business"));
         } else if (res.data.status === false) {
           swal("Error",res.data.message,"error");
@@ -72,24 +78,24 @@ export default class BusinessDetails extends Component {
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
         <div className="form-group has-feedback">
-            <label htmlFor="name">Business Name<span className="require mx-1">*</span></label>
+            <label htmlFor="title">Investment Title<span className="require mx-1">*</span></label>
             <input 
             type="text" 
-            name="name"
-            id="name"
-            title="Please enter your Business name"
+            name="title"
+            id="title"
+            title="Please enter your Investment Title"
             onChange={handleChange}
-            value={values.name}
+            value={values.title}
             pattern="[A-Za-z]+$"
-            placeholder="Business Name"
+            placeholder="Investment Title"
             className={
-              errors.name && touched.name
+              errors.title && touched.title
               ? "form-control is-invalid"
               : "form-control"
             } 
             required  autoFocus />  
-            {errors.name && touched.name ? (
-            <small id="passwordHelp" className="text-danger">{errors.name}</small>
+            {errors.title && touched.title ? (
+            <small id="passwordHelp" className="text-danger">{errors.title000}</small>
             ): null}                     
         </div>
         <div className="form-group has-feedback">
@@ -98,7 +104,7 @@ export default class BusinessDetails extends Component {
             type="text" 
             name="description"
             id="description"
-            title="Please enter Business Description"
+            title="Please enter Investment Description"
             onChange={handleChange}
             value={values.description}
             pattern="[A-Za-z]+$"
@@ -114,111 +120,115 @@ export default class BusinessDetails extends Component {
             ): null}                     
         </div>
         <div className="form-group has-feedback">
-            <label htmlFor="address">Address<span className="require mx-1">*</span></label>
+            <label htmlFor="start_date">Start Date<span className="require mx-1">*</span></label>
             <input
-            type="text"
-            name="address"
-            id="address"
-            title="Please enter Business Address"
+            type="date"
+            name="start_date"
+            id="start_date"
+            title="Please enter Start Date"
             onChange={handleChange}
-            value={values.address}
-            placeholder="Business Address"
+            value={values.start_date}
             className={
-              errors.address && touched.address
+              errors.start_date && touched.start_date
               ? "form-control is-invalid"
               : "form-control"
             }
             required
             />
-             {errors.address && touched.address ? (
-            <small id="passwordHelp" className="text-danger">{errors.address}</small>
+             {errors.start_date && touched.start_date ? (
+            <small id="passwordHelp" className="text-danger">{errors.start_date}</small>
             ): null}
         </div>
         <div className="form-group hasfeedback">
-              <label htmlFor="email">Email<span className="require mx-1">*</span></label>                       
+              <label htmlFor="end_date">End Date<span className="require mx-1">*</span></label>                       
               <input 
-              type="email"
-              name="email"
-              id="email"
-              title="Please enter your Email address"  
+              type="date"
+              name="end_date"
+              id="end_date"
+              title="Please enter End Date"  
               onChange={handleChange}
-              value={values.email}
-              pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-              placeholder="joe@example.com"
+              value={values.end_date}
               className={
-                errors.email && touched.email
+                errors.end_date && touched.end_date
                 ? "form-control is-invalid"
                 : "form-control"
               }
                required />
-              {errors.email && touched.email ? (
-              <small id="passwordHelp" className="text-danger">{errors.email}</small>
+              {errors.end_date && touched.end_date ? (
+              <small id="passwordHelp" className="text-danger">{errors.end_date}</small>
               ): null}                         
           </div>
           <div className="form-group hasfeedback">
-              <label htmlFor="phone">Phone Number<span className="require mx-1">*</span></label>                    
+              <label htmlFor="budget">Budget ( in Naira )<span className="require mx-1">*</span></label>                    
               <input 
-              type="tel"
-              name="phone"
-              id="phone"
-              title="Please enter your Phone number"  
+              type="number"
+              name="budget"
+              id="budget"
+              title="Please enter a Budget"  
               onChange={handleChange}
-              value={values.phone}
-              pattern="[0]\d{10}$"
-              placeholder="080xxxxxxxx"
+              value={values.budget}
+              pattern="^(0|[1-9][0-9]*)$"
+              placeholder="5000"
+              minLength="4"
+              maxLength="7"
+              size="7"
               className={
-                errors.phone && touched.phone
+                errors.budget && touched.budget
                 ? "form-control is-invalid"
                 : "form-control"
               }
               required />
-               {errors.phone && touched.phone ? (
-              <small id="passwordHelp" className="text-danger">{errors.phone}</small>
+               {errors.budget && touched.budget ? (
+              <small id="passwordHelp" className="text-danger">{errors.budget}</small>
               ): null}                       
           </div>
         <div className="form-group has-feedback">
-            <label htmlFor="cac_number">CAC Registration Number<span className="require mx-1">*</span></label>
+            <label htmlFor="unitCost">Unit Cost ( in Naira )<span className="require mx-1">*</span></label>
             <input
-            type="text"
-            name="cac_number"
-            id="cac_number"
-            title="Please enter your CAC Registration No"
+            type="number"
+            name="unitCost"
+            id="unitCost"
+            title="Please enter Unit Cost"
             onChange={handleChange}
-            value={values.cac_number}
-            maxLength="12"
-            size="12"
-            
-            placeholder="CAC Registration Number"
+            value={values.unitCost}
+            pattern="^(0|[1-9][0-9]*)$"
+            minLength="2"
+            maxLength="5"
+            size="5"
+            placeholder="500"
             className={
-              errors.cac_number && touched.cac_number
+              errors.unitCost && touched.unitCost
               ? "form-control is-invalid"
               : "form-control"
             }
             required
             />
-             {errors.cac_number && touched.cac_number ? (
-              <small id="passwordHelp" className="text-danger">{errors.cac_number}</small>
+             {errors.unitCost && touched.unitCost ? (
+              <small id="passwordHelp" className="text-danger">{errors.unitCost}</small>
             ): null}
           </div>
           <div className="form-group has-feedback">
-              <label htmlFor="website">Website( Optional )</label>
+              <label htmlFor="interest">Interest ( % )</label>
               <input 
-              type="url"
-              name="website"
-              id="website"
-              title="Please enter your Business Website"  
+              type="text"
+              name="interest"
+              id="interest"
+              title="Please enter an Interest"  
               onChange={handleChange}
-              value={values.website}
-             pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?"
-              placeholder="http://www.example.com"
+              value={values.interest}
+             pattern=""
+              placeholder="10"
+              minLength="1"
+              maxLength="2"
+              size="2"
               className={
-                errors.website && touched.website
+                errors.interest && touched.interest
                 ? "form-control is-invalid"
                 : "form-control"
               }
               />
-               {errors.website && touched.website ? (
-               <small id="passwordHelp" className="text-danger">{errors.website}</small>
+               {errors.interest && touched.interest ? (
+               <small id="passwordHelp" className="text-danger">{errors.interest}</small>
                ): null}
           </div>
           
@@ -252,16 +262,16 @@ export default class BusinessDetails extends Component {
   render() {
     return (   
         <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
-          <h3 className="text-center mb-4">Tell Us About Your Business</h3>
+          <h3 className="text-center mb-4">Request Investment</h3>
           <Formik 
           initialValues={{
-            name: "",
+            title: "",
             description: "",
-            address: "",
-            email: "",
-            phone: "",
-            cac_number: "",
-            website: "",
+            start_date: "",
+            end_date: "",
+            budget: "",
+            unitCost: "",
+            interest: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             this.submitForm(values, this.props.history);
@@ -269,7 +279,7 @@ export default class BusinessDetails extends Component {
               setSubmitting(false)
             }, 5000);
           }}
-          validationSchema={ BusinessSchema }
+          validationSchema={ InvestmentSchema }
           >
             {props => this.showForm(props)}
           </Formik>

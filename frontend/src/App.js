@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthService from './components/services/auth.service';
 
 import Home from './components/views/home.component';
-import SignUp from './components/auth/signup.component';
+import SignUpBusiness from './components/auth/signup.component';
+import SignUpInvestor from './components/auth/signup_investor.component';
 import SignIn from './components/auth/signin.component';
 import ForgotPassword from './components/auth/forgotpassword.component';
 import ResetPassword from './components/auth/resetpassword.component';
@@ -23,12 +24,16 @@ import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
 import MyInvestment from './components/views/myInvestments.component';
 import NewInvestment from './components/views/newInvestments.component';
+import InvestmentDetails from './components/auth/investmentDetails.component';
+import SignInInvestor from './components/auth/signin_investor.component';
 
 
 // logged in user
 const isLoggedIn = () => {
-  return localStorage.getItem("JWT_SECRET_KEY") !== null;
+  return localStorage.getItem("jwtToken") !== null;
 }
+// logged out user
+
 
 // Protected Route
 const SecureRoute = ({ component: Component, ...rest }) => (
@@ -56,8 +61,8 @@ class App extends Component {
           <div className="container">
             <Header />
            
-            <Route path="/" exact component={ Home } />
-            <Route path="/business/details" component={ BizDetails }/>
+           
+           
             
             
             <Route path="/investor" component={ InvestorUser }/>
@@ -65,12 +70,17 @@ class App extends Component {
             <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>
-                isLoggedIn()
-                <Route path="/signup" component={ SignUp }/>
+
+                <Route path="/" exact component={ Home } />
+                <Route path="/signin/investor" component={ SignInInvestor }/>
+                <Route path="/signup/investor" component={ SignUpInvestor }/>
+                <Route path="/signup/business" component={ SignUpBusiness }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
-                
+
+                <SecureRoute path="/business/investment/details" component={ InvestmentDetails } />
+                <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
             </Switch>

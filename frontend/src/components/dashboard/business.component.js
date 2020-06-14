@@ -47,7 +47,7 @@ export default class BusinessUser extends Component {
                                 <img className="img-fluid m-3 icon" src={ RequestImg } alt="" />
                                 <p>Investment Request</p>
                             </div>
-                            <Link to="#" className="pl-3 small-box-footer">Request</Link>
+                            <Link to="/business/investment/details" className="pl-3 small-box-footer">Request</Link>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-12 my-3">

@@ -24,7 +24,11 @@ export default class Home extends Component {
                       <div className="welcome">
                       <h1>Welcome to GoBusiness</h1>
                       <h4>A Platform for SMEs Investment</h4>
-                      <NavLink to="/signup"><button className="btn btn-primary px-5 py-2 my-3 start shadow">Get Started for Free</button></NavLink>
+                      <div className="mt-5">
+                        <h5>Get Started for Free</h5><hr/>
+                      </div>
+                      <NavLink to="/signup/business"><button className="btn btn-primary px-5 py-2 my-3 mx-3 start shadow">As  Business Owner</button></NavLink>
+                      <NavLink to="/signup/investor"><button className="btn btn-primary px-5 py-2 my-3 start shadow">As  Business Investor</button></NavLink>
                       </div>
                   </div>
                 </div>
