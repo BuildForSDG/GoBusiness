@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
-import ProfileImg from '../images/avataaars (2).svg';
+import ProfileImg from '../images/avataaars (4).svg';
 import baseURL from '../services/url';
 
 
@@ -16,7 +16,7 @@ const SigninSchema = Yup.object().shape({
     .required("Password is Required"),
 });
 
-class Signin extends Component {
+class SignInInvestor extends Component {
   constructor(props) {
     super(props);
 
@@ -54,7 +54,7 @@ class Signin extends Component {
           localStorage.setItem("jwtToken", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
-            history.push('/business');
+            history.push('/investor');
           });
         } else if (res.data.status === false) {
           swal("Error!", res.data.message, "error");
@@ -150,7 +150,7 @@ class Signin extends Component {
             </button>
           </div>
         </div>
-        <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup/business">Sign up</Link></p>
+        <p className="text-center mt-3 acct">Don't have an Account? <Link to="/signup/investor">Sign up</Link></p>
       </form>
     );
   };
@@ -183,4 +183,4 @@ class Signin extends Component {
   }
 }
 
-export default Signin;
+export default SignInInvestor;

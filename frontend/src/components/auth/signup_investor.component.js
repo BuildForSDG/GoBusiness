@@ -1,124 +1,69 @@
-import React, { Component } from "react";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
-import swal from "sweetalert";
+import React,{ Component } from "react";
+import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
+import swal from 'sweetalert';
 import baseURL from '../services/url';
 
-const FILE_SIZE = 160 * 1024;
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-const ProfileSchema = Yup.object().shape({
-  avatars: Yup.mixed()
-    .required("A file is required")
-    .test(
-      "fileSize",
-      "File too large",
-      value => value && value.size <= FILE_SIZE
-    )
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      value => value && SUPPORTED_FORMATS.includes(value.type)
-    ),
+
+const SignupSchema = Yup.object().shape({
   firstname: Yup.string()
-    .min(2, "firstname is Too Short!")
-    .max(30, "firstname is Too Long!")
-    .required("firstname is Required"),
+    .required("First Name is Required!"),
   lastname: Yup.string()
-    .min(2, "lastname is Too Short!")
-    .max(30, "lastname is Too Long!")
-    .required("lastname is Required"),
-  phone: Yup.number("Phone number is use only number")
-    .min(10, "Phone number must be 10 characters!")
-    .required("Phone number is Required"),
-  address: Yup.string()
-    .min(12, "address is Too Short!")
-    .max(50, "address is Too Long!")
-    .required("address is Required"),
+    .required("Last Name is Required!"),
   email: Yup.string()
-    .email("Invalid email")
-    .required("Email is Required")
+    .email("Invalid Email")
+    .required("Email is Required!"),
+  phone: Yup.string()
+    .required("Phone Number is Required!"),
+  type: Yup.string()
+    .required("Select an Option!"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is Required"),
+  confirm_password: Yup.string()
+    .required("Confirm your Password")
+    .oneOf(
+      [Yup.ref("password"), null],
+      "Passwords do not Match!"
+    ),
+  
 });
 
-class Profile extends Component {
+class SignUpInvestor extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      response: {},
-      error_message: null,
-      avatar: ""
+      alert: null
+    };
+  }
+  componentDidMount() {
+    if(localStorage.getItem("jwtToken") != null){
+      return this.props.history.push('/signin');
     };
   }
 
-  parseJwt() {
-    let token = localStorage.getItem("jwtToken");
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map(function(c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-
-    return JSON.parse(jsonPayload);
-  }
-
-  componentDidMount() {
-    let { id } = this.parseJwt();
-    this.getData(id);
-  }
-
-  showPreviewImage = values => {
-    console.log(this.state.response.avatar);
-    return (
-      <div className="text-center">
-        <img
-          id="avatars"
-          src={
-            values.file_obj != null
-              ? values.file_obj
-              : "http://localhost:8080/images/user.png"
-          }
-          className="profile-user-img img-fluid img-circle"
-          alt=""
-          width={100}
-        />
-      </div>
-    );
-  };
-  getData = async id => {
+  submitForm = async (values, history) => {
+    const headers = {
+      'Content-Type' : 'application/json',
+      'x-auth-token' : 'jwtToken'
+    }
     await axios
-      .get(`${baseURL}/profile/id/` + id)
-      .then(response => {
-        console.log(response.data);
-        document.getElementById("avatars").src = `${baseURL}/images/`+response.data.avatars
-        // profile.setAttribute("src",);
-        this.setState({ response: response.data });
-      })
-      .catch(error => {
-        this.setState({ error_message: error.message });
-      });
-  };
-  submitForm = async formData => {
-    await axios
-      .put(`${baseURL}/profile`, formData)
+      .post(`${baseURL}/auth/signup`, values,{headers: headers})
       .then(res => {
-        console.log(res.data.result);
-        if (res.data.status === true) {
-          swal("Success!", res.data.message, "success").then(value => {
-            //s window.location.reload();
-          });
+        console.log(res.data);
+        if(res.data.status === true) {
+          swal("Success!",res.data.message,"success")
+          .then(value => history.push("/signin/investor"));
         } else if (res.data.status === false) {
-          swal("Error!", res.data.message, "error");
+          swal("Error",res.data.message,"error");
         }
       })
       .catch(error => {
         console.log(error);
-        swal("Error!", "Unexpected error", "error");
+        swal("Error","Unexpected Error!","error");
       });
   };
   showForm = ({
@@ -127,8 +72,7 @@ class Profile extends Component {
     touched,
     handleChange,
     handleSubmit,
-    isSubmitting,
-    setFieldValue
+    isSubmitting
   }) => {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
@@ -243,9 +187,7 @@ class Profile extends Component {
             }
             required
           >
-            <option value=""></option>
-            <option value="Business">Business</option>
-            <option value="Investor">Investor</option>
+            <option value="Business">Investor</option>
           </select>
           {errors.type && touched.type ? (
             <small id="passwordHelp" className="text-danger">{errors.type}</small>
@@ -301,12 +243,28 @@ class Profile extends Component {
         </div>
         
         <div className="row form-group mt-4 ">
+            <div className="col-sm-12">
+                <div className="icheck-primary">
+                  <input 
+                  type="checkbox"
+                  name="tsAndCs" 
+                  id="tsAndCs" 
+                  title="Please Accept and Coditions"
+                  required
+                  />
+                  <label htmlFor="tsAndCs" className="ml-2">Accept Terms and Conditions</label>
+                </div>
+            </div>
             <div className="col-sm-12 col-md-12 text-center mt-3">
               <button
               disabled={isSubmitting}
               type="submit" 
-              className="btn btn-primary m-2 px-5 user">Save</button>
+              className="btn btn-primary m-2 px-5 user">Sign Up</button>
+              <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin/investor">Sign in</Link></p>
             </div>
+        </div>
+        <div className="text-center">
+            <Link to={"/business"}>Go Back</Link>
         </div>
       </form>
     );
@@ -315,14 +273,14 @@ class Profile extends Component {
   render() {
     return (   
         <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
-          <h3 className="text-center mb-4">Update Profile</h3>
+          <h3 className="text-center mb-4">Create Investor Account</h3>
           <Formik 
           initialValues={{
             firstname: "",
             lastname: "",
             phone: "",
             email: "",
-            type: "",
+            type: "Investor",
             password: "",
             confirm_password: "",
           }}
@@ -332,14 +290,13 @@ class Profile extends Component {
               setSubmitting(false)
             }, 3000);
           }}
-          validationSchema={ProfileSchema}
+          validationSchema={SignupSchema}
           >
             {props => this.showForm(props)}
           </Formik>
         </div>
-    
     );
   }
 }
 
-export default Profile;
+export default SignUpInvestor;

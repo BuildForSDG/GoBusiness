@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthService from './components/services/auth.service';
 
 import Home from './components/views/home.component';
-import SignUp from './components/auth/signup.component';
+import SignUpBusiness from './components/auth/signup.component';
+import SignUpInvestor from './components/auth/signup_investor.component';
 import SignIn from './components/auth/signin.component';
 import ForgotPassword from './components/auth/forgotpassword.component';
 import ResetPassword from './components/auth/resetpassword.component';
@@ -24,6 +25,7 @@ import Profile from './components/auth/profile.component';
 import MyInvestment from './components/views/myInvestments.component';
 import NewInvestment from './components/views/newInvestments.component';
 import InvestmentDetails from './components/auth/investmentDetails.component';
+import SignInInvestor from './components/auth/signin_investor.component';
 
 
 // logged in user
@@ -70,7 +72,9 @@ class App extends Component {
             <Switch>
 
                 <Route path="/" exact component={ Home } />
-                <Route path="/signup" component={ SignUp }/>
+                <Route path="/signin/investor" component={ SignInInvestor }/>
+                <Route path="/signup/investor" component={ SignUpInvestor }/>
+                <Route path="/signup/business" component={ SignUpBusiness }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>

@@ -31,7 +31,7 @@ const SignupSchema = Yup.object().shape({
   
 });
 
-class SignUp extends Component {
+class SignUpBusiness extends Component {
   constructor(props) {
     super(props);
 
@@ -187,9 +187,7 @@ class SignUp extends Component {
             }
             required
           >
-            <option value=""></option>
             <option value="Business">Business</option>
-            <option value="Investor">Investor</option>
           </select>
           {errors.type && touched.type ? (
             <small id="passwordHelp" className="text-danger">{errors.type}</small>
@@ -265,6 +263,9 @@ class SignUp extends Component {
               <p className="text-center mt-5 acct">Already have an Account? <Link to="/signin">Sign in</Link></p>
             </div>
         </div>
+        <div className="text-center">
+          <Link to={"/"}>Go Back</Link>
+        </div>
       </form>
     );
   };
@@ -272,14 +273,14 @@ class SignUp extends Component {
   render() {
     return (   
         <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
-          <h3 className="text-center mb-4">Create an Account</h3>
+          <h3 className="text-center mb-4">Create Business Account</h3>
           <Formik 
           initialValues={{
             firstname: "",
             lastname: "",
             phone: "",
             email: "",
-            type: "",
+            type: "Business",
             password: "",
             confirm_password: "",
           }}
@@ -298,4 +299,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default SignUpBusiness;
