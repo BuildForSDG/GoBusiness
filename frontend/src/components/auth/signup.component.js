@@ -39,6 +39,11 @@ class SignUp extends Component {
       alert: null
     };
   }
+  componentDidMount() {
+    if(localStorage.getItem("JWT_SECRET_KEY") != null){
+      return this.props.history.push('/business');
+    };
+  }
 
   submitForm = async (values, history) => {
     const headers = {

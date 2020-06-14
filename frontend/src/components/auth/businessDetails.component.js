@@ -1,4 +1,5 @@
 import React,{ Component } from "react";
+import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -46,7 +47,7 @@ export default class BusinessDetails extends Component {
         console.log(res.data);
         console.log(values);
         if(res.data.status === true) {
-          swal("Success!",res.data.message,"success")
+          swal("Success!","Business profile created Successfully","success")
           .then(value => history.push("/business"));
         } else if (res.data.status === false) {
           swal("Error",res.data.message,"error");
@@ -54,7 +55,7 @@ export default class BusinessDetails extends Component {
       })
       .catch(error => {
         console.log(error);
-        swal("Error",`Unexpected error`,"error");
+        swal("Error","Sorry!,Unexpected Error","error");
       });
   };
   showForm = ({
@@ -241,6 +242,9 @@ export default class BusinessDetails extends Component {
                   type="submit" 
                   className="btn btn-primary m-2 px-5 user">Create</button>
               </div>    
+          </div>
+          <div className="text-center">
+            <Link to={"/business"}>Go Back</Link>
           </div>
       </form>
     );

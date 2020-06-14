@@ -65,7 +65,7 @@ class App extends Component {
             <Route path="/investor/investments/new" component={ NewInvestment } />
            
             <Switch>
-                isLoggedIn()
+                
                 <Route path="/" exact component={ Home } />
                 <Route path="/signup" component={ SignUp }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
