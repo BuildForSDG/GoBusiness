@@ -1,8 +1,7 @@
 import React, { Component} from 'react';
 import { NavLink,withRouter,Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import SignUpView from './signup_view.component';
-import SignInView from './signin_view.component';
+
 
 
 
