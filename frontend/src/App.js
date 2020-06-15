@@ -28,6 +28,7 @@ import InvestmentDetails from './components/auth/investmentDetails.component';
 import SignInInvestor from './components/auth/signin_investor.component';
 
 
+
 // logged in user
 const isLoggedIn = () => {
   return localStorage.getItem("jwtToken") !== null;
@@ -63,9 +64,7 @@ class App extends Component {
            
            
            
-            
-            
-            <Route path="/investor" component={ InvestorUser }/>
+            <Route path="/investor" component={ InvestorUser } />
             <Route path="/investor/investments" component={ MyInvestment } />
             <Route path="/investor/investments/new" component={ NewInvestment } />
            

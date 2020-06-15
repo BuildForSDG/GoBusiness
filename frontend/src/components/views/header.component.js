@@ -1,6 +1,8 @@
 import React, { Component} from 'react';
-import { NavLink,withRouter } from 'react-router-dom';
+import { NavLink,withRouter,Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import SignUpView from './signup_view.component';
+import SignInView from './signin_view.component';
 
 
 
@@ -73,12 +75,24 @@ class Header extends Component {
                 </div>
                 ):(
                 <div className="navbar-nav">
-                  <li className="nav-item">
-                    <NavLink to={"/signin"} className="nav-link signin mx-3">Sign In</NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink to={"/signup"} className="nav-link signup mx-3 px-5">Sign Up</NavLink>
-                  </li>
+                  <div class="dropdown">
+                    <button class="btn btn-outline signin px-4 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Sign In
+                    </button>
+                    <div class="dropdown-menu text-center px-4" aria-labelledby="dropdownMenuButton">
+                        <Link to="/signin/business"className="dropdown-item text-center mx-1">Business</Link>
+                        <Link to="/signin/investor" className="dropdown-item text-center">Investor</Link> 
+                    </div>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-outline signup px-5 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Sign Up
+                    </button>
+                    <div class="dropdown-menu text-center px-4" aria-labelledby="dropdownMenuButton">
+                        <Link to="/signup/business"className="dropdown-item text-center mx-1">Business</Link>
+                        <Link to="/signup/investor" className="dropdown-item text-center">Investor</Link> 
+                    </div>
+                  </div>
                 </div>
                 )}
               </ul>

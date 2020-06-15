@@ -58,7 +58,6 @@ body {
 
 .signup:hover {
   font-weight: bold !important;
-  background-color: #1a237e;
   border: none;
 }
 
@@ -244,7 +243,17 @@ color: #fff !important;
   height: 20%;
 }
 
-
+.dropdown-item {
+  background-color: transparent !important;
+  color: #fff !important;
+ 
+}
+.dropdown-menu {
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+  box-shadow:  20px 20px 60px #5300c7;  
+}
 
 /** Small devices (landscape phones, 576px and up)*/
 @media (min-width: 300px) { 
