@@ -61,23 +61,19 @@ class App extends Component {
         < Router>
           <div className="container">
             <Header />
-           
-           
-           
-            <Route path="/investor" component={ InvestorUser } />
-            <Route path="/investor/investments" component={ MyInvestment } />
-            <Route path="/investor/investments/new" component={ NewInvestment } />
-           
+                
             <Switch>
-
                 <Route path="/" exact component={ Home } />
+                <Route path="/investor/investments" component={ MyInvestment } />
+                <Route path="/investor/investments/new" component={ NewInvestment } />
                 <Route path="/signin/investor" component={ SignInInvestor }/>
                 <Route path="/signup/investor" component={ SignUpInvestor }/>
                 <Route path="/signup/business" component={ SignUpBusiness }/>
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
-
+                <SecureRoute path="/investor" component={ InvestorUser } />
+                
                 <SecureRoute path="/business/investment/details" component={ InvestmentDetails } />
                 <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />

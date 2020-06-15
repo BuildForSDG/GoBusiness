@@ -57,7 +57,7 @@ class SignInInvestor extends Component {
             history.push('/investor');
           });
         } else if (res.data.status === false) {
-          swal("Error!", res.data.message, "error");
+          swal("Error!", res.data.error, "error");
         }
       })
       .catch(error => {

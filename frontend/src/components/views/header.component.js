@@ -74,20 +74,20 @@ class Header extends Component {
                 </div>
                 ):(
                 <div className="navbar-nav">
-                  <div class="dropdown">
-                    <button class="btn btn-outline signin px-4 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div className="dropdown">
+                    <button className="btn btn-outline signin px-4 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Sign In
                     </button>
-                    <div class="dropdown-menu signin text-center px-4" aria-labelledby="dropdownMenuButton">
+                    <div className="dropdown-menu signin text-center px-4" aria-labelledby="dropdownMenuButton">
                         <Link to="/signin/business"className="dropdown-item text-center mx-1">Business</Link>
                         <Link to="/signin/investor" className="dropdown-item text-center">Investor</Link> 
                     </div>
                   </div>
-                  <div class="dropdown">
-                    <button class="btn btn-outline signup px-5 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div className="dropdown">
+                    <button className="btn btn-outline signup px-5 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Sign Up
                     </button>
-                    <div class="dropdown-menu text-center px-4" aria-labelledby="dropdownMenuButton">
+                    <div className="dropdown-menu text-center px-4" aria-labelledby="dropdownMenuButton">
                         <Link to="/signup/business"className="dropdown-item text-center mx-1">Business</Link>
                         <Link to="/signup/investor" className="dropdown-item text-center">Investor</Link> 
                     </div>
