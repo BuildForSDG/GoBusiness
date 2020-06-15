@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7e543423c871c5167cfce464e14e4f16",
+    "revision": "a691e43dbe3e5e991451d55aa719a855",
     "url": "/GoBusiness/index.html"
   },
   {
-    "revision": "73b7b32f0330df14fc5e",
+    "revision": "360be60ce41b1ee76aa3",
     "url": "/GoBusiness/static/css/2.af3c1da9.chunk.css"
   },
   {
-    "revision": "7f1c8832bc058f01b49d",
-    "url": "/GoBusiness/static/css/main.99d02fd6.chunk.css"
+    "revision": "c3b4d966506d18cc303d",
+    "url": "/GoBusiness/static/css/main.cb382884.chunk.css"
   },
   {
-    "revision": "73b7b32f0330df14fc5e",
-    "url": "/GoBusiness/static/js/2.60c90e00.chunk.js"
+    "revision": "360be60ce41b1ee76aa3",
+    "url": "/GoBusiness/static/js/2.dbb89c78.chunk.js"
   },
   {
     "revision": "77e7f328dacc981fca681ee4ae94d669",
-    "url": "/GoBusiness/static/js/2.60c90e00.chunk.js.LICENSE.txt"
+    "url": "/GoBusiness/static/js/2.dbb89c78.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7f1c8832bc058f01b49d",
-    "url": "/GoBusiness/static/js/main.100a99f7.chunk.js"
+    "revision": "c3b4d966506d18cc303d",
+    "url": "/GoBusiness/static/js/main.9b272829.chunk.js"
   },
   {
     "revision": "b3f34ea79eb942c80234",
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "fe8026bf9cf02ae16e27b5382bee4133",
     "url": "/GoBusiness/static/media/avataaars (2).fe8026bf.svg"
+  },
+  {
+    "revision": "a48034da137fc103f195dccd6cd155c4",
+    "url": "/GoBusiness/static/media/avataaars (4).a48034da.svg"
   },
   {
     "revision": "330f7b3c7d9f04a40dfe84f8af4e2f35",
