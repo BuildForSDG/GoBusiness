@@ -29,7 +29,7 @@ body {
 
 .btn-primary {
   outline: none;
-  background-color: #311b92 !important;
+  background-color: #0a2472 !important;
   border: none !important;
   border-radius: 3.125rem !important;
 }
@@ -51,8 +51,7 @@ body {
 .signup {
   color: #fff !important;
   outline: none;
-  background: #6200ea;
-  box-shadow:  20px 20px 60px #5300c7;       
+  box-shadow: 10px 10px 100px #0a2472;       
   border-radius: 3.125rem;
 }
 
@@ -135,10 +134,6 @@ a:hover {
   color: #fff;
 }
 
-.bg {
-  background-color: #6200ea !important;
-}
-
 .navbar-brand {
   color: #fff !important;
 }
@@ -172,9 +167,17 @@ button.navbar-toggler {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   color: #311b92;
-  background-color: #6200ea;
+  background: #6200ea;
   text-transform: capitalize;
   flex: 1 0 auto;
+  background: -webkit-linear-gradient(45.34deg, #6200ea 5.66%, #0a2472 50.01%, #6200ea 94.35%);
+
+    /*  Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45.34deg,#6200ea 5.66%, #6200ea 50.01%, #0a2472 94.35%);
+
+    /*  W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
+  background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
 }
 
 .form-check-input {
@@ -218,9 +221,9 @@ hr {
 .small-box {
   color: #fff;
   border-radius: 0.625rem;
-  background: #6200ea !important;
-  box-shadow:  20px 20px 60px #5300c7;           
+  background: #6200ea !important;          
   outline: none !important;
+  box-shadow:  2px 20px 60px #0a2472;  
 }
 
 .small-box:hover {
@@ -253,6 +256,18 @@ color: #fff !important;
   outline: none !important;
   border: none !important;
   box-shadow:  20px 20px 60px #5300c7;  
+}
+@keyframes gradient 
+{
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 /** Small devices (landscape phones, 576px and up)*/
