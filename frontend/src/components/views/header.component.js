@@ -78,7 +78,7 @@ class Header extends Component {
                     <button class="btn btn-outline signin px-4 py-2 mx-3 " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Sign In
                     </button>
-                    <div class="dropdown-menu text-center px-4" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu signin text-center px-4" aria-labelledby="dropdownMenuButton">
                         <Link to="/signin/business"className="dropdown-item text-center mx-1">Business</Link>
                         <Link to="/signin/investor" className="dropdown-item text-center">Investor</Link> 
                     </div>

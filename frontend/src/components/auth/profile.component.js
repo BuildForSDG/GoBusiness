@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -110,7 +111,7 @@ class Profile extends Component {
         console.log(res.data.result);
         if (res.data.status === true) {
           swal("Success!", res.data.message, "success").then(value => {
-            //s window.location.reload();
+            this.props.history.push("/business")
           });
         } else if (res.data.status === false) {
           swal("Error!", res.data.message, "error");
@@ -132,9 +133,40 @@ class Profile extends Component {
   }) => {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
+        {this.showPreviewImage(values)}
         <div className="text-center">
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
+        <div className="form-group">
+            <label htmlFor="exampleInputFile">Photo upload</label>
+            <div className="input-group">
+              <div className="custom-file">
+                <input
+                  type="file"
+                  onChange={e => {
+                    e.preventDefault();
+                    setFieldValue("avatars", e.target.files[0]); // for upload
+                    setFieldValue(
+                      "file_obj",
+                      URL.createObjectURL(e.target.files[0])
+                    ); // for preview image
+                  }}
+                  name="avatars"
+                  className={
+                    errors.email && touched.email
+                      ? "form-control is-invalid"
+                      : "form-control"
+                  }
+                  accept="image/*"
+                  id="avatars"
+                  
+                />
+                <label className="custom-file-label" htmlFor="exampleInputFile">
+                  Choose file
+                </label>
+              </div>
+            </div>
+          </div>
         <div className="form-group has-feedback">
           <label htmlFor="firstname">First Name<span className="require">*</span></label>
           <input 
@@ -205,15 +237,36 @@ class Profile extends Component {
           ): null}
         </div>
         <div className="form-group has-feedback">
-          <label htmlFor="email">Email<span className="require">*</span></label>
+          <label htmlFor="email">Address<span className="require">*</span></label>
+          <input 
+            type="address" 
+            name="address"
+            id="address"
+            title="Please enter your Address"
+            onChange={handleChange}
+            value={values.address}
+            placeholder="e.g No 5,Benin Str,Akure,Ondo State"
+            className={
+              errors.address && touched.address
+              ? "form-control is-invalid"
+              : "form-control"
+            }
+            required
+          />
+          {errors.address && touched.address ? (
+            <small id="passwordHelp" className="text-danger">{errors.address}</small>
+          ): null}
+        </div>
+        <div className="form-group has-feedback">
+          <label htmlFor="email">Email<span className="require">* </span></label>
           <input 
             type="email" 
             name="email"
             id="email"
-            title="Please enter your Email"
+            title="Please enter your Password"
             onChange={handleChange}
             value={values.email}
-            placeholder="joe@examole.com"
+            placeholder="joe@example.com"
             pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
             className={
               errors.email && touched.email
@@ -226,80 +279,6 @@ class Profile extends Component {
             <small id="passwordHelp" className="text-danger">{errors.email}</small>
           ): null}
         </div>
-        <div className="form-group has-feedback">
-          <label htmlFor="type">Type<span className="require">*</span></label>
-          <select 
-            type="select"
-            name="type"
-            id="type"
-            title="Please select an Option"
-            onChange={handleChange}
-            value={values.type}
-            placeholder="Select an Option"
-            className={
-              errors.type && touched.type
-              ? "form-control is-invalid"
-              : "form-control"
-            }
-            required
-          >
-            <option value=""></option>
-            <option value="Business">Business</option>
-            <option value="Investor">Investor</option>
-          </select>
-          {errors.type && touched.type ? (
-            <small id="passwordHelp" className="text-danger">{errors.type}</small>
-          ): null}
-        </div>
-        <div className="form-group has-feedback">
-          <label htmlFor="password">Password<span className="pass"><span className="require">* </span>( 6 min and 12 max characters )</span></label>
-          <input 
-            type="password" 
-            name="password"
-            id="password"
-            title="Please enter your Password"
-            onChange={handleChange}
-            value={values.password}
-            placeholder="Password"
-            minLength="6"
-            maxLength="12"
-            size="12"
-            className={
-              errors.password && touched.password
-              ? "form-control is-invalid"
-              : "form-control"
-            }
-            required
-          />
-          {errors.password && touched.password ? (
-            <small id="passwordHelp" className="text-danger">{errors.password}</small>
-          ): null}
-        </div>
-        <div className="form-group has-feedback">
-          <label>Confirm Password<span className="require">*</span></label>
-          <input 
-            type="password" 
-            name="confirm_password"
-            id="confirm_password"
-            title="Please Confirm your Password"
-            onChange={handleChange}
-            value={values.confirm_password}
-            placeholder="Confirm Password"
-            minLength="6"
-            maxLength="12"
-            size="12"
-            className={
-              errors.confirm_password && touched.confirm_password
-              ? "form-control is-invalid"
-              : "form-control"
-            }
-            required
-          />
-          {errors.confirm_password && touched.confirm_password ? (
-            <small id="passwordHelp" className="text-danger">{errors.confirm_password}</small>
-          ): null}
-        </div>
-        
         <div className="row form-group mt-4 ">
             <div className="col-sm-12 col-md-12 text-center mt-3">
               <button
@@ -308,30 +287,50 @@ class Profile extends Component {
               className="btn btn-primary m-2 px-5 user">Save</button>
             </div>
         </div>
+        <div className="text-center">
+          <Link to="/business">Go Back</Link>
+        </div>
       </form>
     );
   };
 
   render() {
+    let result = this.state.response;
+    console.log(result);
     return (   
         <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
           <h3 className="text-center mb-4">Update Profile</h3>
-          <Formik 
-          initialValues={{
-            firstname: "",
-            lastname: "",
-            phone: "",
-            email: "",
-            type: "",
-            password: "",
-            confirm_password: "",
-          }}
-          onSubmit={(values, { setSubmitting }) => {
-            this.submitForm(values, this.props.history);
-            setTimeout(() => {
-              setSubmitting(false)
-            }, 3000);
-          }}
+          <Formik
+                    enableReinitialize={true}
+                    initialValues={
+                      result
+                        ? result
+                        : {
+                            id: "",
+                            username: "",
+                            email: "",
+                            first_name: "",
+                            last_name: "",
+                            phone: "",
+                            address: ""
+                          }
+                    }
+                    onSubmit={(values, { setSubmitting }) => {
+                      let formData = new FormData();
+                      formData.append("firstname", values.firstname);
+                      formData.append("lastname", values.lastname);
+                      formData.append("phone", values.phone);
+                      formData.append("address", values.address);
+                      formData.append("email", values.email);
+                      if (values.avatars) {
+                        formData.append("avatars", values.avatars);
+                      }
+                      console.log(values.avatars);
+                      this.submitForm(formData, this.props.history);
+                      setTimeout(() => {
+                        setSubmitting(false)
+                      }, 5000);
+                    }}
           validationSchema={ProfileSchema}
           >
             {props => this.showForm(props)}
