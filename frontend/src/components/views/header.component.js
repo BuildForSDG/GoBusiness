@@ -35,8 +35,7 @@ class Header extends Component {
            case "sure":
              swal(" SignOut Successfully","success").then(val => {
                localStorage.removeItem("jwtToken");
-               localStorage.clear();
-               return this.props.history.push("/signin");
+               return this.props.history.replace("/signin");
              });
              break;
             case "nope":

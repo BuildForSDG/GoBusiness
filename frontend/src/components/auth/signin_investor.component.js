@@ -28,7 +28,7 @@ class SignInInvestor extends Component {
   }
   componentDidMount(){
     if(localStorage.getItem("jwtToken") != null){
-      return this.props.history.push('/business');
+      return this.props.history.push('/investor');
     }
     let notify = this.props.match.params["notify"]
     if(notify !== undefined){
