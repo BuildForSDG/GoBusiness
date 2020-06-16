@@ -31,7 +31,7 @@ import SignInInvestor from './components/auth/signin_investor.component';
 
 // logged in user
 const isLoggedIn = () => {
-  return localStorage.getItem("jwtToken") !== null;
+  return localStorage.getItem("jwtToken","user") !== null;
 }
 // logged out user
 
@@ -72,8 +72,8 @@ class App extends Component {
                 <Route path="/signin/:notify?" component={ SignIn } />
                 <Route path="/password/forgot" component={ ForgotPassword }/>
                 <Route path="/password/reset/" component={ ResetPassword }/>
+
                 <SecureRoute path="/investor" component={ InvestorUser } />
-                
                 <SecureRoute path="/business/investment/details" component={ InvestmentDetails } />
                 <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />

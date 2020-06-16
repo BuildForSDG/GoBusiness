@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { NavLink,withRouter,Link } from 'react-router-dom';
-import swal from 'sweetalert';
+
 
 
 
@@ -15,36 +15,11 @@ class Header extends Component {
       }
     
       isLoggedIn = () => {
-        return localStorage.getItem("jwtToken") !== null;
+        return localStorage.getItem("jwtToken","user") !== null;
       }
 
       signOut() {
-       swal("Are you sure you want to Sign out",{
-         button: {
-           nope : {
-             text: "Let me Back",
-             value: "nope"
-           },
-           sure : {
-             text: "I'm Sure",
-             value: "sure"
-           }
-         }
-       }).then(value => {
-         switch(value) {
-           case "sure":
-             swal(" SignOut Successfully","success").then(val => {
-               localStorage.removeItem("jwtToken");
-               return this.props.history.replace("/signin");
-             });
-             break;
-            case "nope":
-              swal("ok","success");
-              break;
-              default:
-                swal("Got away safely!");
-         }
-       });
+       return localStorage.clear();
       };
 
       toggleMenu(){
@@ -66,7 +41,7 @@ class Header extends Component {
                 {this.isLoggedIn() ? (
                 <div className="navbar-nav">
                   <li className="nav-item">
-                        <NavLink to={"/signin"} 
+                        <NavLink to={"/"} 
                         onClick={()=> this.signOut() }
                         className="nav-link signup mx-3 px-5">Sign Out</NavLink>
                   </li>
