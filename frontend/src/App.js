@@ -31,7 +31,7 @@ import SignInInvestor from './components/auth/signin_investor.component';
 
 // logged in user
 const isLoggedIn = () => {
-  return localStorage.getItem("jwtToken","user") !== null;
+  return localStorage.getItem("jwtToken") !== null;
 }
 // logged out user
 
