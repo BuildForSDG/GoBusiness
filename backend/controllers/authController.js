@@ -64,6 +64,7 @@ const login = (req, res) => {
     });
   }
 
+
   // Passed all validations
   const { email, password } = req.body;
   User.findOne({ email }, (err, user) => {
