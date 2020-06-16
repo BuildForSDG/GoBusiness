@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import { NavLink,withRouter,Link } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 
@@ -19,8 +20,34 @@ class Header extends Component {
       }
 
       signOut() {
-       return localStorage.clear();
-      };
+        swal("Are your sure SignOut?", {
+          buttons: {
+            nope: {
+              text: "Let me back",
+              value: "nope"
+            },
+            sure: {
+              text: "I'm, Sure",
+              value: "sure"
+            }
+          }
+        }).then(value => {
+          switch (value) {
+            case "sure":
+              swal(" SignOut Successfully", "success").then(val => {
+                localStorage.clear();
+                return this.props.history.push("/");
+              });
+              break;
+            case "nope":
+              swal("Ok", "success");
+              break;
+            default:
+              swal("Got away safely!");
+          }
+        });
+      
+        };
 
       toggleMenu(){
         this.setState({
