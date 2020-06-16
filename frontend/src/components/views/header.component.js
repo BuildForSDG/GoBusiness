@@ -15,7 +15,7 @@ class Header extends Component {
       }
     
       isLoggedIn = () => {
-        return localStorage.getItem("jwtToken","user") !== null;
+        return localStorage.getItem("jwtToken") !== null;
       }
 
       signOut() {
