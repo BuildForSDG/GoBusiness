@@ -21,8 +21,10 @@ class Signin extends Component {
     super(props);
 
     this.state = {
-      email:"",
-      password:"",
+      user: {
+        email:"",
+        password:"",
+      },
       alert: null
     };
   }
@@ -41,17 +43,18 @@ class Signin extends Component {
   }
 
   submitForm = async (values,history) => {
+    const user = {}
     const headers = {
       "Content-Type": "application/json",
       "x-auth-token": "jwtToken"
     }
     await axios
-      .post(`${baseURL}/auth/login`, values, {headers: headers})
+      .post(`${baseURL}/auth/login`, values,user, {headers: headers})
       .then(res => {
         console.log(res.data);
         console.log(values);
         if(res.data.status === true) {
-          localStorage.setItem("jwtToken", res.data.token);
+          localStorage.setItem("jwtToken","user", res.data);
           swal("Success!", res.data.message, "success")
           .then(value => {
             if(values.type === "business"){
