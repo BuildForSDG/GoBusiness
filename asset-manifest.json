@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/GoBusiness/static/css/main.cb382884.chunk.css",
-    "main.js": "/GoBusiness/static/js/main.d8a018b2.chunk.js",
-    "main.js.map": "/GoBusiness/static/js/main.d8a018b2.chunk.js.map",
+    "main.js": "/GoBusiness/static/js/main.2de619ee.chunk.js",
+    "main.js.map": "/GoBusiness/static/js/main.2de619ee.chunk.js.map",
     "runtime-main.js": "/GoBusiness/static/js/runtime-main.9d3240f2.js",
     "runtime-main.js.map": "/GoBusiness/static/js/runtime-main.9d3240f2.js.map",
     "static/css/2.af3c1da9.chunk.css": "/GoBusiness/static/css/2.af3c1da9.chunk.css",
     "static/js/2.dbb89c78.chunk.js": "/GoBusiness/static/js/2.dbb89c78.chunk.js",
     "static/js/2.dbb89c78.chunk.js.map": "/GoBusiness/static/js/2.dbb89c78.chunk.js.map",
     "index.html": "/GoBusiness/index.html",
-    "precache-manifest.953daf5c35f361471aaf048cbf505797.js": "/GoBusiness/precache-manifest.953daf5c35f361471aaf048cbf505797.js",
+    "precache-manifest.e3f7c5d0f3603c10d427e748aeabfcaa.js": "/GoBusiness/precache-manifest.e3f7c5d0f3603c10d427e748aeabfcaa.js",
     "service-worker.js": "/GoBusiness/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/GoBusiness/static/css/2.af3c1da9.chunk.css.map",
     "static/css/main.cb382884.chunk.css.map": "/GoBusiness/static/css/main.cb382884.chunk.css.map",
@@ -35,6 +35,6 @@
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.dbb89c78.chunk.js",
     "static/css/main.cb382884.chunk.css",
-    "static/js/main.d8a018b2.chunk.js"
+    "static/js/main.2de619ee.chunk.js"
   ]
 }
