@@ -52,15 +52,10 @@ class Signin extends Component {
         console.log(res.data);
         console.log(values);
         if(res.data.status === true) {
-          localStorage.setItem("jwtToken", res.data);
+          localStorage.setItem("jwtToken", res.data.token);
           swal("Success!", res.data.message, "success")
           .then(value => {
-            if(values.type === "business"){
-              history.push('/business');
-            } else {
-              history.push('/investor')
-            }
-
+           history.push('/business')
           });
         } else if (res.data.status === false) {
           swal("Error!", res.data.message, "error");
