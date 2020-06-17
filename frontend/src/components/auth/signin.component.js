@@ -41,7 +41,6 @@ class Signin extends Component {
   }
 
   submitForm = async (values,history) => {
-    const user = {}
     const headers = {
       "Content-Type": "application/json",
       "x-auth-token": "jwtToken"

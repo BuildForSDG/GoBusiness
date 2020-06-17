@@ -257,6 +257,17 @@ color: #fff !important;
   border: none !important;
   box-shadow:  20px 20px 60px #5300c7;  
 }
+
+.swal-button {
+  background-color: #311b92;
+  outline: none;
+  border: none;
+}
+
+.swal-button:hover {
+  color: #311b92;
+}
+
 @keyframes gradient 
 {
 	0% {
