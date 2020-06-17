@@ -158,7 +158,7 @@ class SignInInvestor extends Component {
   render() {
     return (
       <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
-          <h3 className="text-center mb-4">Sign into investor Account</h3>
+          <h3 className="text-center mb-4">Welcome Back investor</h3>
            
           <Formik 
           initialValues={{
