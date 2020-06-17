@@ -26,6 +26,7 @@ import MyInvestment from './components/views/myInvestments.component';
 import NewInvestment from './components/views/newInvestments.component';
 import InvestmentDetails from './components/auth/investmentDetails.component';
 import SignInInvestor from './components/auth/signin_investor.component';
+import ProfileInvestor from './components/auth/profile_investor.component';
 
 
 
@@ -66,6 +67,7 @@ class App extends Component {
                 <Route path="/" exact component={ Home } />
                 <Route path="/investor/investments" component={ MyInvestment } />
                 <Route path="/investor/investments/new" component={ NewInvestment } />
+                <Route path="/investor/profile" component={ ProfileInvestor } />
                 <Route path="/signin/investor" component={ SignInInvestor }/>
                 <Route path="/signup/investor" component={ SignUpInvestor }/>
                 <Route path="/signup/business" component={ SignUpBusiness }/>
@@ -78,6 +80,7 @@ class App extends Component {
                 <SecureRoute path="/business/details" component={ BizDetails }/>
                 <SecureRoute path="/business" component={ BusinessUser } />
                 <SecureRoute path="/profile" component={ Profile } />
+               
             </Switch>
             <Footer/>
           </div>
