@@ -29,7 +29,7 @@ const InvestmentSchema = Yup.object().shape({
     .max(5,"Max Unit Cost is 10000")
     .required("Unit Cost is Required!"),
   interest: Yup.string()
-    .min(1,"Min Interesr is 1%")
+    .min(1,"MIn interest is 1%")
     .max(2,"Max Interest is 50%")
     .required("Interest is Required!")
 });
@@ -216,7 +216,6 @@ export default class InvestmentDetails extends Component {
               title="Please enter an Interest"  
               onChange={handleChange}
               value={values.interest}
-             pattern=""
               placeholder="10"
               minLength="1"
               maxLength="2"
