@@ -76,7 +76,7 @@ export default class InvestmentDetails extends Component {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
          <div className="text-justify">
-            <Link to={"/business"}><img src={ backImg } /></Link>
+            <Link to={"/business"}><img src={ backImg } alt="" /></Link>
           </div>
          <div className="text-center">
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>

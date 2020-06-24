@@ -218,6 +218,14 @@ hr {
   background: url('./components/images/businessman__monochromatic.svg');
 }
 
+#password{
+ background: url('./components/images/lock.svg') no-repeat right 10px center;
+}
+
+#email{
+  background: url('./components/images/email.svg') no-repeat right 10px center;
+}
+
 .small-box {
   color: #fff;
   border-radius: 0.625rem;

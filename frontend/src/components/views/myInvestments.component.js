@@ -10,8 +10,8 @@ export default class MyInvestment extends Component {
                 <div className="row">
                     <div className="col-sm-12">
                     <div className="text-justify">
-                    <Link to={"/investor"}><img src={ backImg } /></Link>
-                </div>
+                        <Link to={"/investor"}><img src={ backImg } alt=""/></Link>
+                    </div>
                         <h3>My Investments</h3>
                     </div>
                 </div>
