@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { Link } from 'react-router-dom';
+import backImg from '../images/back.svg';
 
 
 
@@ -9,6 +10,9 @@ export default class NewInvestment extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12">
+                    <div className="text-justify">
+                        <Link to={"/investor"}><img src={ backImg } alt="" /></Link>
+                    </div>
                         <h3>New Investments</h3>
                     </div>
                 </div>

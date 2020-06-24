@@ -8,6 +8,7 @@ import ProfileImg from '../images/avataaars (2).svg';
 import baseURL from '../services/url';
 
 
+
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid Email")
@@ -96,16 +97,11 @@ class Signin extends Component {
               }
               autoFocus
             />
-            <div className="input-group-append">
-              <div className="input-group-text">
-                <span className="fas fa-user"></span>
-              </div>
-            </div>
             {errors.email && touched.email ? (
               <small id="passwordHelp" className="text-danger">{errors.email}</small>
             ): null}
           </div>
-          <div className="form-group has-feedback">
+          <div className="form-group has-feedback input-gruop">
           <label>Password</label>
           <input 
             type="password" 
@@ -124,11 +120,6 @@ class Signin extends Component {
               : "form-control"
             }
           />
-          <div className="input-group-append">
-            <div className="input-group-text">
-              <span className="fas fa-lock"></span>
-            </div>
-          </div>
           {errors.password && touched.password ? (
             <small id="passwordHelp" className="text-danger">{errors.password}</small>
           ): null}
