@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
 import baseURL from '../services/url';
+import backImg from '../images/arrow-left.svg';
 
 
 const InvestmentSchema = Yup.object().shape({
@@ -74,6 +75,9 @@ export default class InvestmentDetails extends Component {
   }) => {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
+         <div className="text-justify">
+            <Link to={"/business"}><img src={ backImg } /></Link>
+          </div>
          <div className="text-center">
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>

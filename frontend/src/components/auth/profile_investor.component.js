@@ -6,6 +6,8 @@ import axios from "axios";
 import swal from "sweetalert";
 import baseURL from '../services/url';
 
+import backImg from '../images/arrow-left.svg';
+
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 const ProfileSchema = Yup.object().shape({
@@ -134,6 +136,9 @@ class ProfileInvestor extends Component {
     return (
       <form onSubmit={handleSubmit} className="p-4 form mt-2">
         {this.showPreviewImage(values)}
+          <div className="text-justify">
+            <Link to={"/investor"}><img src={ backImg } /></Link>
+          </div>
         <div className="text-center">
           <p className="required ">All fields marked <span className="require"> * </span> are required</p>
         </div>
