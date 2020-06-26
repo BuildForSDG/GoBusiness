@@ -242,7 +242,7 @@ hr {
 
 .small-box-footer {
 color: #fff !important;
-  
+
 }
 
 .small-box-footer:hover {
@@ -274,6 +274,10 @@ color: #fff !important;
 
 .swal-button:hover {
   color: #311b92;
+}
+.invest {
+  font-weight: bold;
+  font-size: 1.3rem !important;
 }
 
 @keyframes gradient 

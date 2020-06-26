@@ -19,7 +19,6 @@ import Footer from './components/views/footer.component';
 import Header from './components/views/header.component';
 import BusinessUser from './components/dashboard/business.component';
 import InvestorUser from './components/dashboard/investor.component';
-import AdminUser from './components/dashboard/admin.component';
 import BizDetails from './components/auth/businessDetails.component';
 import Profile from './components/auth/profile.component';
 import MyInvestment from './components/views/myInvestments.component';
@@ -27,6 +26,7 @@ import NewInvestment from './components/views/newInvestments.component';
 import InvestmentDetails from './components/auth/investmentDetails.component';
 import SignInInvestor from './components/auth/signin_investor.component';
 import ProfileInvestor from './components/auth/profile_investor.component';
+
 
 
 
