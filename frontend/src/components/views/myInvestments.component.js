@@ -19,73 +19,182 @@ export default class MyInvestment extends Component {
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
                             <div className="inner text-center p-4">
-                                <p>#1</p>
-                            </div>
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4  my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#2</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#3</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#4</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#5</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#6</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#7</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#8</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
+                           
                         </div>
                     </div>
                     <div className="col-sm-3 col-md-4 my-3">
                         <div className="small-box">
-                            <div className="inner text-center p-4">
-                                <p>#9</p>
-                            </div>
+                        <div className="inner text-center p-4">
+                                <p className="invest">Investment Name</p>
+                                <p>5%<small className="mx-2">Interest</small></p>
+                                <div className="row" >
+                                    <div className="col-sm-6">
+                                        <p>N 5000<br/>
+                                        <small>per unit</small></p>
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <p>50<br/>
+                                        <small>Units</small></p>
+                                    </div>
+                                </div>
+                                <Link to="#" className="p-4 small-box-footer">Invest</Link>
                             <Link to="#" className="p-4 small-box-footer">Details</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
