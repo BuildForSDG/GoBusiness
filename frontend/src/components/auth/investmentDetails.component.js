@@ -23,11 +23,9 @@ const InvestmentSchema = Yup.object().shape({
     .required("End Date is Required!"), 
   budget: Yup.number()
     .min(4,"Min Amount is 1000")
-    .max(7,"Max Amount is 1000000")
     .required("Budget is Required!"),
   unitCost: Yup.number()
     .min(2,"Min Unit Cost is 10")
-    .max(5,"Max Unit Cost is 10000")
     .required("Unit Cost is Required!"),
   interest: Yup.string()
     .min(1,"MIn interest is 1%")
