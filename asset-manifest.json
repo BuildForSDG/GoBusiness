@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/GoBusiness/static/css/main.610a132b.chunk.css",
-    "main.js": "/GoBusiness/static/js/main.41d2fa6e.chunk.js",
-    "main.js.map": "/GoBusiness/static/js/main.41d2fa6e.chunk.js.map",
+    "main.css": "/GoBusiness/static/css/main.9b4f2e26.chunk.css",
+    "main.js": "/GoBusiness/static/js/main.7278dd46.chunk.js",
+    "main.js.map": "/GoBusiness/static/js/main.7278dd46.chunk.js.map",
     "runtime-main.js": "/GoBusiness/static/js/runtime-main.9d3240f2.js",
     "runtime-main.js.map": "/GoBusiness/static/js/runtime-main.9d3240f2.js.map",
     "static/css/2.af3c1da9.chunk.css": "/GoBusiness/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.fed16358.chunk.js": "/GoBusiness/static/js/2.fed16358.chunk.js",
-    "static/js/2.fed16358.chunk.js.map": "/GoBusiness/static/js/2.fed16358.chunk.js.map",
+    "static/js/2.5b5a9511.chunk.js": "/GoBusiness/static/js/2.5b5a9511.chunk.js",
+    "static/js/2.5b5a9511.chunk.js.map": "/GoBusiness/static/js/2.5b5a9511.chunk.js.map",
     "index.html": "/GoBusiness/index.html",
-    "precache-manifest.efdf664ff21c8b5bfdbad50858d5c36b.js": "/GoBusiness/precache-manifest.efdf664ff21c8b5bfdbad50858d5c36b.js",
+    "precache-manifest.3c0e758fd90069bf581956cf22ccaf3b.js": "/GoBusiness/precache-manifest.3c0e758fd90069bf581956cf22ccaf3b.js",
     "service-worker.js": "/GoBusiness/service-worker.js",
     "static/css/2.af3c1da9.chunk.css.map": "/GoBusiness/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.610a132b.chunk.css.map": "/GoBusiness/static/css/main.610a132b.chunk.css.map",
-    "static/js/2.fed16358.chunk.js.LICENSE.txt": "/GoBusiness/static/js/2.fed16358.chunk.js.LICENSE.txt",
+    "static/css/main.9b4f2e26.chunk.css.map": "/GoBusiness/static/css/main.9b4f2e26.chunk.css.map",
+    "static/js/2.5b5a9511.chunk.js.LICENSE.txt": "/GoBusiness/static/js/2.5b5a9511.chunk.js.LICENSE.txt",
     "static/media/archive.svg": "/GoBusiness/static/media/archive.978f1f93.svg",
     "static/media/arrow-left.svg": "/GoBusiness/static/media/arrow-left.432dc5eb.svg",
     "static/media/avataaars (2).svg": "/GoBusiness/static/media/avataaars (2).fe8026bf.svg",
@@ -35,8 +35,8 @@
   "entrypoints": [
     "static/js/runtime-main.9d3240f2.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.fed16358.chunk.js",
-    "static/css/main.610a132b.chunk.css",
-    "static/js/main.41d2fa6e.chunk.js"
+    "static/js/2.5b5a9511.chunk.js",
+    "static/css/main.9b4f2e26.chunk.css",
+    "static/js/main.7278dd46.chunk.js"
   ]
 }
