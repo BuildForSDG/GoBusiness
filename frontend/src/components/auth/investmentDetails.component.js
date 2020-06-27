@@ -47,7 +47,7 @@ export default class InvestmentDetails extends Component {
       'x-auth-token': 'jwtToken'
     }
     axios
-      .post(`${baseURL}/investments`, values,{headers: headers})
+      .post(`${baseURL}/`, values,{headers: headers})
       .then(res => {
         console.log(res.data);
         console.log(values);
