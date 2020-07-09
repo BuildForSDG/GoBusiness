@@ -60,7 +60,7 @@ class App extends Component {
   render() {
     return (
         < Router>
-          <div className="container">
+          <div className="container-fluid">
             <Header />
                 
             <Switch>
