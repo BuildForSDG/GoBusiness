@@ -124,17 +124,9 @@ a:hover {
   color: red;
 }
 
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  margin: 0 auto;
-  text-align: center;
-  color: #fff;
-}
 
-.navbar-brand {
+
+.navbar-brand,small {
   color: #fff !important;
 }
 
@@ -279,6 +271,8 @@ color: #fff !important;
   font-weight: bold;
   font-size: 1.3rem !important;
 }
+
+
 
 @keyframes gradient 
 {

@@ -15,7 +15,7 @@ export default class BusinessUser extends Component {
 
     render(){
         return (
-            <div className="container">
+            <div className="container business">
                 <div className="row">
                     <div className="col-sm-12 col-md-6 text-justify mt-3">
                         <h3>Business Dashboard</h3>

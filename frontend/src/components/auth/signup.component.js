@@ -271,7 +271,8 @@ class SignUpBusiness extends Component {
   };
 
   render() {
-    return (   
+    return (  
+      <div className="row">
         <div className="col-sm-12 col-md-6 col-lg-5 mb-3" style={{marginTop: 10}} >
           <h3 className="text-center mb-4">Create Business Account</h3>
           <Formik 
@@ -295,6 +296,7 @@ class SignUpBusiness extends Component {
             {props => this.showForm(props)}
           </Formik>
         </div>
+      </div>
     );
   }
 }
